@@ -1,32 +1,124 @@
 [
-  { "slug": "agente-ia-ventas", "title": "Agente de IA autónomo para ventas y posventa", "tags": ["n8n", "Claude API", "Tool use", "Webhooks"],
-    "summary": "Atiende consultas de punta a punta, desde la pregunta hasta el cierre de venta. Bajó el tiempo de respuesta de horas a minutos, aumentó las conversiones y opera sin intervención manual desde 2024.",
-    "context": "Las consultas de ventas y posventa tardaban horas en responderse y dependían de atención manual.",
-    "solution": "Un agente de IA construido en n8n con Claude (API y tool use). Interpreta la consulta, decide qué herramienta usar, consulta los sistemas necesarios por API y responde al cliente.",
-    "result": ["50+ interacciones diarias atendidas de punta a punta.", "Tiempo de respuesta de horas a minutos.", "Más conversiones.", "Opera sin intervención manual desde 2024."] },
-  { "slug": "whatsapp-odoo", "title": "Plataforma conversacional WhatsApp + Odoo", "tags": ["Python", "JavaScript", "WAHA", "Odoo ERP"],
-    "summary": "Los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos desde una sola interfaz, con IA que inicia conversaciones y genera ofertas. Un módulo de difusiones controladas eliminó los bloqueos de cuenta de WhatsApp.",
-    "context": "Los vendedores necesitaban trabajar con sus clientes por WhatsApp y con los datos de Odoo sin saltar entre herramientas, y los envíos masivos ponían en riesgo la cuenta de WhatsApp.",
-    "solution": "Una plataforma propia en Python y JavaScript, conectada a WhatsApp mediante WAHA y a Odoo. Desde una interfaz los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos. La IA inicia conversaciones y genera ofertas. Un módulo de difusiones controladas envía por rangos de tiempo y con contenido variable.",
-    "result": ["Gestión comercial completa desde una sola interfaz.", "Se eliminaron los bloqueos de cuenta de WhatsApp."] },
-  { "slug": "flujos-automatizados", "title": "Más de 50 flujos automatizados", "tags": ["n8n", "Power Automate", "REST", "Webhooks"],
-    "summary": "Integrados por APIs REST y webhooks, corren 24/7.",
-    "context": "Procesos que dependían de tareas manuales y de sistemas que no se hablaban entre sí.",
-    "solution": "Flujos en n8n y Power Automate integrados mediante APIs REST y webhooks.",
-    "result": ["Más de 50 flujos en producción.", "Funcionan 24/7."] },
-  { "slug": "promociones-mercado-libre", "title": "Automatización de promociones en Mercado Libre", "tags": ["Automatización de browser", "Claude", "Mercado Libre"],
-    "summary": "Un flujo de browser activa y desactiva entre 300 y 500 promociones de forma autónoma.",
-    "context": "La gestión de promociones en Mercado Libre implicaba activar y desactivar cientos de publicaciones.",
-    "solution": "Automatización de browser guiada por Claude que recorre las promociones y las activa o desactiva.",
-    "result": ["Entre 300 y 500 promociones activadas o desactivadas de forma autónoma."] },
-  { "slug": "inteligencia-de-precios", "title": "Inteligencia de precios de la competencia", "tags": ["Python", "Scraping"],
-    "summary": "Monitoreo periódico de los precios de la competencia mediante scraping propio.",
-    "context": "Se necesitaba conocer los precios de la competencia de forma regular.",
-    "solution": "Scraping propio en Python que consulta los precios de forma programada.",
-    "result": ["Monitoreo periódico de precios de la competencia."] },
-  { "slug": "segundo-cerebro", "title": "Segundo cerebro", "pill": "proyecto personal", "tags": ["Obsidian", "MCP", "Claude"],
-    "summary": "Sistema de conocimiento personal con Obsidian, MCP y Claude para consultar mis notas en lenguaje natural.",
-    "context": "Proyecto personal: tener mis notas accesibles sin tener que buscarlas a mano.",
-    "solution": "Una bóveda de Obsidian conectada a Claude mediante MCP.",
-    "result": ["Consulta de mis notas en lenguaje natural."] }
+ {
+  "slug": "agente-ia-ventas",
+  "title": "Agente de IA autónomo para ventas y posventa",
+  "tags": [
+   "n8n",
+   "Claude API",
+   "Tool use",
+   "Webhooks"
+  ],
+  "summary": "Atiende consultas de punta a punta, desde la pregunta hasta el cierre de venta. Bajó el tiempo de respuesta de horas a minutos, aumentó las conversiones y opera sin intervención manual desde 2024.",
+  "context": "Las consultas de ventas y posventa tardaban horas en responderse y dependían de atención manual.",
+  "solution": "Un agente de IA construido en n8n con Claude (API y tool use). Interpreta la consulta, decide qué herramienta usar, consulta los sistemas necesarios por API y responde al cliente.",
+  "result": [
+   "50+ interacciones diarias atendidas de punta a punta.",
+   "Tiempo de respuesta de horas a minutos.",
+   "Más conversiones.",
+   "Opera sin intervención manual desde 2024."
+  ],
+  "metric": {
+   "v": "50+",
+   "l": "interacciones diarias de punta a punta"
+  }
+ },
+ {
+  "slug": "whatsapp-odoo",
+  "title": "Plataforma conversacional WhatsApp + Odoo",
+  "tags": [
+   "Python",
+   "JavaScript",
+   "WAHA",
+   "Odoo ERP"
+  ],
+  "summary": "Los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos desde una sola interfaz, con IA que inicia conversaciones y genera ofertas. Un módulo de difusiones controladas eliminó los bloqueos de cuenta de WhatsApp.",
+  "context": "Los vendedores necesitaban trabajar con sus clientes por WhatsApp y con los datos de Odoo sin saltar entre herramientas, y los envíos masivos ponían en riesgo la cuenta de WhatsApp.",
+  "solution": "Una plataforma propia en Python y JavaScript, conectada a WhatsApp mediante WAHA y a Odoo. Desde una interfaz los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos. La IA inicia conversaciones y genera ofertas. Un módulo de difusiones controladas envía por rangos de tiempo y con contenido variable.",
+  "result": [
+   "Gestión comercial completa desde una sola interfaz.",
+   "Se eliminaron los bloqueos de cuenta de WhatsApp."
+  ],
+  "metric": {
+   "v": "WhatsApp ⇄ Odoo",
+   "l": "una sola interfaz para vender"
+  }
+ },
+ {
+  "slug": "flujos-automatizados",
+  "title": "Más de 50 flujos automatizados",
+  "tags": [
+   "n8n",
+   "Power Automate",
+   "REST",
+   "Webhooks"
+  ],
+  "summary": "Integrados por APIs REST y webhooks, corren 24/7.",
+  "context": "Procesos que dependían de tareas manuales y de sistemas que no se hablaban entre sí.",
+  "solution": "Flujos en n8n y Power Automate integrados mediante APIs REST y webhooks.",
+  "result": [
+   "Más de 50 flujos en producción.",
+   "Funcionan 24/7."
+  ],
+  "metric": {
+   "v": "50+",
+   "l": "flujos corriendo 24/7"
+  }
+ },
+ {
+  "slug": "promociones-mercado-libre",
+  "title": "Automatización de promociones en Mercado Libre",
+  "tags": [
+   "Automatización de browser",
+   "Claude",
+   "Mercado Libre"
+  ],
+  "summary": "Un flujo de browser activa y desactiva entre 300 y 500 promociones de forma autónoma.",
+  "context": "La gestión de promociones en Mercado Libre implicaba activar y desactivar cientos de publicaciones.",
+  "solution": "Automatización de browser guiada por Claude que recorre las promociones y las activa o desactiva.",
+  "result": [
+   "Entre 300 y 500 promociones activadas o desactivadas de forma autónoma."
+  ],
+  "metric": {
+   "v": "300–500",
+   "l": "promociones activadas o desactivadas de forma autónoma"
+  }
+ },
+ {
+  "slug": "inteligencia-de-precios",
+  "title": "Inteligencia de precios de la competencia",
+  "tags": [
+   "Python",
+   "Scraping"
+  ],
+  "summary": "Monitoreo periódico de los precios de la competencia mediante scraping propio.",
+  "context": "Se necesitaba conocer los precios de la competencia de forma regular.",
+  "solution": "Scraping propio en Python que consulta los precios de forma programada.",
+  "result": [
+   "Monitoreo periódico de precios de la competencia."
+  ],
+  "metric": {
+   "v": "Scraping",
+   "l": "monitoreo periódico de precios"
+  }
+ },
+ {
+  "slug": "segundo-cerebro",
+  "title": "Segundo cerebro",
+  "pill": "proyecto personal",
+  "tags": [
+   "Obsidian",
+   "MCP",
+   "Claude"
+  ],
+  "summary": "Sistema de conocimiento personal con Obsidian, MCP y Claude para consultar mis notas en lenguaje natural.",
+  "context": "Proyecto personal: tener mis notas accesibles sin tener que buscarlas a mano.",
+  "solution": "Una bóveda de Obsidian conectada a Claude mediante MCP.",
+  "result": [
+   "Consulta de mis notas en lenguaje natural."
+  ],
+  "metric": {
+   "v": "Obsidian + MCP",
+   "l": "consulta en lenguaje natural"
+  }
+ }
 ]

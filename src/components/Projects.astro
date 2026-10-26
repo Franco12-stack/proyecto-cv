@@ -5,22 +5,43 @@ import pes from '../data/projects.es.json';
 import pen from '../data/projects.en.json';
 import T from './T.astro';
 import { url } from '../lib/url';
+const n = pes.length;
+const pad = (i: number) => String(i).padStart(2, '0');
 ---
-<section class="sec" id="proyectos">
-  <h2><T es={es.sections.projects} en={en.sections.projects} /></h2>
-  <div class="body">
-    {pes.map((p, i) => (
-      <details class="proj" open={i === 0}>
-        <summary>
-          <h3><T es={p.title} en={pen[i].title} />{p.pill && <span class="pill"><T es={p.pill} en={(pen[i] as any).pill} /></span>}</h3>
-          <span class="plus" aria-hidden="true">+</span>
-          <ul class="tags">{p.tags.map((t, j) => <li><T es={t} en={pen[i].tags[j]} /></li>)}</ul>
-        </summary>
-        <div class="proj-body">
-          <p><T es={p.summary} en={pen[i].summary} /></p>
-          <a class="more" href={url(`/proyectos/${p.slug}/`)}><T es={es.ui.viewCase} en={en.ui.viewCase} /></a>
+<section class="pshow" id="proyectos" style={`--n:${n}`} aria-label="Proyectos / Projects">
+  <div class="pstick">
+    <div class="pside">
+      <div>
+        <h2><T es={es.sections.projects} en={en.sections.projects} /></h2>
+        <p class="psub"><T es={es.ui.projectsSub} en={en.ui.projectsSub} /></p>
+      </div>
+      <div class="pnav">
+        <p class="pcount" aria-hidden="true"><b id="pcur">01</b><span> / {pad(n)}</span></p>
+        <div class="pbars">
+          {pes.map((p, i) => (
+            <button type="button" class={'pbar' + (i === 0 ? ' on' : '')} data-i={i} aria-label={`${es.ui.projectN} ${i + 1} / ${n}: ${p.title}`}></button>
+          ))}
         </div>
-      </details>
-    ))}
+        <p class="phint"><span aria-hidden="true">↓</span><T es={es.ui.scrollHint} en={en.ui.scrollHint} /></p>
+      </div>
+    </div>
+    <ul class="pcards" aria-label="Lista de proyectos / Project list">
+      {pes.map((p, i) => (
+        <li class={'pcard' + (i === 0 ? ' on' : '')} data-i={i}>
+          <div class="pvis">
+            <span class="pidx" aria-hidden="true">{pad(i + 1)}</span>
+            <p class="pval">{p.metric.v}</p>
+            <p class="plab"><T es={p.metric.l} en={pen[i].metric.l} /></p>
+            <ol class="pflow" aria-label="Stack">
+              {p.tags.map((t, j) => <li><T es={t} en={pen[i].tags[j]} /></li>)}
+            </ol>
+          </div>
+          <h3><T es={p.title} en={pen[i].title} />{p.pill && <span class="pill"><T es={p.pill} en={(pen[i] as any).pill} /></span>}</h3>
+          <p class="psum"><T es={p.summary} en={pen[i].summary} /></p>
+          <p class="pfoot"><span><T es={es.ui.viewCase.replace(' →', '')} en={en.ui.viewCase.replace(' →', '')} /></span><span class="arr" aria-hidden="true">↗</span></p>
+          <a class="pcover" href={url(`/proyectos/${p.slug}/`)}><span class="sr"><T es={`${es.ui.viewCase} ${p.title}`} en={`${en.ui.viewCase} ${pen[i].title}`} /></span></a>
+        </li>
+      ))}
+    </ul>
   </div>
 </section>
