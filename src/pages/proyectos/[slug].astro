@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import es from '../../data/site.es.json';
+import en from '../../data/site.en.json';
+import pes from '../../data/projects.es.json';
+import pen from '../../data/projects.en.json';
+import { url } from '../../lib/url';
+
+export function getStaticPaths() {
+  return pes.map((p, i) => ({ params: { slug: p.slug }, props: { i } }));
+}
+const { i } = Astro.props;
+const a = pes[i], b = pen[i];
+const sec = ['context', 'solution'] as const;
+---
+<Base
+  title={{ es: `${a.title} · Franco Fernandez`, en: `${b.title} · Franco Fernandez` }}
+  description={{ es: a.summary, en: b.summary }}
+  path={`/proyectos/${a.slug}/`}>
+  <article class="case">
+    <a class="back" href={url('/#proyectos')}><T es={es.ui.back} en={en.ui.back} /></a>
+    <h1><T es={a.title} en={b.title} /></h1>
+    <p class="lead"><T es={a.summary} en={b.summary} /></p>
+    {sec.map((k) => (
+      <section>
+        <h2><T es={es.ui.caseSections[k]} en={en.ui.caseSections[k]} /></h2>
+        <p><T es={a[k]} en={b[k]} /></p>
+      </section>
+    ))}
+    <section>
+      <h2><T es={es.ui.caseSections.result} en={en.ui.caseSections.result} /></h2>
+      <ul class="res">{a.result.map((r, j) => <li><T es={r} en={b.result[j]} /></li>)}</ul>
+    </section>
+    <section>
+      <h2><T es={es.ui.caseSections.stack} en={en.ui.caseSections.stack} /></h2>
+      <ul class="tags">{a.tags.map((t, j) => <li><T es={t} en={b.tags[j]} /></li>)}</ul>
+    </section>
+    <section>
+      <h2><T es={es.ui.otherCases.replace('// ', '')} en={en.ui.otherCases.replace('// ', '')} /></h2>
+      <ul class="others">
+        {pes.map((p, j) => j !== i && <li><a href={url(`/proyectos/${p.slug}/`)}><T es={p.title} en={pen[j].title} /></a></li>)}
+      </ul>
+    </section>
+  </article>
+</Base>

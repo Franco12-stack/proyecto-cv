@@ -1,0 +1,6 @@
+---
+// Texto bilingüe: se renderizan ambos idiomas y el CSS muestra el de <html lang>. Contenido propio y de confianza (data/*.json).
+interface Props { es: string; en: string }
+const { es, en } = Astro.props;
+---
+<span data-l="es" set:html={es} /><span data-l="en" set:html={en} />

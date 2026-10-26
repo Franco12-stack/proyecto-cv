@@ -1,0 +1,73 @@
+{
+  "title": "Franco Fernandez · Automatización e IA",
+  "description": "Franco Fernandez, Buenos Aires. Automatizo procesos y construyo agentes de IA que funcionan en producción: n8n, Python, Power Automate y LLMs.",
+  "nav": { "about": "Sobre_mí", "projects": "Proyectos", "experience": "Experiencia", "stack": "Stack", "contact": "Contacto" },
+  "ui": {
+    "theme": "Tema", "themeLabel": "Cambiar tema", "cta": "Hablemos", "cv": "Descargar CV", "skip": "Saltar al contenido",
+    "back": "← Volver a proyectos", "viewCase": "Ver caso →", "caseSections": { "context": "Contexto", "solution": "Solución", "result": "Resultado", "stack": "Stack" },
+    "otherCases": "// otros proyectos", "langLabel": "Idioma"
+  },
+  "hero": {
+    "tag": "// automatización + ia · buenos aires",
+    "h1": "Automatizo procesos y construyo agentes de IA <em>que funcionan en producción.</em>",
+    "lead": "Conecto sistemas por API para que el trabajo se ejecute todos los días sin intervención manual.",
+    "meta": [
+      { "k": "Rol", "v": "Automatización + IA" },
+      { "k": "Ubicación", "v": "Buenos Aires, AR" },
+      { "k": "Stack", "v": "n8n · Python · LLMs" },
+      { "k": "Hora local", "v": "clock" }
+    ],
+    "facts": [
+      { "n": "50+", "t": "flujos en producción" },
+      { "n": "50+", "t": "interacciones diarias de un agente" },
+      { "n": "5+", "t": "años en operaciones y transformación digital" }
+    ]
+  },
+  "flow": {
+    "title": "// cómo trabajan mis agentes · tocá un paso o ejecutalo",
+    "run": "▶ Ejecutar simulación",
+    "disclaimer": "Ejemplo ilustrativo, no son datos reales.",
+    "idle": "$ <b>esperando ejecución…</b>",
+    "steps": [
+      { "label": "Evento", "text": "Mensaje de WhatsApp, webhook o tarea programada", "detail": "Puede ser un mensaje de WhatsApp, un webhook o una tarea programada. Entra por n8n o por código propio." },
+      { "label": "LLM", "text": "Claude, OpenAI o DeepSeek razonan y eligen herramienta", "detail": "El modelo interpreta la intención y decide qué herramienta usar (tool use). Uso Claude, OpenAI o DeepSeek según el caso." },
+      { "label": "API", "text": "Odoo, Mercado Libre, Tienda Nube y servicios REST", "detail": "Consulta o escribe en Odoo, Mercado Libre, Tienda Nube u otros servicios REST." },
+      { "label": "Acción", "text": "Responde, cotiza, actualiza o cierra la venta", "detail": "Responde al cliente, genera el presupuesto, actualiza el registro o cierra la venta." }
+    ],
+    "sim": [
+      "<b>evento</b>  mensaje entrante: «¿Tienen stock del modelo X?»",
+      "<b>llm</b>     intención = consulta de stock → herramienta: consultar_stock",
+      "<b>api</b>     Odoo responde: 3 unidades disponibles",
+      "<b>acción</b>  respuesta enviada al cliente y presupuesto generado",
+      "<b>listo</b>   ejemplo ilustrativo, no son datos reales"
+    ]
+  },
+  "about": {
+    "h2": "sobre mí",
+    "photoAlt": "Foto de Franco Fernandez",
+    "photo": "Foto", "signal": "Señal",
+    "p": [
+      "Vengo de operaciones: coordiné equipos, auditorías y procesos antes de pasar a automatizarlos. Esa mirada me sirve para entender el problema del negocio antes de elegir la herramienta.",
+      "Hoy trabajo con LLMs, n8n, Power Automate y Python/JavaScript, y estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
+    ],
+    "nowTitle": "// ahora mismo",
+    "now": [
+      "Desarrollando automatizaciones y soluciones de IA en <b>Softtek</b>",
+      "Armando mi <b>segundo cerebro</b> con Obsidian, MCP y Claude",
+      "Estudiando <b>Ingeniería Industrial</b> y una Diplomatura en <b>SAP</b> en UADE"
+    ]
+  },
+  "sections": { "projects": "proyectos", "experience": "experiencia", "stack": "stack", "education": "formación", "contact": "contacto" },
+  "stack": {
+    "all": "Todo", "cats": { "ia": "IA", "auto": "Automatización", "dev": "Desarrollo", "plat": "Plataformas", "infra": "Infra" },
+    "hint": "Pasá el cursor (o el foco) por una tecnología para ver para qué la uso."
+  },
+  "contact": {
+    "text": "Si tenés un proceso manual que querés automatizar o un proyecto con IA, escribime.",
+    "copy": "Copiar email", "copied": "Copiado", "selected": "Seleccionado, copialo",
+    "langs": "Español nativo · Inglés técnico (B2) · Portugués básico"
+  },
+  "footer": "franco.fernandez · automatización + ia",
+  "ticker": ["n8n", "Claude API", "Python", "Power Automate", "MCP", "Odoo", "JavaScript", "RAG", "Blue Prism", "REST", "Buenos Aires"],
+  "ogLocale": "es_AR"
+}

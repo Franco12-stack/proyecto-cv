@@ -1,0 +1,20 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import ees from '../data/education.es.json';
+import een from '../data/education.en.json';
+import T from './T.astro';
+---
+<section class="sec" id="formacion">
+  <h2><T es={es.sections.education} en={en.sections.education} /></h2>
+  <div class="body">
+    <ul class="plain">
+      {ees.map((e, i) => (
+        <li>
+          <b><T es={e.title} en={een[i].title} /></b>
+          {e.inline ? <> · <span><T es={e.sub} en={een[i].sub} /></span></> : <span class="sub"><T es={e.sub} en={een[i].sub} /></span>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

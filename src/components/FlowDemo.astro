@@ -1,0 +1,22 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import T from './T.astro';
+const data = { es: { steps: es.flow.steps, sim: es.flow.sim, idle: es.flow.idle }, en: { steps: en.flow.steps, sim: en.flow.sim, idle: en.flow.idle } };
+---
+<div class="run-h">
+  <p><T es={es.flow.title} en={en.flow.title} /></p>
+  <button class="run" id="run" type="button"><T es={es.flow.run} en={en.flow.run} /></button>
+</div>
+<div class="flow" id="flow" role="group" aria-label="Flujo / Flow">
+  {es.flow.steps.map((s, i) => (
+    <button type="button" class={'node' + (i === 0 ? ' sel' : '')} data-k={i} aria-pressed={i === 0 ? 'true' : 'false'}>
+      <small><T es={s.label} en={en.flow.steps[i].label} /></small>
+      <span><T es={s.text} en={en.flow.steps[i].text} /></span>
+    </button>
+  ))}
+</div>
+<p class="detail" id="detail" aria-live="polite" set:html={es.flow.steps[0].detail} />
+<pre class="term" id="term" aria-live="polite" aria-label="Log" set:html={es.flow.idle} />
+<p class="disc"><T es={es.flow.disclaimer} en={en.flow.disclaimer} /></p>
+<script type="application/json" id="flow-data" set:html={JSON.stringify(data)} />

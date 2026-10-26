@@ -1,0 +1,26 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import pes from '../data/projects.es.json';
+import pen from '../data/projects.en.json';
+import T from './T.astro';
+import { url } from '../lib/url';
+---
+<section class="sec" id="proyectos">
+  <h2><T es={es.sections.projects} en={en.sections.projects} /></h2>
+  <div class="body">
+    {pes.map((p, i) => (
+      <details class="proj" open={i === 0}>
+        <summary>
+          <h3><T es={p.title} en={pen[i].title} />{p.pill && <span class="pill"><T es={p.pill} en={(pen[i] as any).pill} /></span>}</h3>
+          <span class="plus" aria-hidden="true">+</span>
+          <ul class="tags">{p.tags.map((t, j) => <li><T es={t} en={pen[i].tags[j]} /></li>)}</ul>
+        </summary>
+        <div class="proj-body">
+          <p><T es={p.summary} en={pen[i].summary} /></p>
+          <a class="more" href={url(`/proyectos/${p.slug}/`)}><T es={es.ui.viewCase} en={en.ui.viewCase} /></a>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

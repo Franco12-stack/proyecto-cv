@@ -1,0 +1,19 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import T from './T.astro';
+import Portrait from './Portrait.astro';
+---
+<section class="sec about" id="sobre">
+  <h2><T es={es.about.h2} en={en.about.h2} /></h2>
+  <div class="body about-grid">
+    <Portrait />
+    <div class="about-text">
+      {es.about.p.map((p, i) => <p><T es={p} en={en.about.p[i]} /></p>)}
+      <p class="now-h"><T es={es.about.nowTitle} en={en.about.nowTitle} /></p>
+      <ul class="now">
+        {es.about.now.map((p, i) => <li><T es={p} en={en.about.now[i]} /></li>)}
+      </ul>
+    </div>
+  </div>
+</section>

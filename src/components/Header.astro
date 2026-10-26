@@ -1,0 +1,24 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import T from './T.astro';
+import { url } from '../lib/url';
+const { home = false } = Astro.props;
+const h = (id: string) => (home ? '' : url('/')) + '#' + id;
+const items = [['sobre', 'about'], ['proyectos', 'projects'], ['experiencia', 'experience'], ['stack', 'stack'], ['contacto', 'contact']] as const;
+---
+<header class="top">
+  <a class="brand" href={url('/')} style="text-decoration:none">franco<i>.</i>fernandez</a>
+  <div class="ctrl">
+    <span class="clock">BUE <b data-clock>--:--:--</b></span>
+    <button type="button" id="theme" aria-label="Cambiar tema / Toggle theme"><T es={es.ui.theme} en={en.ui.theme} /></button>
+    <button type="button" id="l-es" aria-pressed="true" lang="es" aria-label="Español">ES</button>
+    <button type="button" id="l-en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+    <a class="cv" href={url('/cv-franco-fernandez-es.pdf')} data-l="es" download>{es.ui.cv}</a>
+    <a class="cv" href={url('/cv-franco-fernandez-en.pdf')} data-l="en" download>{en.ui.cv}</a>
+    <a class="cta" href={h('contacto')}><T es={es.ui.cta} en={en.ui.cta} /></a>
+  </div>
+  <nav aria-label="Secciones / Sections">
+    {items.map(([id, k]) => <a href={h(id)} data-sec={id}><T es={(es.nav as any)[k]} en={(en.nav as any)[k]} /></a>)}
+  </nav>
+</header>

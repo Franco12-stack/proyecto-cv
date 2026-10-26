@@ -1,0 +1,30 @@
+{
+  "contact": { "email": "francsfernandez23@gmail.com", "linkedin": "https://www.linkedin.com/in/franco-fern%C3%A1ndez-00a9592ab" },
+  "items": [
+    { "c": "ia", "name": "Claude API", "es": "Modelos de lenguaje", "en": "Language models" },
+    { "c": "ia", "name": "OpenAI", "es": "Modelos de lenguaje", "en": "Language models" },
+    { "c": "ia", "name": "DeepSeek", "es": "Modelos de lenguaje", "en": "Language models" },
+    { "c": "ia", "name": "Tool use", "es": "Agentes que eligen herramientas", "en": "Agents that pick tools" },
+    { "c": "ia", "name": "MCP", "es": "Conectar IA con herramientas y datos", "en": "Connect AI to tools and data" },
+    { "c": "ia", "name": "RAG", "es": "Búsqueda sobre conocimiento propio", "en": "Search over your own knowledge" },
+    { "c": "ia", "name": "Prompt engineering", "es": "Diseño de instrucciones para LLMs", "en": "Designing instructions for LLMs" },
+    { "c": "ia", "name": "Desarrollo asistido por IA", "nameEn": "AI-assisted development", "es": "Programar junto a un asistente de IA", "en": "Coding alongside an AI assistant" },
+    { "c": "auto", "name": "n8n", "es": "Flujos y agentes", "en": "Workflows and agents" },
+    { "c": "auto", "name": "Power Automate", "es": "Flujos en Microsoft 365 (uso moderado)", "en": "Microsoft 365 workflows (moderate use)" },
+    { "c": "auto", "name": "Make", "es": "Flujos de automatización", "en": "Automation workflows" },
+    { "c": "auto", "name": "Blue Prism", "es": "RPA, nivel Foundation", "en": "RPA, Foundation level" },
+    { "c": "auto", "name": "WAHA", "es": "API de WhatsApp", "en": "WhatsApp API" },
+    { "c": "auto", "name": "Browser + Scraping", "es": "Automatización de browser y scraping", "en": "Browser automation and scraping" },
+    { "c": "dev", "name": "Python", "es": "Nivel intermedio", "en": "Intermediate level" },
+    { "c": "dev", "name": "JavaScript", "es": "Nivel intermedio", "en": "Intermediate level" },
+    { "c": "dev", "name": "REST + Webhooks", "es": "Integración de sistemas", "en": "System integration" },
+    { "c": "dev", "name": "SQL Server · DAX", "es": "Bases de datos y análisis", "en": "Databases and analysis" },
+    { "c": "dev", "name": "Excel / VBA", "es": "Análisis y automatización en Excel", "en": "Analysis and automation in Excel" },
+    { "c": "plat", "name": "Odoo", "es": "ERP", "en": "ERP" },
+    { "c": "plat", "name": "Power Apps · Copilot Studio · AI Builder", "es": "Apps y asistentes en Power Platform", "en": "Apps and assistants on Power Platform" },
+    { "c": "plat", "name": "E-commerce APIs", "es": "Tienda Nube y Mercado Libre", "en": "Tienda Nube and Mercado Libre" },
+    { "c": "plat", "name": "Azure DevOps", "es": "Gestión de proyectos", "en": "Project management" },
+    { "c": "infra", "name": "Linux · Windows", "es": "Servidores", "en": "Servers" },
+    { "c": "infra", "name": "VPN · Firewalls · DNS", "es": "Redes y seguridad", "en": "Networking and security" }
+  ]
+}

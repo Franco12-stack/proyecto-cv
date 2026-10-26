@@ -1,0 +1,15 @@
+/* Concepto: terminal de trabajo. Oscuro por defecto, etiquetas mono entre corchetes, titular en dos tonos y un diagrama de flujo que se puede ejecutar. */
+:root{
+  --bg:#0C1519; --surface:#132026; --ink:#E9F0F2; --dim:#7C909A; --line:#233741;
+  --accent:#43D9BE; --accent-ink:#05211B; --accent-soft:#12302F; --bar-bg:rgba(12,21,25,.88);
+  --f-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --f-body:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
+  --f-mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F1F5F6; --surface:#FFFFFF; --ink:#12202A; --dim:#5A6D78; --line:#D0DADF;
+  --accent:#0B7566; --accent-ink:#FFFFFF; --accent-soft:#DCEFEB; --bar-bg:rgba(241,245,246,.9); color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#F1F5F6; --surface:#FFFFFF; --ink:#12202A; --dim:#5A6D78; --line:#D0DADF;
+  --accent:#0B7566; --accent-ink:#FFFFFF; --accent-soft:#DCEFEB; --bar-bg:rgba(241,245,246,.9); color-scheme:light}

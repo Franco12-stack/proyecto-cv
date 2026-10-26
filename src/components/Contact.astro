@@ -1,0 +1,26 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import stack from '../data/stack.json';
+import T from './T.astro';
+const labels = {
+  es: { idle: es.contact.copy, ok: es.contact.copied, sel: es.contact.selected },
+  en: { idle: en.contact.copy, ok: en.contact.copied, sel: en.contact.selected },
+};
+---
+<section class="sec contact" id="contacto">
+  <h2><T es={es.sections.contact} en={en.sections.contact} /></h2>
+  <div class="body">
+    <p><T es={es.contact.text} en={en.contact.text} /></p>
+    <div class="mail">
+      <code id="mail">{stack.contact.email}</code>
+      <button class="copy" id="copy" type="button" data-labels={JSON.stringify(labels)}><span class="cl">{es.contact.copy}</span></button>
+      <span class="sr" id="copy-live" aria-live="polite"></span>
+    </div>
+    <div class="links">
+      <a href={stack.contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <span>Buenos Aires, Argentina</span>
+      <span><T es={es.contact.langs} en={en.contact.langs} /></span>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,22 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import stack from '../data/stack.json';
+import T from './T.astro';
+const cats = Object.keys(es.stack.cats) as (keyof typeof es.stack.cats)[];
+---
+<section class="sec" id="stack">
+  <h2>stack</h2>
+  <div class="body">
+    <div class="cats" id="cats" role="group" aria-label="Filtro / Filter">
+      <button type="button" data-c="all" aria-pressed="true"><T es={es.stack.all} en={en.stack.all} /></button>
+      {cats.map((c) => <button type="button" data-c={c} aria-pressed="false"><T es={es.stack.cats[c]} en={en.stack.cats[c]} /></button>)}
+    </div>
+    <ul class="chips" id="chips">
+      {stack.items.map((s) => (
+        <li data-c={s.c} data-role-es={s.es} data-role-en={s.en} tabindex="0"><T es={s.name} en={(s as any).nameEn ?? s.name} /></li>
+      ))}
+    </ul>
+    <p class="chip-note" id="note" data-hint-es={es.stack.hint} data-hint-en={en.stack.hint}>{es.stack.hint}</p>
+  </div>
+</section>

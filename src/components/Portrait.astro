@@ -1,0 +1,17 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import T from './T.astro';
+import { url } from '../lib/url';
+---
+<figure class="portrait">
+  <div class="pframe" id="pframe">
+    <canvas id="pc" width="440" height="408" data-src={url('/foto.jpg')} role="img" aria-label={es.about.photoAlt + ' / ' + en.about.photoAlt}></canvas>
+  </div>
+  <figcaption class="pcap"><span>franco.jpg</span>
+    <span class="pmode">
+      <button type="button" id="m-photo" aria-pressed="true"><T es={es.about.photo} en={en.about.photo} /></button>
+      <button type="button" id="m-sig" aria-pressed="false"><T es={es.about.signal} en={en.about.signal} /></button>
+    </span>
+  </figcaption>
+</figure>

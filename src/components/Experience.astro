@@ -1,0 +1,19 @@
+---
+import es from '../data/site.es.json';
+import en from '../data/site.en.json';
+import xes from '../data/experience.es.json';
+import xen from '../data/experience.en.json';
+import T from './T.astro';
+---
+<section class="sec" id="experiencia">
+  <h2><T es={es.sections.experience} en={en.sections.experience} /></h2>
+  <div class="body">
+    {xes.map((x, i) => (
+      <div class="job">
+        <h3><T es={x.role} en={xen[i].role} /></h3>
+        <span class={'when' + (x.current ? ' on' : '')}><T es={x.when} en={xen[i].when} /></span>
+        <p><T es={x.text} en={xen[i].text} /></p>
+      </div>
+    ))}
+  </div>
+</section>
