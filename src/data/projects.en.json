@@ -194,7 +194,7 @@
    "MCP",
    "Claude"
   ],
-  "summary": "Personal knowledge system built with Obsidian, MCP and Claude to query my notes in natural language.",
+  "summary": "My second brain: a personal knowledge system built with Obsidian, MCP and Claude. I capture what I study and build, connect it with links between notes and query it in natural language.",
   "context": "Personal project: keep my notes accessible without searching through them by hand.",
   "solution": "An Obsidian vault connected to Claude through MCP.",
   "result": [
