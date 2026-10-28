@@ -8,7 +8,7 @@ import pen from '../../data/projects.en.json';
 import { url } from '../../lib/url';
 import N8nCanvas from '../../components/N8nCanvas.astro';
 import BrowserScan from '../../components/BrowserScan.astro';
-import BrainGraph from '../../components/BrainGraph.astro';
+import ObsidianGraph from '../../components/ObsidianGraph.astro';
 
 export function getStaticPaths() {
   return pes.map((p, i) => ({ params: { slug: p.slug }, props: { i } }));
@@ -30,7 +30,7 @@ const sec = ['context', 'solution'] as const;
       <N8nCanvas mode="full" />
       <p class="note"><T es="Estructura real de un flujo del agente (ventas y posventa), exportado de n8n: nodos, tipos y conexiones. Se publican solo nombres y conexiones; los parámetros, prompts, credenciales y datos de clientes no. Arrastrá para moverte y usá Ctrl/⌘ + rueda o los botones para el zoom." en="Real structure of one of the agent’s workflows (sales and after-sales), exported from n8n: nodes, types and connections. Only names and connections are published; parameters, prompts, credentials and customer data are not. Drag to move and use Ctrl/⌘ + wheel or the buttons to zoom." /></p>
     </section>}
-    {(a.diagram === 'promos' || a.diagram === 'brain') && <div style="height:360px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);padding:14px;margin:0 0 20px">{a.diagram === 'promos' ? <BrowserScan /> : <BrainGraph />}</div>}
+    {(a.diagram === 'promos' || a.diagram === 'brain') && <div style="height:360px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);padding:14px;margin:0 0 20px">{a.diagram === 'promos' ? <BrowserScan /> : <ObsidianGraph />}</div>}
     {a.image && <img src={url('/' + a.image)} alt={a.imageAlt} width="1280" height="800" style="width:100%;height:auto;border:1px solid var(--line);margin:0 0 20px" />}
     {a.links?.github && <p class="btns"><a class="btn" href={a.links.github} target="_blank" rel="noopener"><T es="Ver código en GitHub ↗" en="View code on GitHub ↗" /></a></p>}
     {sec.map((k) => (
@@ -43,6 +43,10 @@ const sec = ['context', 'solution'] as const;
       <h2><T es={es.ui.caseSections.result} en={en.ui.caseSections.result} /></h2>
       <ul class="res">{a.result.map((r, j) => <li><T es={r} en={b.result[j]} /></li>)}</ul>
     </section>
+    {a.extra && a.extra.map((x: any, k: number) => <section>
+      <h2><T es={x.title} en={b.extra[k].title} /></h2>
+      <ul class="res">{x.items.map((r: string, j: number) => <li><T es={r} en={b.extra[k].items[j]} /></li>)}</ul>
+    </section>)}
     {a.highlights && <section>
       <h2><T es={a.highlightsTitle} en={b.highlightsTitle} /></h2>
       <ul class="res">{a.highlights.map((r: string, j: number) => <li><T es={r} en={b.highlights[j]} /></li>)}</ul>

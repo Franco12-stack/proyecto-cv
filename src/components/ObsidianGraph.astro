@@ -1,0 +1,88 @@
+---
+// Réplica ilustrativa de la vista de grafo de Obsidian (layout por fuerzas calculado al compilar). Los títulos son ejemplos genéricos.
+const mul = (a: number) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const rnd = mul(11);
+type N = { id: number; t: string; x: number; y: number; vx: number; vy: number; hub?: boolean; c: string; r: number; p: number; rest: number };
+const BLUE = '#3b9bff', GREEN = '#2ecc71', YELLOW = '#f3c63f', RED = '#e5483f';
+const clusters = [
+  { hub: 'Proyectos', c: BLUE, x: 150, y: 95, items: ['Plataforma de ventas', 'Estimador de precios', 'API de pedidos', 'Panel de métricas', 'Flujo de seguimiento', 'Base de conocimiento', 'Asistente general', 'Pruebas end to end', 'Notas de arquitectura', 'Integración con ERP', 'Scripts y verificaciones', 'Decisiones técnicas'] },
+  { hub: 'Agente de ventas', c: GREEN, x: 420, y: 60, items: ['Herramientas', 'Prompt base', 'Memoria', 'Reglas de derivación', 'Casos de prueba', 'Resumen', 'Instalación', 'Configuración', 'Registro de cambios', 'Ideas'] },
+  { hub: 'Flujos n8n', c: BLUE, x: 620, y: 230, items: ['Webhook de entrada', 'Debounce', 'Lector de imágenes', 'Transcripción de audio', 'Etiquetas', 'Seguimiento', 'Consulta de pedidos', 'Buscar productos', 'Cuotas', 'Aviso a Teams', 'Reintentos', 'Variables de entorno', 'Plantillas de respuesta', 'Orquestador', 'Panel de errores', 'Backups', 'Cron diario', 'Integración Odoo', 'Integración Tienda Nube', 'Mercado Libre', 'Lector de planillas', 'Generador de informes', 'Notas de despliegue', 'Checklist'] },
+  { hub: 'Cursos de IA', c: BLUE, x: 190, y: 270, items: ['Introducción a LLMs', 'Prompt engineering', 'Agentes', 'RAG', 'MCP', 'Embeddings', 'Evaluación', 'Ejercicios', 'Python básico', 'Funciones', 'Archivos y JSON', 'Pruebas', 'Git', 'Terminal', 'Bases de datos', 'SQL', 'Joins', 'APIs REST', 'Webhooks', 'Despliegue', 'Buenas prácticas', 'Proyecto final'] },
+];
+const nodes: N[] = []; const edges: [number, number][] = [];
+const hubs: number[] = [];
+clusters.forEach((cl) => {
+  const h = nodes.length; hubs.push(h);
+  nodes.push({ id: h, t: cl.hub, x: cl.x, y: cl.y, vx: 0, vy: 0, hub: true, c: cl.c, r: 6 + cl.items.length * 0.2, p: -1, rest: 0 });
+  cl.items.forEach((t) => {
+    const a = rnd() * 6.283, d = 40 + rnd() * 40;
+    const id = nodes.length;
+    nodes.push({ id, t, x: cl.x + Math.cos(a) * d, y: cl.y + Math.sin(a) * d, vx: 0, vy: 0, c: rnd() < 0.1 ? GREEN : YELLOW, r: 2.6, p: h, rest: 38 + rnd() * 34 });
+    edges.push([h, id]);
+  });
+  // algunos enlaces entre notas del mismo grupo
+  const mine = nodes.filter((n) => n.p === h);
+  for (let i = 0; i < Math.ceil(mine.length / 6); i++) { const a = mine[Math.floor(rnd() * mine.length)], b = mine[Math.floor(rnd() * mine.length)]; if (a !== b) edges.push([a.id, b.id]); }
+});
+const red = nodes.length;
+nodes.push({ id: red, t: 'Índice general', x: 380, y: 160, vx: 0, vy: 0, c: RED, r: 4.6, p: -1, rest: 0 });
+hubs.forEach((h) => edges.push([red, h]));
+[[0, 1], [1, 2], [0, 3], [2, 3]].forEach(([a, b]) => edges.push([hubs[a], hubs[b]]));
+for (let i = 0; i < 7; i++) { const a = nodes[1 + Math.floor(rnd() * (nodes.length - 2))], b = nodes[1 + Math.floor(rnd() * (nodes.length - 2))]; if (a.p !== b.p && a.id !== red && b.id !== red) edges.push([a.id, b.id]); }
+// Fuerzas
+for (let it = 0; it < 380; it++) {
+  for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+    const a = nodes[i], b = nodes[j]; let dx = a.x - b.x, dy = a.y - b.y; const d2 = Math.max(dx * dx + dy * dy, 25), d = Math.sqrt(d2);
+    const f = (a.hub || b.hub ? 1500 : 520) / d2; dx /= d; dy /= d; a.vx += dx * f; a.vy += dy * f; b.vx -= dx * f; b.vy -= dy * f;
+  }
+  for (const n of nodes) if (n.p >= 0) { const h = nodes[n.p]; const dx = h.x - n.x, dy = h.y - n.y, d = Math.hypot(dx, dy) || 1, f = (d - n.rest) * 0.06; n.vx += (dx / d) * f; n.vy += (dy / d) * f; h.vx -= (dx / d) * f * 0.1; h.vy -= (dy / d) * f * 0.1; }
+  for (const [a, b] of edges) { const A = nodes[a], B = nodes[b]; if ((A.hub && B.hub) || A.id === red || B.id === red) { const dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy) || 1, f = (d - 190) * 0.01; A.vx += (dx / d) * f; A.vy += (dy / d) * f; B.vx -= (dx / d) * f; B.vy -= (dy / d) * f; } }
+  for (const n of nodes) { n.vx += (380 - n.x) * 0.002; n.vy += (190 - n.y) * 0.003; n.x += Math.max(-6, Math.min(6, n.vx)); n.y += Math.max(-6, Math.min(6, n.vy)); n.vx *= 0.55; n.vy *= 0.55; }
+}
+const xs = nodes.map((n) => n.x), ys = nodes.map((n) => n.y);
+const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+const sy = 320 / (y1 - y0), sx = Math.min(710 / (x1 - x0), sy * 1.9);
+const ox = (760 - (x1 - x0) * sx) / 2, oy = 22 + (330 - (y1 - y0) * sy) / 2;
+nodes.forEach((n) => { n.x = ox + (n.x - x0) * sx; n.y = oy + (n.y - y0) * sy; });
+// Camino que ilumina la consulta
+const near = (p: N, list: N[]) => [...list].filter((q) => q !== p).sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y));
+const hubN = nodes[hubs[1]]; const path: N[] = [hubN];
+for (let i = 0; i < 3; i++) path.push(near(path[path.length - 1], nodes.filter((n) => n.p >= 0 && !path.includes(n)))[0]);
+const hlIdx = new Set(path.map((p) => p.id));
+const hlEdges = path.slice(1).map((p, i) => [path[i], p]);
+---
+<figure class="og">
+  <div class="win">
+    <div class="tb"><span class="tab"><svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="4" cy="4" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="8" cy="12" r="2"/><path d="M5.6 5l2 5M10.5 6.7 9 10.2M6 4.2l4 .6"/></svg><span data-l="es">Vista de grafo</span><span data-l="en">Graph view</span></span><span class="tl"><i></i><i></i><i></i></span></div>
+    <svg viewBox="0 0 760 364" role="img" aria-label="Ilustración de la vista de grafo de Obsidian: grupos de notas conectadas y una consulta que recorre las notas relacionadas / Illustration of Obsidian’s graph view: clusters of linked notes and a query that walks the related notes">
+      <g class="eg">{edges.map(([a, b]) => <line x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y} />)}</g>
+      <g class="hg">{hlEdges.map(([a, b], i) => <line style={`animation-delay:${(i * 0.9 + 0.5).toFixed(1)}s`} x1={a.x} y1={a.y} x2={b.x} y2={b.y} />)}</g>
+      <g class="lb">{nodes.map((n) => <text class={n.hub ? 'h' : ''} x={n.x} y={n.y + n.r + 7} text-anchor="middle">{n.t}</text>)}</g>
+      <g class="nd">{nodes.map((n) => <circle class={hlIdx.has(n.id) ? 'hl' : ''} style={hlIdx.has(n.id) ? `animation-delay:${([...hlIdx].indexOf(n.id) * 0.9).toFixed(1)}s` : `animation-delay:${((n.id * 37) % 40) / 10}s`} cx={n.x} cy={n.y} r={n.r} fill={n.c} />)}</g>
+    </svg>
+    <div class="q"><span data-l="es">¿Qué anoté sobre este tema?</span><span data-l="en">What did I note on this topic?</span><b>Claude · MCP</b></div>
+  </div>
+  <figcaption><span data-l="es">Ilustración de la vista de grafo de Obsidian: los nombres de las notas son ejemplos.</span><span data-l="en">Illustration of Obsidian’s graph view: note names are examples.</span></figcaption>
+</figure>
+<style>
+  .og{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .og .win{position:relative;flex:1;min-height:0;display:flex;flex-direction:column;background:#1e1e1e;border:1px solid #383838;border-radius:8px;overflow:hidden;color:#bbb}
+  .og .tb{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;background:#262626;border-bottom:1px solid #363636;font:400 11px var(--f-body)}
+  .og .tab{display:flex;align-items:center;gap:6px;padding:2px 10px;background:#1e1e1e;border-radius:5px;color:#ccc}
+  .og .tl{display:flex;gap:5px}.og .tl i{width:8px;height:8px;border-radius:50%;background:#4a4a4a}
+  .og svg{flex:1;min-height:0;width:100%}
+  .og .eg line{stroke:#d9a520;stroke-width:.7;opacity:.55}
+  .og .hg line{stroke:#7df0d8;stroke-width:1.8;opacity:.0;animation:ogh 8s ease-in-out infinite}
+  .og .lb text{font:400 6.5px var(--f-body);fill:#8a8a8a;opacity:.55}
+  .og .lb text.h{font-size:8px;fill:#cfcfcf;opacity:.9}
+  .og .nd circle{animation:ogt 5s ease-in-out infinite}
+  .og .nd circle.hl{animation:ogn 8s ease-in-out infinite}
+  .og .q{position:absolute;left:12px;bottom:12px;display:flex;align-items:center;gap:8px;padding:5px 6px 5px 12px;background:#262626;border:1px solid #444;border-radius:16px;font:400 11px var(--f-mono);color:#ddd}
+  .og .q b{font:500 10px var(--f-mono);color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);padding:2px 8px;border-radius:10px}
+  .og figcaption{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.04em}
+  @keyframes ogt{50%{opacity:.78}}
+  @keyframes ogh{0%,8%{opacity:0}20%,60%{opacity:1}80%,100%{opacity:0}}
+  @keyframes ogn{0%,8%{filter:none}20%,60%{filter:drop-shadow(0 0 5px #7df0d8) brightness(1.5)}80%,100%{filter:none}}
+  @media (prefers-reduced-motion:reduce){.og .nd circle,.og .hg line{animation:none}.og .hg line{opacity:.9}}
+</style>

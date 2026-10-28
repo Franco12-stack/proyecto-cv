@@ -6,7 +6,7 @@ import pen from '../data/projects.en.json';
 import T from './T.astro';
 import PipelineMini from './PipelineMini.astro';
 import BrowserScan from './BrowserScan.astro';
-import BrainGraph from './BrainGraph.astro';
+import ObsidianGraph from './ObsidianGraph.astro';
 import { url } from '../lib/url';
 import flowData from '../data/agente-flow.json';
 const flowStats = { nodes: flowData.nodes.length };
@@ -49,7 +49,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
                 <BrowserScan />
               </>) : (p as any).diagram === 'brain' ? (<>
                 <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
-                <BrainGraph />
+                <ObsidianGraph />
               </>) : (<>
               <p class="pval">{p.metric.v}</p>
               <p class="plab"><T es={p.metric.l} en={pen[i].metric.l} /></p>

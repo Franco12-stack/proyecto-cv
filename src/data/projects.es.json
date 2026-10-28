@@ -204,6 +204,43 @@
    "v": "Obsidian + MCP",
    "l": "consulta en lenguaje natural"
   },
-  "diagram": "brain"
+  "diagram": "brain",
+  "extra": [
+   {
+    "title": "A qué apunta",
+    "items": [
+     "Tener mi conocimiento técnico en un solo lugar, conectado y consultable.",
+     "Dejar de buscar a mano: preguntar en lenguaje natural y que Claude recorra las notas relacionadas.",
+     "Convertir lo que estudio y lo que construyo en una base que crece con cada proyecto."
+    ]
+   },
+   {
+    "title": "Qué guarda",
+    "items": [
+     "Notas de proyectos y decisiones técnicas.",
+     "Apuntes de cursos y ejercicios.",
+     "Documentación de flujos y herramientas de automatización.",
+     "Notas sobre agentes: prompts, herramientas y casos de prueba."
+    ]
+   },
+   {
+    "title": "Cómo funciona",
+    "items": [
+     "Las notas viven en una bóveda de Obsidian, en archivos Markdown enlazados entre sí.",
+     "Claude se conecta a la bóveda mediante MCP.",
+     "Hago una pregunta en lenguaje natural y Claude busca y combina las notas relacionadas para responder, en un esquema tipo RAG."
+    ]
+   },
+   {
+    "title": "Ventajas",
+    "items": [
+     "Respuestas basadas en mis propias notas, no en la memoria ni en búsquedas genéricas.",
+     "Conocimiento conectado: los enlaces entre notas dan contexto a cada respuesta.",
+     "Notas propias en archivos Markdown, legibles y portables.",
+     "Crece con el uso: cada nota nueva queda disponible para la próxima consulta.",
+     "Es una forma de practicar MCP y agentes sobre un caso real."
+    ]
+   }
+  ]
  }
 ]
