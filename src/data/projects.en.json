@@ -98,6 +98,54 @@
   "diagram": "n8n"
  },
  {
+  "slug": "pcforge",
+  "tags": [
+   "JavaScript",
+   "Node.js",
+   "Express",
+   "Tests"
+  ],
+  "image": "projects/pcforge/builder.webp",
+  "links": {
+   "github": "https://github.com/Franco12-stack/pcforge"
+  },
+  "title": "PCForge: PC configurator with wholesale pricing",
+  "pill": "open source",
+  "imageAlt": "12-step PC configurator with compatibility and live prices",
+  "summary": "A PC configurator that sells from a wholesale price list (from an ERP) on top of an e-commerce platform that does not support per-line prices. It has a compatibility engine, power estimate and a draft-order checkout. It is a rebuild with fictional data of the configurator I built for an e-commerce business.",
+  "metric": {
+   "v": "500 carts",
+   "l": "checked with a property test"
+  },
+  "context": "The catalog lives on a hosted e-commerce platform and the special prices live in the ERP. The platform’s draft-order API only accepts product and quantity per line and a single order-level discount, and it also applies its own bank-transfer discount at checkout.",
+  "solution": "A pricing engine that sizes the coupon so the platform’s own discount lands the total exactly on the wholesale price (coupon = list − wholesale price / (1 − rate)). A compatibility engine (CPU/motherboard socket, DDR4 vs DDR5, LGA1700 special case) with layered detection, where missing data never blocks a product. A power estimate with PSU recommendation. And a checkout where the server sets the prices.",
+  "result": [
+   "With the formula, transfer and card both land exactly on the displayed prices. A naive coupon undercharged: in the README example, $525 instead of $700.",
+   "A property test over 500 random carts, plus unit, regression and HTTP tests.",
+   "12-step builder, printable quote view and a static mode that runs with no backend.",
+   "Open source, MIT licensed."
+  ],
+  "highlightsTitle": "Design decisions",
+  "highlights": [
+   "The undercharging bug happened in production in the original project, which is why there is a regression test.",
+   "Shared pure core: business rules live in one place, with no dependencies and no I/O, and run the same on the server and in the browser.",
+   "The server never trusts client prices: the client sends IDs and quantities, and if prices changed it answers 409 PRICE_CHANGED.",
+   "Displayed prices round up, so the card price is never below what is charged.",
+   "Vanilla JavaScript and a single dependency (Express): the focus is the domain logic."
+  ],
+  "note": "All data is fictional, and the demo is not production-ready on purpose: in-memory orders, no auth, no real payments.",
+  "gallery": [
+   {
+    "img": "projects/pcforge/builder.webp",
+    "cap": "12-step builder with compatibility and live prices"
+   },
+   {
+    "img": "projects/pcforge/checkout.webp",
+    "cap": "Checkout: simulates the platform and shows what a naive coupon would have charged"
+   }
+  ]
+ },
+ {
   "slug": "promociones-mercado-libre",
   "title": "Mercado Libre promotions automation",
   "tags": [

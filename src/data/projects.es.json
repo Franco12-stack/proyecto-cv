@@ -98,6 +98,54 @@
   "diagram": "n8n"
  },
  {
+  "slug": "pcforge",
+  "tags": [
+   "JavaScript",
+   "Node.js",
+   "Express",
+   "Tests"
+  ],
+  "image": "projects/pcforge/builder.webp",
+  "links": {
+   "github": "https://github.com/Franco12-stack/pcforge"
+  },
+  "title": "PCForge: configurador de PCs con precios mayoristas",
+  "pill": "código abierto",
+  "imageAlt": "Configurador de PC de 12 pasos con compatibilidad y precios en vivo",
+  "summary": "Configurador de PCs que vende desde una lista de precios mayorista (de un ERP) sobre una plataforma de e-commerce que no soporta precios por línea. Tiene motor de compatibilidad, estimación de consumo y checkout con orden en borrador. Es una reconstrucción con datos ficticios del configurador que armé para un e-commerce.",
+  "metric": {
+   "v": "500 carritos",
+   "l": "probados con un test de propiedades"
+  },
+  "context": "El catálogo vive en una plataforma de e-commerce alojada y los precios especiales viven en el ERP. La API de órdenes en borrador de la plataforma solo acepta producto y cantidad por línea y un único descuento por orden, y además aplica su propio descuento por transferencia al pagar.",
+  "solution": "Un motor de precios que dimensiona el cupón para que el descuento propio de la plataforma deje el total exacto en el precio de lista mayorista (cupón = lista − precio mayorista / (1 − tasa)). Un motor de compatibilidad (socket CPU/placa, DDR4 vs DDR5, caso especial LGA1700) con detección en capas, donde un dato faltante nunca bloquea un producto. Estimación de consumo con recomendación de fuente. Y un checkout donde el servidor es quien fija los precios.",
+  "result": [
+   "Con la fórmula, transferencia y tarjeta caen exactamente en los precios mostrados. Un cupón ingenuo cobraba de menos: en el ejemplo del README, $525 en lugar de $700.",
+   "Un test de propiedades sobre 500 carritos aleatorios, más tests unitarios, de regresión y HTTP.",
+   "Configurador de 12 pasos, vista de presupuesto imprimible y un modo estático que corre sin backend.",
+   "Código abierto con licencia MIT."
+  ],
+  "highlightsTitle": "Decisiones de diseño",
+  "highlights": [
+   "El bug de cobrar de menos ocurrió en producción en el proyecto original, y por eso hay un test de regresión.",
+   "Núcleo puro y compartido: las reglas de negocio viven en un solo lugar, sin dependencias ni entrada/salida, y corren igual en el servidor y en el navegador.",
+   "El servidor nunca confía en los precios del cliente: el cliente manda IDs y cantidades, y si los precios cambiaron responde 409 PRICE_CHANGED.",
+   "El precio mostrado se redondea hacia arriba, así el de tarjeta nunca queda por debajo de lo que se cobra.",
+   "JavaScript sin framework y una sola dependencia (Express): el foco está en la lógica del dominio."
+  ],
+  "note": "Todos los datos son ficticios, y el demo no es apto para producción a propósito: órdenes en memoria, sin autenticación ni pagos reales.",
+  "gallery": [
+   {
+    "img": "projects/pcforge/builder.webp",
+    "cap": "Configurador de 12 pasos, con compatibilidad y precios en vivo"
+   },
+   {
+    "img": "projects/pcforge/checkout.webp",
+    "cap": "Checkout: simula la plataforma y muestra lo que cobraría un cupón ingenuo"
+   }
+  ]
+ },
+ {
   "slug": "promociones-mercado-libre",
   "title": "Automatización de promociones en Mercado Libre",
   "tags": [
