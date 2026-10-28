@@ -1,33 +1,32 @@
 [
  {
-  "slug": "whatsapp-crm-demo",
+  "slug": "whatsapp-odoo",
   "tags": [
-   "FastAPI",
-   "PostgreSQL",
-   "React",
-   "TypeScript",
-   "Docker"
+   "Python",
+   "JavaScript",
+   "WAHA",
+   "Odoo ERP"
   ],
   "image": "projects/crm-demo/inbox.webp",
   "imageAlt": "Bandeja de chats con panel CRM",
   "links": {
    "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
   },
-  "title": "CRM de ventas por WhatsApp",
+  "title": "Plataforma conversacional WhatsApp + Odoo",
   "pill": "demo público",
-  "summary": "Plataforma multicanal para equipos que venden por WhatsApp: chats con panel CRM, difusiones, dashboard de supervisor, tickets, metas y un limitador anti-bloqueo con rampa de calentamiento. Código abierto, con datos genéricos y WhatsApp simulado.",
+  "summary": "Los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos desde una sola interfaz, con IA que inicia conversaciones y genera ofertas. Un módulo de difusiones controladas eliminó los bloqueos de cuenta de WhatsApp. Hay un demo público con código abierto y WhatsApp simulado.",
   "metric": {
    "v": "30 días",
    "l": "de rampa para que una línea nueva llegue a su límite de envío"
   },
-  "context": "Es una reconstrucción desde cero, con datos genéricos, de patrones de un CRM de WhatsApp en producción que armé para un equipo de ventas. Se publica como demo para mostrar el código y la lógica de negocio sin credenciales ni números reales.",
-  "solution": "Backend en FastAPI con SQLAlchemy asíncrono y PostgreSQL, frontend en React con TypeScript y Vite, todo con Docker Compose, autenticación JWT y permisos por rol. El proveedor de WhatsApp es un simulador, así que corre en cualquier lado con docker compose up.",
+  "context": "Los vendedores necesitaban trabajar con sus clientes por WhatsApp y con los datos de Odoo sin saltar entre herramientas, y los envíos masivos ponían en riesgo la cuenta de WhatsApp.",
+  "solution": "Una plataforma propia en Python y JavaScript, conectada a WhatsApp mediante WAHA y a Odoo. Desde una interfaz los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos. La IA inicia conversaciones y genera ofertas. Un módulo de difusiones controladas envía por rangos de tiempo y con contenido variable. Para poder mostrarla en público armé una reconstrucción desde cero, con datos genéricos y WhatsApp simulado: el demo de abajo.",
   "result": [
-   "14 módulos: chats con panel CRM, agenda, contactar hoy, difusiones, métricas, reporte, dashboard, metas, distribución, promociones, productos, soporte, administración y asistente de IA.",
-   "33 tests: rampa de calentamiento, división de contactos fríos y tibios, permisos por rol y el comportamiento «permitido pero con alerta».",
-   "Código y capturas públicos en GitHub, con licencia MIT."
+   "Gestión comercial completa desde una sola interfaz.",
+   "Se eliminaron los bloqueos de cuenta de WhatsApp.",
+   "Demo público: 14 módulos y 33 tests, con código abierto (licencia MIT)."
   ],
-  "highlightsTitle": "Decisiones de diseño",
+  "highlightsTitle": "Decisiones de diseño (demo público)",
   "highlights": [
    "Rampa anti-bloqueo: una línea nueva arranca con un tope bajo (20 mensajes por día) y crece hacia su límite real en unos 30 días. El límite vigente es el menor entre la política comercial y el escalón de calentamiento, y una línea reconectada vuelve al día cero.",
    "Pasarse del límite no bloquea el envío: deja pasar el mensaje y avisa al supervisor, porque un bloqueo duro no protege del riesgo real y cuesta la venta.",
@@ -35,7 +34,7 @@
    "El uso se muestra contra el límite efectivo y no contra la política cruda. Dashboard, reporte y métricas comparten el mismo cálculo.",
    "El progreso de las metas se calcula en vivo, nunca se guarda."
   ],
-  "note": "El proveedor de WhatsApp y el asistente de IA están simulados a propósito: el botón de sugerir respuesta usa coincidencia de palabras clave, no un modelo real. Las integraciones del proyecto de producción (ERP, central telefónica, LLM, sesiones de WhatsApp) no se publican. La interfaz del demo está en inglés.",
+  "note": "El demo público es una reconstrucción desde cero con datos genéricos, y usa FastAPI, PostgreSQL, React, TypeScript y Docker Compose. El proveedor de WhatsApp y el asistente de IA están simulados a propósito: el botón de sugerir respuesta usa coincidencia de palabras clave, no un modelo real. Las integraciones del proyecto de producción (ERP, central telefónica, LLM, sesiones de WhatsApp) no se publican. La interfaz del demo está en inglés.",
   "gallery": [
    {
     "img": "projects/crm-demo/dashboard.webp",
@@ -73,67 +72,28 @@
  },
  {
   "slug": "agente-ia-ventas",
-  "title": "Agente de IA autónomo para ventas y posventa",
+  "title": "Agente de IA autónomo y automatización a escala",
   "tags": [
    "n8n",
    "Claude API",
    "Tool use",
-   "Webhooks"
-  ],
-  "summary": "Atiende consultas de punta a punta, desde la pregunta hasta el cierre de venta. Bajó el tiempo de respuesta de horas a minutos, aumentó las conversiones y opera sin intervención manual desde 2024.",
-  "context": "Las consultas de ventas y posventa tardaban horas en responderse y dependían de atención manual.",
-  "solution": "Un agente de IA construido en n8n con Claude (API y tool use). Interpreta la consulta, decide qué herramienta usar, consulta los sistemas necesarios por API y responde al cliente.",
-  "result": [
-   "50+ interacciones diarias atendidas de punta a punta.",
-   "Tiempo de respuesta de horas a minutos.",
-   "Más conversiones.",
-   "Opera sin intervención manual desde 2024."
-  ],
-  "metric": {
-   "v": "50+",
-   "l": "interacciones diarias de punta a punta"
-  }
- },
- {
-  "slug": "whatsapp-odoo",
-  "title": "Plataforma conversacional WhatsApp + Odoo",
-  "tags": [
-   "Python",
-   "JavaScript",
-   "WAHA",
-   "Odoo ERP"
-  ],
-  "summary": "Los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos desde una sola interfaz, con IA que inicia conversaciones y genera ofertas. Un módulo de difusiones controladas eliminó los bloqueos de cuenta de WhatsApp.",
-  "context": "Los vendedores necesitaban trabajar con sus clientes por WhatsApp y con los datos de Odoo sin saltar entre herramientas, y los envíos masivos ponían en riesgo la cuenta de WhatsApp.",
-  "solution": "Una plataforma propia en Python y JavaScript, conectada a WhatsApp mediante WAHA y a Odoo. Desde una interfaz los vendedores gestionan cartera, presupuestos, productos con tarifas e historial de pedidos. La IA inicia conversaciones y genera ofertas. Un módulo de difusiones controladas envía por rangos de tiempo y con contenido variable.",
-  "result": [
-   "Gestión comercial completa desde una sola interfaz.",
-   "Se eliminaron los bloqueos de cuenta de WhatsApp."
-  ],
-  "metric": {
-   "v": "WhatsApp ⇄ Odoo",
-   "l": "una sola interfaz para vender"
-  }
- },
- {
-  "slug": "flujos-automatizados",
-  "title": "Más de 50 flujos automatizados",
-  "tags": [
-   "n8n",
    "Power Automate",
    "REST",
    "Webhooks"
   ],
-  "summary": "Integrados por APIs REST y webhooks, corren 24/7.",
-  "context": "Procesos que dependían de tareas manuales y de sistemas que no se hablaban entre sí.",
-  "solution": "Flujos en n8n y Power Automate integrados mediante APIs REST y webhooks.",
+  "summary": "Un agente atiende consultas de punta a punta, desde la pregunta hasta el cierre de venta: bajó el tiempo de respuesta de horas a minutos, aumentó las conversiones y opera sin intervención manual desde 2024. Detrás hay más de 50 flujos en n8n y Power Automate, integrados por APIs REST y webhooks, corriendo 24/7.",
+  "context": "Las consultas de ventas y posventa tardaban horas en responderse y dependían de atención manual, y varios procesos dependían de tareas manuales.",
+  "solution": "Un agente de IA construido en n8n con Claude (API y tool use): interpreta la consulta, decide qué herramienta usar, consulta los sistemas por API y responde al cliente. Lo acompañan más de 50 flujos en n8n y Power Automate integrados mediante APIs REST y webhooks.",
   "result": [
-   "Más de 50 flujos en producción.",
-   "Funcionan 24/7."
+   "50+ interacciones diarias atendidas de punta a punta.",
+   "Tiempo de respuesta de horas a minutos.",
+   "Más conversiones.",
+   "Opera sin intervención manual desde 2024.",
+   "Más de 50 flujos en producción, funcionando 24/7."
   ],
   "metric": {
    "v": "50+",
-   "l": "flujos corriendo 24/7"
+   "l": "interacciones diarias de un agente y más de 50 flujos corriendo 24/7"
   }
  },
  {
@@ -144,11 +104,12 @@
    "Claude",
    "Mercado Libre"
   ],
-  "summary": "Un flujo de browser activa y desactiva entre 300 y 500 promociones de forma autónoma.",
+  "summary": "Un flujo de browser desactiva y reactiva masivamente entre 300 y 500 promociones de forma autónoma, y reemplazó horas de trabajo manual diario.",
   "context": "La gestión de promociones en Mercado Libre implicaba activar y desactivar cientos de publicaciones.",
   "solution": "Automatización de browser guiada por Claude que recorre las promociones y las activa o desactiva.",
   "result": [
-   "Entre 300 y 500 promociones activadas o desactivadas de forma autónoma."
+   "Entre 300 y 500 promociones activadas o desactivadas de forma autónoma.",
+   "Reemplazó horas de trabajo manual diario."
   ],
   "metric": {
    "v": "300–500",
@@ -162,11 +123,12 @@
    "Python",
    "Scraping"
   ],
-  "summary": "Monitoreo periódico de los precios de la competencia mediante scraping propio.",
+  "summary": "Monitoreo periódico de los precios de la competencia por scraping, que eliminó horas de investigación manual y aceleró las decisiones de precio.",
   "context": "Se necesitaba conocer los precios de la competencia de forma regular.",
   "solution": "Scraping propio en Python que consulta los precios de forma programada.",
   "result": [
-   "Monitoreo periódico de precios de la competencia."
+   "Monitoreo periódico de precios de la competencia.",
+   "Eliminó horas de investigación manual y aceleró las decisiones de precio."
   ],
   "metric": {
    "v": "Scraping",

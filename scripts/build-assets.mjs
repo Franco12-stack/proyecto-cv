@@ -1,4 +1,4 @@
-// Genera los PDF del CV (ES/EN) y la imagen Open Graph en /public.
+// Genera la imagen Open Graph en /public. (El CV es el PDF propio: public/cv-franco-fernandez.pdf.)
 // Requiere Playwright con Chromium disponible (`npm i -D playwright` o el que ya trae el entorno).
 // Uso: npm run build && npm run assets
 import { spawn } from 'node:child_process';
@@ -19,10 +19,6 @@ try {
   }
   const browser = await chromium.launch();
   const page = await browser.newPage();
-  for (const l of ['es', 'en']) {
-    await page.goto(`${origin}/cv/${l}/`, { waitUntil: 'networkidle' });
-    await page.pdf({ path: `public/cv-franco-fernandez-${l}.pdf`, format: 'A4', printBackground: true, preferCSSPageSize: true });
-  }
   await page.setViewportSize({ width: 1200, height: 630 });
   await page.goto(`${origin}/og/`, { waitUntil: 'networkidle' });
   await page.screenshot({ path: 'public/og-image.png' });

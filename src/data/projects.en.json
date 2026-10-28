@@ -1,33 +1,32 @@
 [
  {
-  "slug": "whatsapp-crm-demo",
+  "slug": "whatsapp-odoo",
   "tags": [
-   "FastAPI",
-   "PostgreSQL",
-   "React",
-   "TypeScript",
-   "Docker"
+   "Python",
+   "JavaScript",
+   "WAHA",
+   "Odoo ERP"
   ],
   "image": "projects/crm-demo/inbox.webp",
   "imageAlt": "Bandeja de chats con panel CRM",
   "links": {
    "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
   },
-  "title": "WhatsApp sales CRM",
+  "title": "WhatsApp + Odoo conversational platform",
   "pill": "public demo",
-  "summary": "Multichannel platform for teams that sell over WhatsApp: chats with a CRM panel, broadcasts, supervisor dashboard, tickets, goals and an anti-ban rate limiter with a warm-up ramp. Open source, with generic data and a simulated WhatsApp.",
+  "summary": "Sales reps manage their portfolio, quotes, products with price lists and order history from a single interface, with AI that starts conversations and drafts offers. A controlled-broadcast module eliminated WhatsApp account bans. A public open-source demo with a simulated WhatsApp is available.",
   "metric": {
    "v": "30 days",
    "l": "of ramp for a new line to reach its sending limit"
   },
-  "context": "It is a from-scratch rebuild, with generic data, of patterns from a production WhatsApp CRM I built for a sales team. It is published as a demo to show the code and business logic without credentials or real numbers.",
-  "solution": "FastAPI backend with async SQLAlchemy and PostgreSQL, React + TypeScript + Vite frontend, all on Docker Compose with JWT auth and role-based permissions. The WhatsApp provider is a simulator, so it runs anywhere with docker compose up.",
+  "context": "Sales reps needed to work with customers on WhatsApp and with Odoo data without jumping between tools, and mass messaging put the WhatsApp account at risk.",
+  "solution": "A custom platform in Python and JavaScript, connected to WhatsApp through WAHA and to Odoo. From one interface reps manage their portfolio, quotes, products with price lists and order history. AI starts conversations and drafts offers. A controlled-broadcast module sends within time ranges and with varied content. To be able to show it in public I built a from-scratch rebuild with generic data and a simulated WhatsApp: the demo below.",
   "result": [
-   "14 modules: chats with a CRM panel, agenda, contact today, broadcasts, metrics, report, dashboard, goals, distribute, promotions, products, support, administration and an AI assistant.",
-   "33 tests: warm-up ramp, cold/warm contact split, role-based permissions and the “allowed but alerted” behavior.",
-   "Public code and screenshots on GitHub, MIT licensed."
+   "Full sales management from a single interface.",
+   "WhatsApp account bans were eliminated.",
+   "Public demo: 14 modules and 33 tests, open source (MIT license)."
   ],
-  "highlightsTitle": "Design decisions",
+  "highlightsTitle": "Design decisions (public demo)",
   "highlights": [
    "Anti-ban ramp: a new line starts with a low ceiling (20 messages per day) and grows into its real limit over about 30 days. The enforced limit is the lower of the commercial policy and the warm-up tier, and a reconnected line goes back to day zero.",
    "Going over the limit does not block the send: it lets the message through and alerts a supervisor, because a hard block does not protect against the real risk and costs you the sale.",
@@ -35,7 +34,7 @@
    "Usage is shown against the effective limit, not the raw policy. Dashboard, report and metrics share one computation.",
    "Goal progress is computed live, never stored."
   ],
-  "note": "The WhatsApp provider and the AI assistant are simulated on purpose: the suggest-reply button does keyword matching, not a real model. The production project’s integrations (ERP, phone system, LLM, WhatsApp sessions) are not published. The demo’s interface is in English.",
+  "note": "The public demo is a from-scratch rebuild with generic data, using FastAPI, PostgreSQL, React, TypeScript and Docker Compose. The WhatsApp provider and the AI assistant are simulated on purpose: the suggest-reply button does keyword matching, not a real model. The production project’s integrations (ERP, phone system, LLM, WhatsApp sessions) are not published. The demo’s interface is in English.",
   "gallery": [
    {
     "img": "projects/crm-demo/dashboard.webp",
@@ -73,67 +72,28 @@
  },
  {
   "slug": "agente-ia-ventas",
-  "title": "Autonomous AI agent for sales and after-sales",
+  "title": "Autonomous AI agent and automation at scale",
   "tags": [
    "n8n",
    "Claude API",
    "Tool use",
-   "Webhooks"
-  ],
-  "summary": "Handles inquiries end to end, from the first question to the closed sale. It cut response time from hours to minutes, increased conversions and has run with no manual intervention since 2024.",
-  "context": "Sales and after-sales inquiries took hours to answer and depended on manual handling.",
-  "solution": "An AI agent built in n8n with Claude (API and tool use). It interprets the inquiry, decides which tool to use, queries the required systems through APIs and replies to the customer.",
-  "result": [
-   "50+ daily interactions handled end to end.",
-   "Response time cut from hours to minutes.",
-   "Higher conversions.",
-   "Running with no manual intervention since 2024."
-  ],
-  "metric": {
-   "v": "50+",
-   "l": "daily end-to-end interactions"
-  }
- },
- {
-  "slug": "whatsapp-odoo",
-  "title": "WhatsApp + Odoo conversational platform",
-  "tags": [
-   "Python",
-   "JavaScript",
-   "WAHA",
-   "Odoo ERP"
-  ],
-  "summary": "Sales reps manage their portfolio, quotes, products with price lists and order history from a single interface, with AI that starts conversations and drafts offers. A controlled-broadcast module eliminated WhatsApp account bans.",
-  "context": "Sales reps needed to work with customers on WhatsApp and with Odoo data without jumping between tools, and mass messaging put the WhatsApp account at risk.",
-  "solution": "A custom platform in Python and JavaScript, connected to WhatsApp through WAHA and to Odoo. From one interface reps manage their portfolio, quotes, products with price lists and order history. AI starts conversations and drafts offers. A controlled-broadcast module sends within time ranges and with varied content.",
-  "result": [
-   "Full sales management from a single interface.",
-   "WhatsApp account bans were eliminated."
-  ],
-  "metric": {
-   "v": "WhatsApp ⇄ Odoo",
-   "l": "one interface to sell"
-  }
- },
- {
-  "slug": "flujos-automatizados",
-  "title": "50+ automated workflows",
-  "tags": [
-   "n8n",
    "Power Automate",
    "REST",
    "Webhooks"
   ],
-  "summary": "Integrated through REST APIs and webhooks, they run 24/7.",
-  "context": "Processes that relied on manual tasks and on systems that did not talk to each other.",
-  "solution": "Workflows in n8n and Power Automate integrated through REST APIs and webhooks.",
+  "summary": "An agent handles inquiries end to end, from the first question to the closed sale: it cut response time from hours to minutes, increased conversions and has run with no manual intervention since 2024. Behind it are 50+ workflows in n8n and Power Automate, integrated through REST APIs and webhooks, running 24/7.",
+  "context": "Sales and after-sales inquiries took hours to answer and depended on manual handling, and several processes relied on manual tasks.",
+  "solution": "An AI agent built in n8n with Claude (API and tool use): it interprets the inquiry, decides which tool to use, queries the systems through APIs and replies to the customer. It is backed by 50+ workflows in n8n and Power Automate integrated through REST APIs and webhooks.",
   "result": [
-   "50+ workflows in production.",
-   "They run 24/7."
+   "50+ daily interactions handled end to end.",
+   "Response time cut from hours to minutes.",
+   "Higher conversions.",
+   "Running with no manual intervention since 2024.",
+   "50+ workflows in production, running 24/7."
   ],
   "metric": {
    "v": "50+",
-   "l": "workflows running 24/7"
+   "l": "daily interactions handled by one agent and 50+ workflows running 24/7"
   }
  },
  {
@@ -144,11 +104,12 @@
    "Claude",
    "Mercado Libre"
   ],
-  "summary": "A browser workflow activates and deactivates 300 to 500 promotions on its own.",
+  "summary": "A browser workflow deactivates and reactivates 300 to 500 promotions in bulk on its own, replacing hours of daily manual work.",
   "context": "Managing promotions on Mercado Libre meant activating and deactivating hundreds of listings.",
   "solution": "Browser automation driven by Claude that goes through the promotions and activates or deactivates them.",
   "result": [
-   "300 to 500 promotions activated or deactivated autonomously."
+   "300 to 500 promotions activated or deactivated autonomously.",
+   "Replaced hours of daily manual work."
   ],
   "metric": {
    "v": "300–500",
@@ -162,11 +123,12 @@
    "Python",
    "Scraping"
   ],
-  "summary": "Scheduled monitoring of competitor prices through custom scraping.",
+  "summary": "Scheduled monitoring of competitor prices through scraping, which removed hours of manual research and sped up pricing decisions.",
   "context": "There was a need to know competitor prices on a regular basis.",
   "solution": "Custom scraping in Python that checks prices on a schedule.",
   "result": [
-   "Periodic monitoring of competitor prices."
+   "Periodic monitoring of competitor prices.",
+   "Removed hours of manual research and sped up pricing decisions."
   ],
   "metric": {
    "v": "Scraping",

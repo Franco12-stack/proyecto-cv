@@ -6,10 +6,10 @@ Sitio estático en Astro, bilingüe (ES/EN), tema oscuro/claro. Sin frameworks d
 npm install
 npm run dev        # desarrollo
 npm run build      # genera dist/
-npm run assets     # regenera CV en PDF (ES/EN) y og-image.png (requiere Playwright + Chromium)
+npm run assets     # regenera og-image.png (requiere Playwright + Chromium)
 ```
 
-- **Contenido**: `src/data/*.es.json` / `*.en.json` (y `stack.json`). Los PDF del CV salen de las mismas fuentes (`src/pages/cv/[lang].astro`); tras editar datos, correr `npm run build && npm run assets`.
+- **Contenido**: `src/data/*.es.json` / `*.en.json` (y `stack.json`). El CV descargable es el PDF propio `public/cv-franco-fernandez.pdf` (sin teléfono ni referencias; solo en español por ahora).
 - **Despliegue**: GitHub Pages con `.github/workflows/deploy.yml` (rama `main`; activar Pages → Source: GitHub Actions). Por defecto `site=https://franco12-stack.github.io`, `base=/proyecto-cv`. Para Vercel o dominio propio: `SITE=https://tudominio.com BASE=/ npm run build` (y actualizar `public/robots.txt`).
 
 ## Pendientes (los aporta Franco)
