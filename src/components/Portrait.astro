@@ -7,6 +7,8 @@ import { url } from '../lib/url';
 <figure class="portrait">
   <div class="pframe" id="pframe">
     <canvas id="pc" width="440" height="408" data-src={url('/foto.jpg')} role="img" aria-label={es.about.photoAlt + ' / ' + en.about.photoAlt}></canvas>
+    <span class="ptag" aria-hidden="true">// ASCII</span>
+    <button type="button" id="m-redo" class="pre" aria-label="Repetir animación / Replay"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.9-4.15M13.5 2.5v3h-3"/></svg></button>
   </div>
   <figcaption class="pcap"><span>franco.jpg</span>
     <span class="pmode">

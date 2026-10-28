@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · AI Engineer",
-  "description": "Franco Fernandez, Buenos Aires. AI Engineer: construyo agentes de IA, bots y automatizaciones con LLMs que funcionan en producción. n8n, Python, Power Automate.",
+  "title": "Franco Fernandez · AI Engineer y desarrollo de software",
+  "description": "Franco Fernandez, Buenos Aires. AI Engineer y desarrollador de software: agentes de IA, bots, automatizaciones y plataformas a medida con Python, JavaScript, n8n y LLMs que funcionan en producción.",
   "nav": {
     "about": "Sobre_mí",
     "projects": "Proyectos",
@@ -29,13 +29,13 @@
     "projectN": "Proyecto"
   },
   "hero": {
-    "tag": "// ai engineer · buenos aires",
+    "tag": "// ai engineer + software · buenos aires",
     "h1": "Construyo agentes de IA, bots y automatizaciones con LLMs <em>que funcionan en producción.</em>",
-    "lead": "AI Engineer con más de 5 años en operaciones y transformación digital. Parto siempre del problema de negocio antes de definir la solución.",
+    "lead": "AI Engineer con más de 5 años en operaciones y transformación digital. Además de automatizar, desarrollo software a medida (plataformas, APIs e integraciones) y parto siempre del problema de negocio antes de definir la solución.",
     "meta": [
       {
         "k": "Rol",
-        "v": "AI Engineer"
+        "v": "AI Engineer + Software"
       },
       {
         "k": "Ubicación",
@@ -43,7 +43,7 @@
       },
       {
         "k": "Stack",
-        "v": "n8n · Python · LLMs"
+        "v": "Python · JS · n8n · LLMs"
       },
       {
         "k": "Hora local",
@@ -104,10 +104,11 @@
     "h2": "sobre mí",
     "photoAlt": "Foto de Franco Fernandez",
     "photo": "Foto",
-    "signal": "Señal",
+    "signal": "ASCII",
     "p": [
       "Vengo de operaciones: coordiné equipos, auditorías y procesos antes de pasar a automatizarlos. Esa mirada me sirve para entender el problema del negocio antes de elegir la herramienta.",
-      "Hoy trabajo con las APIs de Claude, OpenAI y DeepSeek, con n8n y Power Automate, y con desarrollo asistido por IA en Python y JavaScript. Estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
+      "Hoy trabajo con las APIs de Claude, OpenAI y DeepSeek, con n8n y Power Automate, y con desarrollo asistido por IA en Python y JavaScript. Estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta.",
+      "También desarrollo software: la plataforma conversacional WhatsApp + Odoo, apps a medida para Tienda Nube, integraciones por API y un CRM de demostración (FastAPI, React y PostgreSQL) con 33 tests y código abierto."
     ],
     "nowTitle": "// ahora mismo",
     "now": [

@@ -1,4 +1,4 @@
-// Retrato: foto que se enfoca al cargar (pixelado → nítido) y modo "Señal" (halftone con el color de acento).
+// Retrato: foto que se enfoca al cargar (pixelado → nítido) y modo ASCII (caracteres con el color de acento).
 export function initPortrait() {
   const cv = document.getElementById('pc');
   if (!cv) return;
@@ -19,22 +19,44 @@ export function initPortrait() {
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(tiny, 0, 0, tiny.width * px, tiny.height * px);
   }
-  function halftone() {
-    const cell = 8, cols = Math.floor(W / cell), rows = Math.floor(H / cell);
+  // ASCII: el retrato como caracteres; lo oscuro de la foto (pelo, rasgos, ropa) se dibuja más denso y el fondo claro queda vacío.
+  const RAMP = ' .:-=+*#%@', CW = 6.6, CH = 10, FS = 11.5;
+  let lum = null, cols = 0, rows = 0;
+  function sample() {
+    cols = Math.floor(W / CW); rows = Math.floor(H / CH);
     tiny.width = cols; tiny.height = rows; tctx.drawImage(img, 0, 0, cols, rows);
-    const d = tctx.getImageData(0, 0, cols, rows).data, dark = isDark();
+    const d = tctx.getImageData(0, 0, cols, rows).data, raw = [];
+    for (let i = 0; i < cols * rows; i++) raw.push((.299 * d[i * 4] + .587 * d[i * 4 + 1] + .114 * d[i * 4 + 2]) / 255);
+    const sorted = [...raw].sort((a, b) => a - b), lo = sorted[Math.floor(raw.length * .04)], hi = sorted[Math.floor(raw.length * .9)];
+    lum = raw.map((l) => Math.min(1, Math.max(0, 1 - (l - lo) / (hi - lo || 1))));
+  }
+  function ascii(progress = 1) {
+    if (!lum) sample();
     ctx.fillStyle = css('--surface') || '#132026'; ctx.fillRect(0, 0, W, H);
+    ctx.font = `700 ${FS}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = 'top';
     ctx.fillStyle = css('--accent') || '#43D9BE';
-    for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
-      const i = (y * cols + x) * 4, l = (.299 * d[i] + .587 * d[i + 1] + .114 * d[i + 2]) / 255;
-      const v = dark ? l : 1 - l, r = Math.max(0, v - .08) * cell * .62;
-      if (r > .3) { ctx.beginPath(); ctx.arc(x * cell + cell / 2 + (W - cols * cell) / 2, y * cell + cell / 2, r, 0, 6.2832); ctx.fill(); }
+    const ox = (W - cols * CW) / 2, limit = Math.floor(rows * progress);
+    for (let y = 0; y < rows; y++) {
+      if (y > limit) break;
+      for (let x = 0; x < cols; x++) {
+        const v = Math.pow(lum[y * cols + x], 1.1), ch = RAMP[Math.min(RAMP.length - 1, Math.floor(v * RAMP.length))];
+        if (ch === ' ') continue;
+        ctx.globalAlpha = (y > limit - 3 ? .4 : 1) * (.62 + .38 * v);
+        ctx.fillText(ch, ox + x * CW, y * CH);
+      }
     }
+    ctx.globalAlpha = 1;
+  }
+  function sweep() {
+    if (timer) clearInterval(timer);
+    if (reduce) { ascii(1); return; }
+    let t = 0; ascii(0);
+    timer = setInterval(() => { t += 1 / 30; if (t >= 1) { clearInterval(timer); timer = null; ascii(1); return; } ascii(t); }, 30);
   }
   function render() {
     if (!ready) return;
     $('pframe').classList.toggle('sig', mode === 'sig');
-    mode === 'sig' ? halftone() : photo(1);
+    mode === 'sig' ? ascii(1) : photo(1);
   }
   function focusIn() {
     if (timer) clearInterval(timer);
@@ -47,10 +69,11 @@ export function initPortrait() {
     mode = m;
     $('m-photo').setAttribute('aria-pressed', String(m === 'photo'));
     $('m-sig').setAttribute('aria-pressed', String(m === 'sig'));
-    if (m === 'photo') focusIn(); else { if (timer) { clearInterval(timer); timer = null; } render(); }
+    if (m === 'photo') focusIn(); else { $('pframe').classList.add('sig'); sweep(); }
   }
   $('m-photo').addEventListener('click', () => setMode('photo'));
   $('m-sig').addEventListener('click', () => setMode('sig'));
+  $('m-redo')?.addEventListener('click', () => { if (mode !== 'sig') setMode('sig'); else sweep(); });
   document.addEventListener('themechange', () => setTimeout(render, 0));
   img.onload = () => { ready = true; focusIn(); };
   img.src = cv.dataset.src;

@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · AI Engineer",
-  "description": "Franco Fernandez, Buenos Aires. AI Engineer: I build AI agents, bots and LLM-based automations that work in production. n8n, Python, Power Automate.",
+  "title": "Franco Fernandez · AI Engineer and software development",
+  "description": "Franco Fernandez, Buenos Aires. AI Engineer and software developer: AI agents, bots, automations and custom platforms with Python, JavaScript, n8n and LLMs that work in production.",
   "nav": {
     "about": "About",
     "projects": "Projects",
@@ -29,13 +29,13 @@
     "projectN": "Project"
   },
   "hero": {
-    "tag": "// ai engineer · buenos aires",
+    "tag": "// ai engineer + software · buenos aires",
     "h1": "I build AI agents, bots and automations with LLMs <em>that work in production.</em>",
-    "lead": "AI Engineer with 5+ years in operations and digital transformation. I always start from the business problem before defining the solution.",
+    "lead": "AI Engineer with 5+ years in operations and digital transformation. Besides automating, I develop custom software (platforms, APIs and integrations) and always start from the business problem before defining the solution.",
     "meta": [
       {
         "k": "Role",
-        "v": "AI Engineer"
+        "v": "AI Engineer + Software"
       },
       {
         "k": "Location",
@@ -43,7 +43,7 @@
       },
       {
         "k": "Stack",
-        "v": "n8n · Python · LLMs"
+        "v": "Python · JS · n8n · LLMs"
       },
       {
         "k": "Local time",
@@ -104,10 +104,11 @@
     "h2": "about",
     "photoAlt": "Photo of Franco Fernandez",
     "photo": "Photo",
-    "signal": "Signal",
+    "signal": "ASCII",
     "p": [
       "I come from operations: I coordinated teams, audits and processes before moving on to automate them. That background helps me understand the business problem before choosing the tool.",
-      "Today I work with the Claude, OpenAI and DeepSeek APIs, with n8n and Power Automate, and with AI-assisted development in Python and JavaScript. I study Industrial Engineering at UADE. I like to launch fast with what already exists and build custom only what is needed."
+      "Today I work with the Claude, OpenAI and DeepSeek APIs, with n8n and Power Automate, and with AI-assisted development in Python and JavaScript. I study Industrial Engineering at UADE. I like to launch fast with what already exists and build custom only what is needed.",
+      "I also develop software: the WhatsApp + Odoo conversational platform, custom Tienda Nube apps, API integrations and a demo CRM (FastAPI, React and PostgreSQL) with 33 tests and open source code."
     ],
     "nowTitle": "// right now",
     "now": [
