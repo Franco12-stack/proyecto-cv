@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · Automation & AI",
-  "description": "Franco Fernandez, Buenos Aires. I automate processes and build AI agents that work in production: n8n, Python, Power Automate and LLMs.",
+  "title": "Franco Fernandez · AI Engineer",
+  "description": "Franco Fernandez, Buenos Aires. AI Engineer: I build AI agents, bots and LLM-based automations that work in production. n8n, Python, Power Automate.",
   "nav": {
     "about": "About",
     "projects": "Projects",
@@ -29,13 +29,13 @@
     "projectN": "Project"
   },
   "hero": {
-    "tag": "// automation + ai · buenos aires",
-    "h1": "I automate processes and build AI agents <em>that work in production.</em>",
-    "lead": "I connect systems through APIs so that work runs every day without manual intervention.",
+    "tag": "// ai engineer · buenos aires",
+    "h1": "I build AI agents, bots and automations with LLMs <em>that work in production.</em>",
+    "lead": "AI Engineer with 5+ years in operations and digital transformation. I always start from the business problem before defining the solution.",
     "meta": [
       {
         "k": "Role",
-        "v": "Automation + AI"
+        "v": "AI Engineer"
       },
       {
         "k": "Location",
@@ -73,31 +73,31 @@
     "steps": [
       {
         "label": "Event",
-        "text": "WhatsApp message, webhook or scheduled task",
-        "detail": "It can be a WhatsApp message, a webhook or a scheduled task. It comes in through n8n or custom code."
+        "text": "Incoming message via webhook",
+        "detail": "A webhook receives the message and, if the customer sends several in a row, it waits a few seconds (debounce) to group them before processing."
       },
       {
-        "label": "LLM",
+        "label": "Preprocessing",
+        "text": "Images and audio become text",
+        "detail": "Images are described with vision and audio is transcribed, so the agent always works with text."
+      },
+      {
+        "label": "Agent",
         "text": "Claude, OpenAI or DeepSeek reason and pick a tool",
-        "detail": "The model interprets the intent and decides which tool to use (tool use). I use Claude, OpenAI or DeepSeek depending on the case."
-      },
-      {
-        "label": "API",
-        "text": "Odoo, Mercado Libre, Tienda Nube and REST services",
-        "detail": "It reads from or writes to Odoo, Mercado Libre, Tienda Nube or other REST services."
+        "detail": "The model interprets the intent and decides which tool to use (tool use): search products, check an order, installments, etc. I use Claude, OpenAI or DeepSeek depending on the case."
       },
       {
         "label": "Action",
-        "text": "Replies, quotes, updates or closes the sale",
-        "detail": "It replies to the customer, builds the quote, updates the record or closes the sale."
+        "text": "Replies, hands off or closes the sale",
+        "detail": "It replies to the customer, applies labels, hands off to a person when needed and can start a follow-up."
       }
     ],
     "sim": [
-      "<b>event</b>   incoming message: \"Do you have model X in stock?\"",
-      "<b>llm</b>     intent = stock inquiry → tool: check_stock",
-      "<b>api</b>     Odoo replies: 3 units available",
-      "<b>action</b>  reply sent to the customer and quote generated",
-      "<b>done</b>    illustrative example, not real data"
+      "<b>event</b>        incoming message: \"Do you have model X in stock?\"",
+      "<b>preprocess</b>   waits 5 s in case more messages arrive; no images or audio",
+      "<b>agent</b>        intent = stock inquiry → tool: search_products",
+      "<b>action</b>       reply sent to the customer",
+      "<b>done</b>         illustrative example, not real data"
     ]
   },
   "about": {
@@ -107,7 +107,7 @@
     "signal": "Signal",
     "p": [
       "I come from operations: I coordinated teams, audits and processes before moving on to automate them. That background helps me understand the business problem before choosing the tool.",
-      "Today I work with LLMs, n8n, Power Automate and Python/JavaScript, and I study Industrial Engineering at UADE. I like to launch fast with what already exists and build custom only what is needed."
+      "Today I work with the Claude, OpenAI and DeepSeek APIs, with n8n and Power Automate, and with AI-assisted development in Python and JavaScript. I study Industrial Engineering at UADE. I like to launch fast with what already exists and build custom only what is needed."
     ],
     "nowTitle": "// right now",
     "now": [

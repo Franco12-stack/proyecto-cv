@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · Automatización e IA",
-  "description": "Franco Fernandez, Buenos Aires. Automatizo procesos y construyo agentes de IA que funcionan en producción: n8n, Python, Power Automate y LLMs.",
+  "title": "Franco Fernandez · AI Engineer",
+  "description": "Franco Fernandez, Buenos Aires. AI Engineer: construyo agentes de IA, bots y automatizaciones con LLMs que funcionan en producción. n8n, Python, Power Automate.",
   "nav": {
     "about": "Sobre_mí",
     "projects": "Proyectos",
@@ -29,13 +29,13 @@
     "projectN": "Proyecto"
   },
   "hero": {
-    "tag": "// automatización + ia · buenos aires",
-    "h1": "Automatizo procesos y construyo agentes de IA <em>que funcionan en producción.</em>",
-    "lead": "Conecto sistemas por API para que el trabajo se ejecute todos los días sin intervención manual.",
+    "tag": "// ai engineer · buenos aires",
+    "h1": "Construyo agentes de IA, bots y automatizaciones con LLMs <em>que funcionan en producción.</em>",
+    "lead": "AI Engineer con más de 5 años en operaciones y transformación digital. Parto siempre del problema de negocio antes de definir la solución.",
     "meta": [
       {
         "k": "Rol",
-        "v": "Automatización + IA"
+        "v": "AI Engineer"
       },
       {
         "k": "Ubicación",
@@ -73,31 +73,31 @@
     "steps": [
       {
         "label": "Evento",
-        "text": "Mensaje de WhatsApp, webhook o tarea programada",
-        "detail": "Puede ser un mensaje de WhatsApp, un webhook o una tarea programada. Entra por n8n o por código propio."
+        "text": "Mensaje entrante por webhook",
+        "detail": "Un webhook recibe el mensaje y, si el cliente manda varios seguidos, se espera unos segundos (debounce) para juntarlos antes de procesarlos."
       },
       {
-        "label": "LLM",
+        "label": "Preproceso",
+        "text": "Imágenes y audios pasan a texto",
+        "detail": "Las imágenes se describen con visión y los audios se transcriben, así el agente trabaja siempre con texto."
+      },
+      {
+        "label": "Agente",
         "text": "Claude, OpenAI o DeepSeek razonan y eligen herramienta",
-        "detail": "El modelo interpreta la intención y decide qué herramienta usar (tool use). Uso Claude, OpenAI o DeepSeek según el caso."
-      },
-      {
-        "label": "API",
-        "text": "Odoo, Mercado Libre, Tienda Nube y servicios REST",
-        "detail": "Consulta o escribe en Odoo, Mercado Libre, Tienda Nube u otros servicios REST."
+        "detail": "El modelo interpreta la intención y decide qué herramienta usar (tool use): buscar productos, consultar un pedido, cuotas, etc. Uso Claude, OpenAI o DeepSeek según el caso."
       },
       {
         "label": "Acción",
-        "text": "Responde, cotiza, actualiza o cierra la venta",
-        "detail": "Responde al cliente, genera el presupuesto, actualiza el registro o cierra la venta."
+        "text": "Responde, deriva o cierra la venta",
+        "detail": "Responde al cliente, aplica etiquetas, deriva a una persona cuando hace falta y puede iniciar un seguimiento."
       }
     ],
     "sim": [
-      "<b>evento</b>  mensaje entrante: «¿Tienen stock del modelo X?»",
-      "<b>llm</b>     intención = consulta de stock → herramienta: consultar_stock",
-      "<b>api</b>     Odoo responde: 3 unidades disponibles",
-      "<b>acción</b>  respuesta enviada al cliente y presupuesto generado",
-      "<b>listo</b>   ejemplo ilustrativo, no son datos reales"
+      "<b>evento</b>     mensaje entrante: «¿Tienen stock del modelo X?»",
+      "<b>preproceso</b> espera 5 s por si llegan más mensajes; sin imágenes ni audio",
+      "<b>agente</b>     intención = consulta de stock → herramienta: buscar_productos",
+      "<b>acción</b>     respuesta enviada al cliente",
+      "<b>listo</b>      ejemplo ilustrativo, no son datos reales"
     ]
   },
   "about": {
@@ -107,7 +107,7 @@
     "signal": "Señal",
     "p": [
       "Vengo de operaciones: coordiné equipos, auditorías y procesos antes de pasar a automatizarlos. Esa mirada me sirve para entender el problema del negocio antes de elegir la herramienta.",
-      "Hoy trabajo con LLMs, n8n, Power Automate y Python/JavaScript, y estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
+      "Hoy trabajo con las APIs de Claude, OpenAI y DeepSeek, con n8n y Power Automate, y con desarrollo asistido por IA en Python y JavaScript. Estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
     ],
     "nowTitle": "// ahora mismo",
     "now": [
