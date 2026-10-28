@@ -1,7 +1,7 @@
 name: Deploy a GitHub Pages
 on:
   push:
-    branches: [main]
+    branches: [main, claude/new-session-0gax0k]
   workflow_dispatch:
 permissions:
   contents: read
