@@ -19,11 +19,11 @@ const sec = ['context', 'solution'] as const;
   title={{ es: `${a.title} · Franco Fernandez`, en: `${b.title} · Franco Fernandez` }}
   description={{ es: a.summary, en: b.summary }}
   path={`/proyectos/${a.slug}/`}>
-  <article class={'case' + ((a.gallery || a.diagram) ? ' wide' : '')}>
+  <article class={'case' + ((a.gallery || a.diagram === 'n8n') ? ' wide' : '')}>
     <a class="back" href={url('/#proyectos')}><T es={es.ui.back} en={en.ui.back} /></a>
     <h1><T es={a.title} en={b.title} /></h1>
     <p class="lead"><T es={a.summary} en={b.summary} /></p>
-    {a.diagram && <section>
+    {a.diagram === 'n8n' && <section>
       <h2><T es="El flujo en n8n" en="The n8n workflow" /></h2>
       <N8nCanvas mode="full" />
       <p class="note"><T es="Estructura real de un flujo del agente (ventas y posventa), exportado de n8n: nodos, tipos y conexiones. Se publican solo nombres y conexiones; los parámetros, prompts, credenciales y datos de clientes no. Arrastrá para moverte y usá Ctrl/⌘ + rueda o los botones para el zoom." en="Real structure of one of the agent’s workflows (sales and after-sales), exported from n8n: nodes, types and connections. Only names and connections are published; parameters, prompts, credentials and customer data are not. Drag to move and use Ctrl/⌘ + wheel or the buttons to zoom." /></p>

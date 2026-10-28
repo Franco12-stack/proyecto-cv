@@ -37,7 +37,7 @@ const focus = flow.groups.map((g) => {
 const full = mode === 'full';
 // Miniatura: encuadre sobre el agente y sus herramientas
 const agent = flow.nodes.find((n) => n.kind === 'agent')!;
-const miniVB = `${agent.x - 620} ${agent.y - 70} 1560 760`;
+const miniVB = `${agent.x - 520} ${agent.y - 50} 1340 640`;
 const vbAttr = full ? `${minX} ${minY} ${maxX - minX} ${maxY - minY}` : miniVB;
 ---
 <figure class={'cv-flow ' + mode} data-bounds={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} data-focus={JSON.stringify(focus)}>
@@ -56,7 +56,7 @@ const vbAttr = full ? `${minX} ${minY} ${maxX - minX} ${maxY - minY}` : miniVB;
             <title>{n.name}</title>
             <rect width={S} height={S} rx="10" />
             <text class="gl" x={S / 2} y={S / 2 + 5} text-anchor="middle">{glyph[n.kind]}</text>
-            {wrap(n.name, full ? 19 : 13).map((l, i) => <text class="lb" x={S / 2} y={S + 16 + i * 14} text-anchor="middle">{l}</text>)}
+            {(full || !['model', 'memory'].includes(n.kind)) && wrap(n.name, full ? 19 : 14).map((l, i) => <text class="lb" x={S / 2} y={S + 16 + i * 14} text-anchor="middle">{l}</text>)}
           </g>
         ))}
       </g>
@@ -87,8 +87,16 @@ const vbAttr = full ? `${minX} ${minY} ${maxX - minX} ${maxY - minY}` : miniVB;
   .cv-flow .k-model rect,.cv-flow .k-memory rect,.cv-flow .k-tool rect{stroke:var(--accent);stroke-dasharray:3 3}
   .cv-flow .gl{font:700 13px var(--f-mono);fill:var(--accent)}
   .cv-flow .lb{font:500 11.5px var(--f-body);fill:var(--ink)}
-  .cv-flow.mini .lb{font-size:15px}
-  .cv-flow.mini .gl{font-size:15px}
+  .cv-flow.mini .cv-stage{position:relative;flex:1;min-height:200px}
+  .cv-flow.mini svg{position:absolute;inset:0;width:100%;height:100%}
+  .cv-flow.mini .lb{font-size:22px;font-weight:600}
+  .cv-flow.mini .gl{font-size:17px}
+  .cv-flow.mini .nd rect{stroke-width:2px}
+  .cv-flow.mini .edge{stroke-width:1.6px}
+  .cv-flow.mini .k-agent rect{filter:drop-shadow(0 0 14px var(--accent))}
+  .cv-flow .edge:not(.ai){stroke-dasharray:7 6;animation:cvdash 1.4s linear infinite}
+  @keyframes cvdash{to{stroke-dashoffset:-26}}
+  @media (prefers-reduced-motion:reduce){.cv-flow .edge:not(.ai){animation:none}}
   .cv-flow .grp text{font:500 18px var(--f-mono);fill:var(--accent);letter-spacing:.04em}
   .cv-flow.mini{pointer-events:none}
   .cv-flow.full .cv-stage{height:min(62vh,540px);border:1px solid var(--line);background:var(--surface);cursor:grab;touch-action:pan-y;

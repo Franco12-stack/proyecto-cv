@@ -115,7 +115,8 @@
   "metric": {
    "v": "300–500",
    "l": "promociones activadas o desactivadas de forma autónoma"
-  }
+  },
+  "diagram": "promos"
  },
  {
   "slug": "inteligencia-de-precios",

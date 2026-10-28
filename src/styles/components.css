@@ -234,3 +234,24 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .pvis.has-flow .cv-flow .cv-stage{flex:1;width:100%;min-width:0}
 .pvis.has-flow .plab{display:none}
 .pvis.has-flow .pval{font-size:clamp(30px,3.4vw,44px)}
+
+.pstats{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 26px}
+.pstats li{display:flex;align-items:baseline;gap:8px}
+.pstats b{font:700 clamp(24px,2.6vw,34px)/1 var(--f-display);color:var(--accent);letter-spacing:-.02em}
+.pstats span{font:400 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.pleg{margin:0;display:flex;align-items:center;gap:8px;font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.05em}
+.pleg .lg{width:14px;height:14px;border:1.5px solid var(--accent);border-radius:3px;display:inline-block}
+.pleg .lg.a{background:var(--accent-soft)}.pleg .lg.t{border-style:dashed;margin-left:12px}
+.pvis.has-flow .plab{display:none}
+.pvis.has-flow{gap:8px}
+.pvis.has-flow .pval{display:none}
+.pvis.has-flow{padding:14px 18px;gap:6px}
+.pvis.has-flow .pleg{display:none}
+.pvis.has-flow .pstats b{font-size:clamp(20px,2vw,26px)}
+.pvis.has-flow .pstats{padding-right:56px}
+
+.pvis.has-grid{padding:16px 20px;gap:6px;justify-content:flex-start}
+.pvis.has-grid .pval{font-size:clamp(30px,3.6vw,48px)}
+.pvis.has-grid .plab{font-size:11px}
+.pvis.has-grid .pg{margin-top:8px}
+.pvis.has-flow .pl{margin-top:6px}
