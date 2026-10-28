@@ -1,0 +1,73 @@
+---
+// Ilustración: la bóveda de Obsidian como un cerebro de nodos y conexiones; una consulta ilumina un camino de notas.
+const rng = (a: number) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const rand = rng(7);
+// Silueta (perfil de cerebro) como curvas de Bézier cúbicas
+const segs: number[][] = [
+  [60, 120, 40, 80, 80, 30, 140, 35], [140, 35, 170, 10, 230, 10, 255, 40], [255, 40, 300, 30, 345, 60, 340, 105],
+  [340, 105, 365, 125, 355, 165, 320, 175], [320, 175, 315, 205, 270, 215, 245, 195], [245, 195, 225, 215, 185, 215, 170, 190],
+  [170, 190, 140, 205, 95, 190, 90, 165], [90, 165, 55, 165, 35, 140, 60, 120],
+];
+const poly: [number, number][] = [];
+for (const [x0, y0, x1, y1, x2, y2, x3, y3] of segs) for (let k = 0; k < 24; k++) {
+  const t = k / 24, u = 1 - t;
+  poly.push([u * u * u * x0 + 3 * u * u * t * x1 + 3 * u * t * t * x2 + t * t * t * x3, u * u * u * y0 + 3 * u * u * t * y1 + 3 * u * t * t * y2 + t * t * t * y3]);
+}
+const inside = (x: number, y: number) => { let c = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const [xi, yi] = poly[i], [xj, yj] = poly[j]; if (yi > y !== yj > y && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) c = !c; } return c; };
+const edgeDist = (x: number, y: number) => Math.min(...poly.map(([px, py]) => Math.hypot(px - x, py - y)));
+const pts: { x: number; y: number }[] = [];
+let guard = 0;
+while (pts.length < 78 && guard++ < 20000) {
+  const x = 30 + rand() * 340, y = 5 + rand() * 225;
+  if (inside(x, y) && edgeDist(x, y) > 9 && pts.every((p) => Math.hypot(p.x - x, p.y - y) > 17)) pts.push({ x, y });
+}
+// Hubs: puntos alejados entre sí
+const hubs = [pts[0]];
+while (hubs.length < 4) { let best = pts[0], bd = -1; for (const p of pts) { const d = Math.min(...hubs.map((h) => Math.hypot(h.x - p.x, h.y - p.y))); if (d > bd) { bd = d; best = p; } } hubs.push(best); }
+const isHub = (p: any) => hubs.includes(p);
+const near = (p: any, list: any[]) => [...list].filter((q) => q !== p).sort((a, b) => Math.hypot(a.x - p.x, a.y - p.y) - Math.hypot(b.x - p.x, b.y - p.y));
+const edges: { a: any; b: any }[] = [];
+const seen = new Set<string>(); const key = (a: any, b: any) => pts.indexOf(a) + '-' + pts.indexOf(b);
+const add = (a: any, b: any) => { if (a === b || seen.has(key(a, b)) || seen.has(key(b, a))) return; seen.add(key(a, b)); edges.push({ a, b }); };
+for (const p of pts) { if (isHub(p)) continue; add(p, near(p, hubs)[0]); for (const q of near(p, pts).slice(0, 2)) if (Math.hypot(p.x - q.x, p.y - q.y) < 46) add(p, q); }
+for (let i = 0; i < hubs.length; i++) for (let j = i + 1; j < hubs.length; j++) if (rand() < 0.7) add(hubs[i], hubs[j]);
+// Camino que ilumina la consulta: hub → nota → nota → nota
+const h0 = hubs[1]; const path = [h0]; for (let i = 0; i < 3; i++) path.push(near(path[path.length - 1], pts).find((q) => !path.includes(q) && !isHub(q))!);
+const pathIdx = new Set(path.map((p) => pts.indexOf(p)));
+const hlEdges = path.slice(1).map((p, i) => ({ a: path[i], b: p }));
+const pulses = edges.filter((_, i) => i % 6 === 0).slice(0, 10);
+const outline = 'M60 120C40 80 80 30 140 35C170 10 230 10 255 40C300 30 345 60 340 105C365 125 355 165 320 175C315 205 270 215 245 195C225 215 185 215 170 190C140 205 95 190 90 165C55 165 35 140 60 120Z';
+---
+<figure class="bg">
+  <svg viewBox="0 0 400 240" role="img" aria-label="Ilustración: una bóveda de notas como un cerebro de nodos conectados, y una consulta que ilumina un camino de notas / Illustration: a vault of notes as a brain of connected nodes, with a query lighting up a path of notes">
+    <path class="ol" d={outline} />
+    {edges.map((e) => <line class="ed" x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />)}
+    {hlEdges.map((e, i) => <line class="ed hl" style={`animation-delay:${(i * 0.9 + 0.6).toFixed(1)}s`} x1={e.a.x} y1={e.a.y} x2={e.b.x} y2={e.b.y} />)}
+    {pulses.map((e, i) => <circle class="pu" r="1.8" style={`offset-path:path('M${e.a.x} ${e.a.y} L${e.b.x} ${e.b.y}');animation-delay:${(i * 0.55).toFixed(2)}s`} />)}
+    {pts.map((p, i) => <circle class={'nd' + (isHub(p) ? ' hub' : '') + (pathIdx.has(i) ? ' hl' : '')} cx={p.x} cy={p.y} r={isHub(p) ? 6 : 2.6} style={`animation-delay:${pathIdx.has(i) ? (([...pathIdx].indexOf(i)) * 0.9).toFixed(1) : (i % 9) * 0.37}s`} />)}
+    <g class="q"><rect x="6" y="206" width="158" height="26" rx="13" /><text data-l="es" x="18" y="223">¿Qué anoté sobre este tema?</text><text data-l="en" x="18" y="223">What did I note on this topic?</text></g>
+    <g class="a"><rect x="236" y="220" width="156" height="18" rx="9" /><text x="314" y="232.5" text-anchor="middle">Claude · MCP → Obsidian</text></g>
+  </svg>
+  <figcaption><span data-l="es">Ilustración: cada punto es una nota; la consulta recorre las que se relacionan.</span><span data-l="en">Illustration: each dot is a note; the query walks through the related ones.</span></figcaption>
+</figure>
+<style>
+  .bg{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .bg svg{flex:1;min-height:0;width:100%}
+  .bg .ol{fill:none;stroke:var(--line);stroke-width:1;stroke-dasharray:2 3}
+  .bg .ed{stroke:var(--dim);stroke-width:.5;opacity:.5}
+  .bg .ed.hl{stroke:var(--accent);stroke-width:1.4;opacity:.12;animation:bgh 7s ease-in-out infinite}
+  .bg .nd{fill:var(--dim);animation:bgt 3.4s ease-in-out infinite}
+  .bg .nd.hub{fill:var(--accent);filter:drop-shadow(0 0 4px var(--accent))}
+  .bg .nd.hl{animation:bgn 7s ease-in-out infinite}
+  .bg .pu{fill:var(--accent);offset-rotate:0deg;animation:bgp 3.6s linear infinite;opacity:0}
+  @keyframes bgt{50%{opacity:.35}}
+  @keyframes bgp{0%{offset-distance:0%;opacity:0}15%{opacity:1}85%{opacity:1}100%{offset-distance:100%;opacity:0}}
+  @keyframes bgh{0%,8%{opacity:.12;stroke-width:.8}20%,60%{opacity:1;stroke-width:1.6}80%,100%{opacity:.12;stroke-width:.8}}
+  @keyframes bgn{0%,8%{fill:var(--dim);r:2.6px}20%,60%{fill:var(--accent);r:4.4px}80%,100%{fill:var(--dim);r:2.6px}}
+  .bg .q rect{fill:var(--surface);stroke:var(--line)}
+  .bg .q text{font:400 9px var(--f-mono);fill:var(--ink)}
+  .bg .a rect{fill:var(--accent-soft);stroke:var(--accent)}
+  .bg .a text{font:500 8px var(--f-mono);fill:var(--accent)}
+  .bg figcaption{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.04em}
+  @media (prefers-reduced-motion:reduce){.bg .nd,.bg .pu,.bg .ed.hl{animation:none}.bg .ed.hl{opacity:.8}.bg .nd.hl{fill:var(--accent)}.bg .pu{display:none}}
+</style>

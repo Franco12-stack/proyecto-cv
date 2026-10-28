@@ -5,7 +5,8 @@ import pes from '../data/projects.es.json';
 import pen from '../data/projects.en.json';
 import T from './T.astro';
 import PipelineMini from './PipelineMini.astro';
-import PromoGrid from './PromoGrid.astro';
+import BrowserScan from './BrowserScan.astro';
+import BrainGraph from './BrainGraph.astro';
 import { url } from '../lib/url';
 import flowData from '../data/agente-flow.json';
 const flowStats = { nodes: flowData.nodes.length };
@@ -32,7 +33,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
     <ul class="pcards" aria-label="Lista de proyectos / Project list">
       {pes.map((p, i) => (
         <li class={'pcard' + (i === 0 ? ' on' : '')} data-i={i}>
-          <div class={'pvis' + ((p as any).image ? ' has-img' : '') + ((p as any).diagram ? ' has-' + ((p as any).diagram === 'n8n' ? 'flow' : 'grid') : '')}>
+          <div class={'pvis' + ((p as any).image ? ' has-img' : '') + ((p as any).diagram ? ' has-flow' : '')}>
             {(p as any).image ? (
               <img src={url('/' + (p as any).image)} alt={(p as any).imageAlt} width="1280" height="800" loading="lazy" decoding="async" />
             ) : (<>
@@ -43,11 +44,17 @@ const pad = (i: number) => String(i).padStart(2, '0');
                   <li><b>{flowStats.nodes}</b><span><T es="nodos en el flujo del agente" en="nodes in the agent workflow" /></span></li>
                 </ul>
                 <PipelineMini />
+              </>) : (p as any).diagram === 'promos' ? (<>
+                <ul class="pstats"><li><b>{p.metric.v}</b><span><T es="promociones activadas o desactivadas de forma autónoma" en="promotions activated or deactivated autonomously" /></span></li></ul>
+                <BrowserScan />
+              </>) : (p as any).diagram === 'brain' ? (<>
+                <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
+                <BrainGraph />
               </>) : (<>
               <p class="pval">{p.metric.v}</p>
               <p class="plab"><T es={p.metric.l} en={pen[i].metric.l} /></p>
               </>)}
-              {(p as any).diagram === 'promos' ? <PromoGrid /> : (p as any).diagram ? null : (
+              {(p as any).diagram ? null : (
               <ol class="pflow" aria-label="Stack">
                 {p.tags.map((t, j) => <li><T es={t} en={pen[i].tags[j]} /></li>)}
               </ol>)}
