@@ -65,41 +65,6 @@
       }
     ]
   },
-  "flow": {
-    "title": "// cómo trabajan mis agentes · tocá un paso o ejecutalo",
-    "run": "▶ Ejecutar simulación",
-    "disclaimer": "Ejemplo ilustrativo, no son datos reales.",
-    "idle": "$ <b>esperando ejecución…</b>",
-    "steps": [
-      {
-        "label": "Evento",
-        "text": "Mensaje entrante por webhook",
-        "detail": "Un webhook recibe el mensaje y, si el cliente manda varios seguidos, se espera unos segundos (debounce) para juntarlos antes de procesarlos."
-      },
-      {
-        "label": "Preproceso",
-        "text": "Imágenes y audios pasan a texto",
-        "detail": "Las imágenes se describen con visión y los audios se transcriben, así el agente trabaja siempre con texto."
-      },
-      {
-        "label": "Agente",
-        "text": "Claude, OpenAI o DeepSeek razonan y eligen herramienta",
-        "detail": "El modelo interpreta la intención y decide qué herramienta usar (tool use): buscar productos, consultar un pedido, cuotas, etc. Uso Claude, OpenAI o DeepSeek según el caso."
-      },
-      {
-        "label": "Acción",
-        "text": "Responde, deriva o cierra la venta",
-        "detail": "Responde al cliente, aplica etiquetas, deriva a una persona cuando hace falta y puede iniciar un seguimiento."
-      }
-    ],
-    "sim": [
-      "<b>evento</b>     mensaje entrante: «¿Tienen stock del modelo X?»",
-      "<b>preproceso</b> espera 5 s por si llegan más mensajes; sin imágenes ni audio",
-      "<b>agente</b>     intención = consulta de stock → herramienta: buscar_productos",
-      "<b>acción</b>     respuesta enviada al cliente",
-      "<b>listo</b>      ejemplo ilustrativo, no son datos reales"
-    ]
-  },
   "about": {
     "h2": "sobre mí",
     "photoAlt": "Foto de Franco Fernandez",

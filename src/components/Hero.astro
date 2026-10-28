@@ -2,7 +2,6 @@
 import es from '../data/site.es.json';
 import en from '../data/site.en.json';
 import T from './T.astro';
-import FlowDemo from './FlowDemo.astro';
 const ticker = es.ticker.map((w) => `${w}<i>✱</i>`).join('');
 ---
 <div class="hero">
@@ -15,7 +14,6 @@ const ticker = es.ticker.map((w) => `${w}<i>✱</i>`).join('');
         {m.v === 'clock' ? <span data-clock>--:--:--</span> : <span><T es={m.v} en={en.hero.meta[i].v} /></span>}</div>
     ))}
   </div>
-  <FlowDemo />
   <div class="ticker" aria-hidden="true"><div set:html={ticker + ticker + ticker + ticker} /></div>
   <ul class="facts">
     {es.hero.facts.map((f, i) => <li><b>{f.n}</b><span><T es={f.t} en={en.hero.facts[i].t} /></span></li>)}
