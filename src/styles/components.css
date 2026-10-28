@@ -228,3 +228,9 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .pvis.has-flow{justify-content:flex-start;gap:4px}
 .pvis.has-flow .pval{font-size:clamp(34px,4.4vw,56px)}
 .pvis.has-flow .n8n{margin-top:12px;flex:1;min-height:0;display:flex;align-items:center}
+
+.pvis.has-flow .cv-flow{margin-top:14px;flex:1;min-height:0;display:flex;align-items:center}
+.case.wide{max-width:60em}
+.pvis.has-flow .cv-flow .cv-stage{flex:1;width:100%;min-width:0}
+.pvis.has-flow .plab{display:none}
+.pvis.has-flow .pval{font-size:clamp(30px,3.4vw,44px)}

@@ -1,0 +1,143 @@
+---
+// Lienzo del flujo real del agente (solo estructura: nombres, tipos, posiciones y conexiones; sin parámetros ni credenciales).
+import flow from '../data/agente-flow.json';
+interface Props { mode?: 'mini' | 'full' }
+const { mode = 'mini' } = Astro.props;
+
+const S = 52;
+const byName = Object.fromEntries(flow.nodes.map((n) => [n.name, n]));
+const pad = 160;
+const minX = Math.min(...flow.nodes.map((n) => n.x), ...flow.groups.map((g) => g.x)) - pad;
+const maxX = Math.max(...flow.nodes.map((n) => n.x)) + S + pad;
+const minY = Math.min(...flow.nodes.map((n) => n.y), ...flow.groups.map((g) => g.y)) - pad / 2;
+const maxY = Math.max(...flow.nodes.map((n) => n.y)) + S + 70;
+const glyph: Record<string, string> = { trigger: 'W', agent: 'AI', model: 'LLM', memory: 'MEM', tool: 'fn', http: 'API', code: '{ }', logic: 'IF', redis: 'RD', wait: '··', other: '•' };
+
+const wrap = (s: string, max = 19) => {
+  const words = s.split(' '); const lines: string[] = []; let cur = '';
+  for (const w of words) { if ((cur + ' ' + w).trim().length > max && cur) { lines.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); }
+  lines.push(cur);
+  if (lines.length > 2) { lines.length = 2; lines[1] = lines[1].slice(0, max - 2) + '…'; }
+  return lines;
+};
+const path = (e: { from: string; to: string; ai: boolean }) => {
+  const a = byName[e.from], b = byName[e.to];
+  if (e.ai) { const x1 = a.x + S / 2, y1 = a.y, x2 = b.x + S / 2, y2 = b.y + S; const dy = Math.max(40, Math.abs(y1 - y2) / 2); return `M${x1} ${y1} C${x1} ${y1 - dy} ${x2} ${y2 + dy} ${x2} ${y2}`; }
+  const x1 = a.x + S, y1 = a.y + S / 2, x2 = b.x, y2 = b.y + S / 2; const dx = Math.max(40, Math.abs(x2 - x1) / 2);
+  return `M${x1} ${y1} C${x1 + dx} ${y1} ${x2 - dx} ${y2} ${x2} ${y2}`;
+};
+const GEN: Record<number, string> = { 1: 'Reception and debounce', 2: 'Preprocessing (images + messages)', 3: 'Label check', 4: 'AI agent + tools', 5: 'Post-processing and reply', 6: 'Detection: marketplace and audio' };
+// Foco de cada sección: caja de los nodos más cercanos a su origen
+const focus = flow.groups.map((g) => {
+  const mine = flow.nodes.filter((n) => flow.groups.reduce((best, h) => (Math.hypot(n.x - h.x, n.y - h.y) < Math.hypot(n.x - best.x, n.y - best.y) ? h : best), flow.groups[0]) === g);
+  const xs = mine.map((n) => n.x), ys = mine.map((n) => n.y);
+  const x0 = Math.min(...xs) - 120, x1 = Math.max(...xs) + S + 120, y0 = Math.min(...ys) - 200, y1 = Math.max(...ys) + S + 160;
+  return { n: g.n, x: x0, y: y0, w: Math.max(1500, x1 - x0), h: y1 - y0 };
+});
+const full = mode === 'full';
+// Miniatura: encuadre sobre el agente y sus herramientas
+const agent = flow.nodes.find((n) => n.kind === 'agent')!;
+const miniVB = `${agent.x - 620} ${agent.y - 70} 1560 760`;
+const vbAttr = full ? `${minX} ${minY} ${maxX - minX} ${maxY - minY}` : miniVB;
+---
+<figure class={'cv-flow ' + mode} data-bounds={`${minX} ${minY} ${maxX - minX} ${maxY - minY}`} data-focus={JSON.stringify(focus)}>
+  <div class="cv-stage">
+    <svg viewBox={vbAttr} xmlns="http://www.w3.org/2000/svg" role="img"
+      aria-label={`Diagrama del flujo de n8n del agente: ${flow.nodes.length} nodos y ${flow.edges.length} conexiones`}>
+      <g>
+        {flow.edges.map((e) => <path class={'edge' + (e.ai ? ' ai' : '')} d={path(e)} />)}
+        {full && flow.groups.map((g) => (
+          <g transform={`translate(${g.x} ${g.y})`} class="grp">
+            <text data-l="es" y="0">{g.n}. {g.name}</text><text data-l="en" y="0">{g.n}. {GEN[g.n]}</text>
+          </g>
+        ))}
+        {flow.nodes.map((n) => (
+          <g class={'nd k-' + n.kind} transform={`translate(${n.x} ${n.y})`}>
+            <title>{n.name}</title>
+            <rect width={S} height={S} rx="10" />
+            <text class="gl" x={S / 2} y={S / 2 + 5} text-anchor="middle">{glyph[n.kind]}</text>
+            {wrap(n.name, full ? 19 : 13).map((l, i) => <text class="lb" x={S / 2} y={S + 16 + i * 14} text-anchor="middle">{l}</text>)}
+          </g>
+        ))}
+      </g>
+    </svg>
+  </div>
+  {full && (
+    <div class="cv-bar">
+      <div class="cv-chips" role="group" aria-label="Secciones / Sections">
+        {flow.groups.map((g) => <button type="button" data-n={g.n}><span data-l="es">{g.n}. {g.name}</span><span data-l="en">{g.n}. {GEN[g.n]}</span></button>)}
+      </div>
+      <div class="cv-zoom">
+        <button type="button" data-z="out" aria-label="Zoom −">−</button>
+        <button type="button" data-z="in" aria-label="Zoom +">+</button>
+        <button type="button" data-z="fit"><span data-l="es">Ver todo</span><span data-l="en">Fit all</span></button>
+      </div>
+    </div>
+  )}
+</figure>
+<style>
+  .cv-flow{margin:0;width:100%}
+  .cv-stage{position:relative;overflow:hidden}
+  .cv-flow svg{display:block;width:100%;height:auto}
+  .cv-flow .edge{fill:none;stroke:var(--accent);stroke-width:1.3px;vector-effect:non-scaling-stroke;opacity:.75}
+  .cv-flow .edge.ai{stroke:var(--dim);stroke-dasharray:4 4}
+  .cv-flow .nd rect{fill:var(--surface);stroke:var(--line);stroke-width:1.5px;vector-effect:non-scaling-stroke}
+  .cv-flow.mini .nd rect{stroke:var(--dim)}
+  .cv-flow .k-trigger rect,.cv-flow .k-agent rect{stroke:var(--accent);fill:var(--accent-soft)}
+  .cv-flow .k-model rect,.cv-flow .k-memory rect,.cv-flow .k-tool rect{stroke:var(--accent);stroke-dasharray:3 3}
+  .cv-flow .gl{font:700 13px var(--f-mono);fill:var(--accent)}
+  .cv-flow .lb{font:500 11.5px var(--f-body);fill:var(--ink)}
+  .cv-flow.mini .lb{font-size:15px}
+  .cv-flow.mini .gl{font-size:15px}
+  .cv-flow .grp text{font:500 18px var(--f-mono);fill:var(--accent);letter-spacing:.04em}
+  .cv-flow.mini{pointer-events:none}
+  .cv-flow.full .cv-stage{height:min(62vh,540px);border:1px solid var(--line);background:var(--surface);cursor:grab;touch-action:pan-y;
+    background-image:radial-gradient(var(--line) 1px,transparent 1px);background-size:22px 22px}
+  .cv-flow.full .cv-stage.drag{cursor:grabbing}
+  .cv-flow.full svg{height:100%}
+  .cv-bar{display:flex;flex-wrap:wrap;gap:10px 16px;justify-content:space-between;margin-top:10px}
+  .cv-chips,.cv-zoom{display:flex;flex-wrap:wrap;gap:6px}
+  .cv-bar button{font:500 11px var(--f-mono);letter-spacing:.05em;background:transparent;color:var(--dim);border:1px solid var(--line);padding:7px 10px;cursor:pointer;border-radius:3px}
+  .cv-bar button:hover,.cv-bar button.on{color:var(--accent);border-color:var(--accent)}
+  .cv-bar button.on{background:var(--accent-soft)}
+</style>
+<script>
+  // Visor: arrastrar para mover, Ctrl/⌘ + rueda o botones para zoom, chips para saltar de sección.
+  document.querySelectorAll<HTMLElement>('.cv-flow.full').forEach((root) => {
+    const stage = root.querySelector<HTMLElement>('.cv-stage')!;
+    const svg = root.querySelector('svg')!;
+    const [bx, by, bw, bh] = root.dataset.bounds!.split(' ').map(Number);
+    const focus = JSON.parse(root.dataset.focus!);
+    let vb = { x: bx, y: by, w: bw, h: bh };
+    const ratio = () => stage.clientHeight / stage.clientWidth;
+    const apply = () => svg.setAttribute('viewBox', `${vb.x} ${vb.y} ${vb.w} ${vb.h}`);
+    const view = (x: number, y: number, w: number) => { vb = { x, y, w, h: w * ratio() }; apply(); };
+    const fit = () => view(bx, by + bh / 2 - (bw * ratio()) / 2, bw);
+    const zoom = (f: number, cx = vb.x + vb.w / 2, cy = vb.y + vb.h / 2) => {
+      const w = Math.min(bw * 1.2, Math.max(500, vb.w * f)); const k = w / vb.w;
+      vb = { x: cx - (cx - vb.x) * k, y: cy - (cy - vb.y) * k, w, h: vb.h * k }; apply();
+    };
+    const jump = (n: number) => {
+      const f = focus.find((g: any) => g.n === n); if (!f) return;
+      const w = f.w, h = w * ratio(); view(f.x, f.y + f.h / 2 - h / 2, w);
+      root.querySelectorAll('.cv-chips button').forEach((b) => b.classList.toggle('on', +(b as HTMLElement).dataset.n! === n));
+    };
+    root.querySelectorAll<HTMLElement>('.cv-chips button').forEach((b) => b.addEventListener('click', () => jump(+b.dataset.n!)));
+    root.querySelectorAll<HTMLElement>('[data-z]').forEach((b) => b.addEventListener('click', () => {
+      const z = b.dataset.z; if (z === 'in') zoom(0.7); else if (z === 'out') zoom(1.4); else { fit(); root.querySelectorAll('.cv-chips button').forEach((c) => c.classList.remove('on')); }
+    }));
+    let drag: { x: number; y: number } | null = null;
+    const unit = () => vb.w / stage.clientWidth;
+    stage.addEventListener('pointerdown', (e) => { drag = { x: e.clientX, y: e.clientY }; stage.setPointerCapture(e.pointerId); stage.classList.add('drag'); });
+    stage.addEventListener('pointermove', (e) => { if (!drag) return; const u = unit(); vb.x -= (e.clientX - drag.x) * u; vb.y -= (e.clientY - drag.y) * u; drag = { x: e.clientX, y: e.clientY }; apply(); });
+    const end = () => { drag = null; stage.classList.remove('drag'); };
+    stage.addEventListener('pointerup', end); stage.addEventListener('pointercancel', end);
+    stage.addEventListener('wheel', (e) => {
+      if (!(e.ctrlKey || e.metaKey)) return; e.preventDefault();
+      const r = stage.getBoundingClientRect(); const u = unit();
+      zoom(e.deltaY > 0 ? 1.15 : 0.87, vb.x + (e.clientX - r.left) * u, vb.y + (e.clientY - r.top) * u);
+    }, { passive: false });
+    addEventListener('resize', () => { vb.h = vb.w * ratio(); apply(); });
+    jump(1);
+  });
+</script>

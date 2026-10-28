@@ -1,0 +1,619 @@
+{
+ "nodes": [
+  {
+   "name": "Chatwoot Webhook",
+   "kind": "trigger",
+   "x": -32,
+   "y": 128
+  },
+  {
+   "name": "Solo Incoming con Contenido",
+   "kind": "logic",
+   "x": 160,
+   "y": 128
+  },
+  {
+   "name": "Extraer Datos",
+   "kind": "code",
+   "x": 352,
+   "y": 128
+  },
+  {
+   "name": "Guardar Mensaje en Redis",
+   "kind": "redis",
+   "x": 560,
+   "y": 128
+  },
+  {
+   "name": "Esperar 5 seg (debounce)",
+   "kind": "wait",
+   "x": 768,
+   "y": 128
+  },
+  {
+   "name": "Recuperar Mensajes",
+   "kind": "redis",
+   "x": 992,
+   "y": 128
+  },
+  {
+   "name": "Limpiar Redis",
+   "kind": "redis",
+   "x": 1168,
+   "y": 128
+  },
+  {
+   "name": "Combinar Mensajes",
+   "kind": "code",
+   "x": -16,
+   "y": 800
+  },
+  {
+   "name": "OpenAI Chat Model",
+   "kind": "model",
+   "x": 3216,
+   "y": 816
+  },
+  {
+   "name": "Window Buffer Memory",
+   "kind": "memory",
+   "x": 3328,
+   "y": 816
+  },
+  {
+   "name": "Agente IA",
+   "kind": "agent",
+   "x": 3296,
+   "y": 688
+  },
+  {
+   "name": "BuscarProductos",
+   "kind": "tool",
+   "x": 3136,
+   "y": 1120
+  },
+  {
+   "name": "ConsultarPedido",
+   "kind": "tool",
+   "x": 3328,
+   "y": 1120
+  },
+  {
+   "name": "Responder en Chatwoot",
+   "kind": "http",
+   "x": 5040,
+   "y": 720
+  },
+  {
+   "name": "¿Está Derivando?",
+   "kind": "logic",
+   "x": 4672,
+   "y": 704
+  },
+  {
+   "name": "Aplicar Etiquetas Derivación",
+   "kind": "http",
+   "x": 4848,
+   "y": 608
+  },
+  {
+   "name": "Consultar Labels Frescos",
+   "kind": "http",
+   "x": 704,
+   "y": 816
+  },
+  {
+   "name": "¿Label humano o problema_tn?",
+   "kind": "logic",
+   "x": 976,
+   "y": 736
+  },
+  {
+   "name": "No responder (humano)",
+   "kind": "code",
+   "x": 1280,
+   "y": 656
+  },
+  {
+   "name": "¿Pide Factura?",
+   "kind": "logic",
+   "x": 4064,
+   "y": 688
+  },
+  {
+   "name": "Aplicar Etiqueta Factura",
+   "kind": "http",
+   "x": 4288,
+   "y": 608
+  },
+  {
+   "name": "¿Derivar por Pedido?",
+   "kind": "code",
+   "x": 4496,
+   "y": 704
+  },
+  {
+   "name": "¿Tiene Imágenes?",
+   "kind": "logic",
+   "x": 160,
+   "y": 800
+  },
+  {
+   "name": "OpenAI Vision",
+   "kind": "http",
+   "x": 352,
+   "y": 656
+  },
+  {
+   "name": "Agregar Descripción Imagen",
+   "kind": "code",
+   "x": 544,
+   "y": 672
+  },
+  {
+   "name": "ConsultarProductoML",
+   "kind": "tool",
+   "x": 3488,
+   "y": 1120
+  },
+  {
+   "name": "Preparar Contexto Búsqueda",
+   "kind": "code",
+   "x": 2912,
+   "y": 720
+  },
+  {
+   "name": "InfoProductos",
+   "kind": "tool",
+   "x": 3840,
+   "y": 1136
+  },
+  {
+   "name": "ConsultarCuotas",
+   "kind": "tool",
+   "x": 3680,
+   "y": 1136
+  },
+  {
+   "name": "¿Menciona ML?",
+   "kind": "logic",
+   "x": 1296,
+   "y": 832
+  },
+  {
+   "name": "Aplicar Etiqueta ML",
+   "kind": "http",
+   "x": 1680,
+   "y": -160
+  },
+  {
+   "name": "Responder Derivación ML",
+   "kind": "http",
+   "x": 1856,
+   "y": -160
+  },
+  {
+   "name": "¿Tiene Audio?",
+   "kind": "logic",
+   "x": 1744,
+   "y": 720
+  },
+  {
+   "name": "Descargar Audio",
+   "kind": "http",
+   "x": 1952,
+   "y": 608
+  },
+  {
+   "name": "Whisper Transcripción",
+   "kind": "http",
+   "x": 2272,
+   "y": 608
+  },
+  {
+   "name": "Agregar Transcripción",
+   "kind": "code",
+   "x": 2576,
+   "y": 608
+  },
+  {
+   "name": "Descargar Imagen",
+   "kind": "http",
+   "x": 336,
+   "y": 944
+  },
+  {
+   "name": "Extraer Base64 Imagen",
+   "kind": "code",
+   "x": 352,
+   "y": 816
+  },
+  {
+   "name": "Detectar Oferta de Producto",
+   "kind": "code",
+   "x": 5248,
+   "y": 816
+  },
+  {
+   "name": "¿Iniciar Seguimiento?",
+   "kind": "logic",
+   "x": 5440,
+   "y": 816
+  },
+  {
+   "name": "Preparar Redis Seguimiento",
+   "kind": "code",
+   "x": 6064,
+   "y": 640
+  },
+  {
+   "name": "Guardar Seguimiento en Redis",
+   "kind": "redis",
+   "x": 6272,
+   "y": 640
+  },
+  {
+   "name": "Verificar Seguimiento Existente",
+   "kind": "redis",
+   "x": 5648,
+   "y": 816
+  },
+  {
+   "name": "Filtrar Seguimiento Duplicado",
+   "kind": "code",
+   "x": 5888,
+   "y": 816
+  },
+  {
+   "name": "¿Captura de Reseña Google?",
+   "kind": "logic",
+   "x": 560,
+   "y": 960
+  },
+  {
+   "name": "Aplicar Label cupon-pendiente",
+   "kind": "http",
+   "x": 784,
+   "y": 560
+  },
+  {
+   "name": "ConsultarDolar",
+   "kind": "tool",
+   "x": 3600,
+   "y": 1216
+  },
+  {
+   "name": "¿Derivación ML?",
+   "kind": "logic",
+   "x": 5040,
+   "y": 448
+  },
+  {
+   "name": "Armar Aviso Teams ML",
+   "kind": "code",
+   "x": 5248,
+   "y": 448
+  },
+  {
+   "name": "Notificar Teams ML",
+   "kind": "http",
+   "x": 5456,
+   "y": 448
+  }
+ ],
+ "edges": [
+  {
+   "from": "Chatwoot Webhook",
+   "to": "Solo Incoming con Contenido",
+   "ai": false
+  },
+  {
+   "from": "Solo Incoming con Contenido",
+   "to": "Extraer Datos",
+   "ai": false
+  },
+  {
+   "from": "Extraer Datos",
+   "to": "Guardar Mensaje en Redis",
+   "ai": false
+  },
+  {
+   "from": "Guardar Mensaje en Redis",
+   "to": "Esperar 5 seg (debounce)",
+   "ai": false
+  },
+  {
+   "from": "Esperar 5 seg (debounce)",
+   "to": "Recuperar Mensajes",
+   "ai": false
+  },
+  {
+   "from": "Recuperar Mensajes",
+   "to": "Limpiar Redis",
+   "ai": false
+  },
+  {
+   "from": "Limpiar Redis",
+   "to": "Combinar Mensajes",
+   "ai": false
+  },
+  {
+   "from": "Combinar Mensajes",
+   "to": "¿Tiene Imágenes?",
+   "ai": false
+  },
+  {
+   "from": "Agente IA",
+   "to": "¿Pide Factura?",
+   "ai": false
+  },
+  {
+   "from": "OpenAI Chat Model",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "Window Buffer Memory",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "BuscarProductos",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "ConsultarPedido",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "¿Derivar por Pedido?",
+   "to": "¿Está Derivando?",
+   "ai": false
+  },
+  {
+   "from": "¿Está Derivando?",
+   "to": "Aplicar Etiquetas Derivación",
+   "ai": false
+  },
+  {
+   "from": "¿Está Derivando?",
+   "to": "Responder en Chatwoot",
+   "ai": false
+  },
+  {
+   "from": "Aplicar Etiquetas Derivación",
+   "to": "Responder en Chatwoot",
+   "ai": false
+  },
+  {
+   "from": "Aplicar Etiquetas Derivación",
+   "to": "¿Derivación ML?",
+   "ai": false
+  },
+  {
+   "from": "Consultar Labels Frescos",
+   "to": "¿Label humano o problema_tn?",
+   "ai": false
+  },
+  {
+   "from": "¿Pide Factura?",
+   "to": "Aplicar Etiqueta Factura",
+   "ai": false
+  },
+  {
+   "from": "¿Pide Factura?",
+   "to": "¿Derivar por Pedido?",
+   "ai": false
+  },
+  {
+   "from": "Aplicar Etiqueta Factura",
+   "to": "¿Derivar por Pedido?",
+   "ai": false
+  },
+  {
+   "from": "¿Label humano o problema_tn?",
+   "to": "No responder (humano)",
+   "ai": false
+  },
+  {
+   "from": "¿Label humano o problema_tn?",
+   "to": "¿Menciona ML?",
+   "ai": false
+  },
+  {
+   "from": "¿Tiene Imágenes?",
+   "to": "Descargar Imagen",
+   "ai": false
+  },
+  {
+   "from": "¿Tiene Imágenes?",
+   "to": "Consultar Labels Frescos",
+   "ai": false
+  },
+  {
+   "from": "OpenAI Vision",
+   "to": "Agregar Descripción Imagen",
+   "ai": false
+  },
+  {
+   "from": "Agregar Descripción Imagen",
+   "to": "¿Captura de Reseña Google?",
+   "ai": false
+  },
+  {
+   "from": "ConsultarProductoML",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "Preparar Contexto Búsqueda",
+   "to": "Agente IA",
+   "ai": false
+  },
+  {
+   "from": "InfoProductos",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "ConsultarCuotas",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "¿Menciona ML?",
+   "to": "Aplicar Etiqueta ML",
+   "ai": false
+  },
+  {
+   "from": "¿Menciona ML?",
+   "to": "¿Tiene Audio?",
+   "ai": false
+  },
+  {
+   "from": "Aplicar Etiqueta ML",
+   "to": "Responder Derivación ML",
+   "ai": false
+  },
+  {
+   "from": "¿Tiene Audio?",
+   "to": "Descargar Audio",
+   "ai": false
+  },
+  {
+   "from": "¿Tiene Audio?",
+   "to": "Preparar Contexto Búsqueda",
+   "ai": false
+  },
+  {
+   "from": "Descargar Audio",
+   "to": "Whisper Transcripción",
+   "ai": false
+  },
+  {
+   "from": "Whisper Transcripción",
+   "to": "Agregar Transcripción",
+   "ai": false
+  },
+  {
+   "from": "Agregar Transcripción",
+   "to": "Preparar Contexto Búsqueda",
+   "ai": false
+  },
+  {
+   "from": "Descargar Imagen",
+   "to": "Extraer Base64 Imagen",
+   "ai": false
+  },
+  {
+   "from": "Extraer Base64 Imagen",
+   "to": "OpenAI Vision",
+   "ai": false
+  },
+  {
+   "from": "Responder en Chatwoot",
+   "to": "Detectar Oferta de Producto",
+   "ai": false
+  },
+  {
+   "from": "Detectar Oferta de Producto",
+   "to": "¿Iniciar Seguimiento?",
+   "ai": false
+  },
+  {
+   "from": "¿Iniciar Seguimiento?",
+   "to": "Verificar Seguimiento Existente",
+   "ai": false
+  },
+  {
+   "from": "Preparar Redis Seguimiento",
+   "to": "Guardar Seguimiento en Redis",
+   "ai": false
+  },
+  {
+   "from": "Verificar Seguimiento Existente",
+   "to": "Filtrar Seguimiento Duplicado",
+   "ai": false
+  },
+  {
+   "from": "Filtrar Seguimiento Duplicado",
+   "to": "Preparar Redis Seguimiento",
+   "ai": false
+  },
+  {
+   "from": "¿Captura de Reseña Google?",
+   "to": "Aplicar Label cupon-pendiente",
+   "ai": false
+  },
+  {
+   "from": "¿Captura de Reseña Google?",
+   "to": "Consultar Labels Frescos",
+   "ai": false
+  },
+  {
+   "from": "Aplicar Label cupon-pendiente",
+   "to": "Consultar Labels Frescos",
+   "ai": false
+  },
+  {
+   "from": "ConsultarDolar",
+   "to": "Agente IA",
+   "ai": true
+  },
+  {
+   "from": "Responder Derivación ML",
+   "to": "Armar Aviso Teams ML",
+   "ai": false
+  },
+  {
+   "from": "¿Derivación ML?",
+   "to": "Armar Aviso Teams ML",
+   "ai": false
+  },
+  {
+   "from": "Armar Aviso Teams ML",
+   "to": "Notificar Teams ML",
+   "ai": false
+  }
+ ],
+ "groups": [
+  {
+   "n": 1,
+   "name": "Recepción y Debounce",
+   "x": -80,
+   "y": -80
+  },
+  {
+   "n": 2,
+   "name": "Preprocesamiento (Imágenes + Mensajes)",
+   "x": -48,
+   "y": 528
+  },
+  {
+   "n": 3,
+   "name": "Verificación de Labels",
+   "x": 896,
+   "y": 560
+  },
+  {
+   "n": 4,
+   "name": "Agente IA + Herramientas",
+   "x": 2464,
+   "y": 1024
+  },
+  {
+   "n": 5,
+   "name": "Post-procesamiento y Respuesta",
+   "x": 3968,
+   "y": 464
+  },
+  {
+   "n": 6,
+   "name": "Detección ML y Audio",
+   "x": 1712,
+   "y": 336
+  }
+ ]
+}

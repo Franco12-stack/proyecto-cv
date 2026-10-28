@@ -4,7 +4,7 @@ import en from '../data/site.en.json';
 import pes from '../data/projects.es.json';
 import pen from '../data/projects.en.json';
 import T from './T.astro';
-import N8nFlow from './N8nFlow.astro';
+import N8nCanvas from './N8nCanvas.astro';
 import { url } from '../lib/url';
 const n = pes.length;
 const pad = (i: number) => String(i).padStart(2, '0');
@@ -35,7 +35,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
             ) : (<>
               <p class="pval">{p.metric.v}</p>
               <p class="plab"><T es={p.metric.l} en={pen[i].metric.l} /></p>
-              {(p as any).diagram ? <N8nFlow /> : (
+              {(p as any).diagram ? <N8nCanvas mode="mini" /> : (
               <ol class="pflow" aria-label="Stack">
                 {p.tags.map((t, j) => <li><T es={t} en={pen[i].tags[j]} /></li>)}
               </ol>)}
