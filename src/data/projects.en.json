@@ -94,7 +94,8 @@
   "metric": {
    "v": "50+",
    "l": "daily interactions handled by one agent and 50+ workflows running 24/7"
-  }
+  },
+  "diagram": "n8n"
  },
  {
   "slug": "promociones-mercado-libre",

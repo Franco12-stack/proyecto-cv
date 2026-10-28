@@ -6,6 +6,7 @@ import en from '../../data/site.en.json';
 import pes from '../../data/projects.es.json';
 import pen from '../../data/projects.en.json';
 import { url } from '../../lib/url';
+import N8nFlow from '../../components/N8nFlow.astro';
 
 export function getStaticPaths() {
   return pes.map((p, i) => ({ params: { slug: p.slug }, props: { i } }));
@@ -22,6 +23,7 @@ const sec = ['context', 'solution'] as const;
     <a class="back" href={url('/#proyectos')}><T es={es.ui.back} en={en.ui.back} /></a>
     <h1><T es={a.title} en={b.title} /></h1>
     <p class="lead"><T es={a.summary} en={b.summary} /></p>
+    {a.diagram && <div style="border:1px solid var(--line);background:var(--surface);padding:16px;margin:0 0 20px"><N8nFlow /></div>}
     {a.image && <img src={url('/' + a.image)} alt={a.imageAlt} width="1280" height="800" style="width:100%;height:auto;border:1px solid var(--line);margin:0 0 20px" />}
     {a.links?.github && <p class="btns"><a class="btn" href={a.links.github} target="_blank" rel="noopener"><T es="Ver código en GitHub ↗" en="View code on GitHub ↗" /></a></p>}
     {sec.map((k) => (

@@ -94,7 +94,8 @@
   "metric": {
    "v": "50+",
    "l": "interacciones diarias de un agente y más de 50 flujos corriendo 24/7"
-  }
+  },
+  "diagram": "n8n"
  },
  {
   "slug": "promociones-mercado-libre",
