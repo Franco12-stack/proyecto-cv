@@ -1,8 +1,44 @@
 [
-  { "title": "Industrial Engineering", "sub": "UADE, in progress since 2022", "inline": true },
-  { "title": "SAP Systems Diploma", "sub": "UADE, in progress since 2025", "inline": true },
-  { "title": "Google AI Professional Certificate", "sub": "Google / Coursera · April 2026 · ID KECYUUIUMTHC" },
-  { "title": "Build Intelligent Agents Using DeepSeek & N8N", "sub": "Board Infinity / Coursera · April 2026 · ID 0BI6OMEV2BZI" },
-  { "title": "Power Automate: Building and Managing Automated Workflows", "sub": "Whizlabs / Coursera · April 2026 · ID 56U4PNYL8YQA" },
-  { "title": "Blue Prism Foundation Training", "sub": "Blue Prism / Coursera · June 2026" }
+  {
+    "title": "Industrial Engineering",
+    "sub": "UADE, in progress since 2022",
+    "inline": true
+  },
+  {
+    "title": "SAP Systems Diploma",
+    "sub": "UADE, in progress since 2025",
+    "inline": true
+  },
+  {
+    "title": "Google AI Professional Certificate",
+    "sub": "Google / Coursera · April 2026 · ID KECYUUIUMTHC"
+  },
+  {
+    "title": "Build Intelligent Agents Using DeepSeek & N8N",
+    "sub": "Board Infinity / Coursera · April 2026 · ID 0BI6OMEV2BZI"
+  },
+  {
+    "title": "Power Automate: Building and Managing Automated Workflows",
+    "sub": "Whizlabs / Coursera · April 2026 · ID 56U4PNYL8YQA"
+  },
+  {
+    "title": "Blue Prism Foundation Training",
+    "sub": "Blue Prism / Coursera · June 2026"
+  },
+  {
+    "title": "IBM AI Engineering Professional Certificate",
+    "sub": "IBM"
+  },
+  {
+    "title": "CS50P",
+    "sub": "Harvard · Python"
+  },
+  {
+    "title": "Missing Semester of CS",
+    "sub": "MIT"
+  },
+  {
+    "title": "SQL for Data Science",
+    "sub": "SQL course"
+  }
 ]
