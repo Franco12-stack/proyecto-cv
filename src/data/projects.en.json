@@ -1,5 +1,77 @@
 [
  {
+  "slug": "whatsapp-crm-demo",
+  "tags": [
+   "FastAPI",
+   "PostgreSQL",
+   "React",
+   "TypeScript",
+   "Docker"
+  ],
+  "image": "projects/crm-demo/inbox.webp",
+  "imageAlt": "Bandeja de chats con panel CRM",
+  "links": {
+   "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
+  },
+  "title": "WhatsApp sales CRM",
+  "pill": "public demo",
+  "summary": "Multichannel platform for teams that sell over WhatsApp: chats with a CRM panel, broadcasts, supervisor dashboard, tickets, goals and an anti-ban rate limiter with a warm-up ramp. Open source, with generic data and a simulated WhatsApp.",
+  "metric": {
+   "v": "30 days",
+   "l": "of ramp for a new line to reach its sending limit"
+  },
+  "context": "It is a from-scratch rebuild, with generic data, of patterns from a production WhatsApp CRM I built for a sales team. It is published as a demo to show the code and business logic without credentials or real numbers.",
+  "solution": "FastAPI backend with async SQLAlchemy and PostgreSQL, React + TypeScript + Vite frontend, all on Docker Compose with JWT auth and role-based permissions. The WhatsApp provider is a simulator, so it runs anywhere with docker compose up.",
+  "result": [
+   "14 modules: chats with a CRM panel, agenda, contact today, broadcasts, metrics, report, dashboard, goals, distribute, promotions, products, support, administration and an AI assistant.",
+   "33 tests: warm-up ramp, cold/warm contact split, role-based permissions and the “allowed but alerted” behavior.",
+   "Public code and screenshots on GitHub, MIT licensed."
+  ],
+  "highlightsTitle": "Design decisions",
+  "highlights": [
+   "Anti-ban ramp: a new line starts with a low ceiling (20 messages per day) and grows into its real limit over about 30 days. The enforced limit is the lower of the commercial policy and the warm-up tier, and a reconnected line goes back to day zero.",
+   "Going over the limit does not block the send: it lets the message through and alerts a supervisor, because a hard block does not protect against the real risk and costs you the sale.",
+   "Cold/warm broadcasts: by default it skips contacts who never wrote in, lists who was skipped and only includes them with an explicit override, which raises an alert.",
+   "Usage is shown against the effective limit, not the raw policy. Dashboard, report and metrics share one computation.",
+   "Goal progress is computed live, never stored."
+  ],
+  "note": "The WhatsApp provider and the AI assistant are simulated on purpose: the suggest-reply button does keyword matching, not a real model. The production project’s integrations (ERP, phone system, LLM, WhatsApp sessions) are not published. The demo’s interface is in English.",
+  "gallery": [
+   {
+    "img": "projects/crm-demo/dashboard.webp",
+    "cap": "Supervisor dashboard: live status of each line against its effective limit"
+   },
+   {
+    "img": "projects/crm-demo/broadcasts.webp",
+    "cap": "Broadcasts: recipient picker and history"
+   },
+   {
+    "img": "projects/crm-demo/support.webp",
+    "cap": "Support: ticket board by status"
+   },
+   {
+    "img": "projects/crm-demo/distribute.webp",
+    "cap": "Distribute: reassign a conversation to another line"
+   },
+   {
+    "img": "projects/crm-demo/metrics.webp",
+    "cap": "My metrics: each agent’s activity"
+   },
+   {
+    "img": "projects/crm-demo/contact-today.webp",
+    "cap": "Contact today: warm leads that went quiet"
+   },
+   {
+    "img": "projects/crm-demo/admin.webp",
+    "cap": "Administration: lines, policy and warm-up ramp"
+   },
+   {
+    "img": "projects/crm-demo/agenda.webp",
+    "cap": "Agenda: follow-up reminders"
+   }
+  ]
+ },
+ {
   "slug": "agente-ia-ventas",
   "title": "Autonomous AI agent for sales and after-sales",
   "tags": [

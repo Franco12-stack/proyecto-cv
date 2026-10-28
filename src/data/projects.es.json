@@ -1,5 +1,77 @@
 [
  {
+  "slug": "whatsapp-crm-demo",
+  "tags": [
+   "FastAPI",
+   "PostgreSQL",
+   "React",
+   "TypeScript",
+   "Docker"
+  ],
+  "image": "projects/crm-demo/inbox.webp",
+  "imageAlt": "Bandeja de chats con panel CRM",
+  "links": {
+   "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
+  },
+  "title": "CRM de ventas por WhatsApp",
+  "pill": "demo público",
+  "summary": "Plataforma multicanal para equipos que venden por WhatsApp: chats con panel CRM, difusiones, dashboard de supervisor, tickets, metas y un limitador anti-bloqueo con rampa de calentamiento. Código abierto, con datos genéricos y WhatsApp simulado.",
+  "metric": {
+   "v": "30 días",
+   "l": "de rampa para que una línea nueva llegue a su límite de envío"
+  },
+  "context": "Es una reconstrucción desde cero, con datos genéricos, de patrones de un CRM de WhatsApp en producción que armé para un equipo de ventas. Se publica como demo para mostrar el código y la lógica de negocio sin credenciales ni números reales.",
+  "solution": "Backend en FastAPI con SQLAlchemy asíncrono y PostgreSQL, frontend en React con TypeScript y Vite, todo con Docker Compose, autenticación JWT y permisos por rol. El proveedor de WhatsApp es un simulador, así que corre en cualquier lado con docker compose up.",
+  "result": [
+   "14 módulos: chats con panel CRM, agenda, contactar hoy, difusiones, métricas, reporte, dashboard, metas, distribución, promociones, productos, soporte, administración y asistente de IA.",
+   "33 tests: rampa de calentamiento, división de contactos fríos y tibios, permisos por rol y el comportamiento «permitido pero con alerta».",
+   "Código y capturas públicos en GitHub, con licencia MIT."
+  ],
+  "highlightsTitle": "Decisiones de diseño",
+  "highlights": [
+   "Rampa anti-bloqueo: una línea nueva arranca con un tope bajo (20 mensajes por día) y crece hacia su límite real en unos 30 días. El límite vigente es el menor entre la política comercial y el escalón de calentamiento, y una línea reconectada vuelve al día cero.",
+   "Pasarse del límite no bloquea el envío: deja pasar el mensaje y avisa al supervisor, porque un bloqueo duro no protege del riesgo real y cuesta la venta.",
+   "Difusiones frío/tibio: por defecto saltea a los contactos que nunca escribieron, lista a quién salteó y solo los incluye con un permiso explícito, que genera una alerta.",
+   "El uso se muestra contra el límite efectivo y no contra la política cruda. Dashboard, reporte y métricas comparten el mismo cálculo.",
+   "El progreso de las metas se calcula en vivo, nunca se guarda."
+  ],
+  "note": "El proveedor de WhatsApp y el asistente de IA están simulados a propósito: el botón de sugerir respuesta usa coincidencia de palabras clave, no un modelo real. Las integraciones del proyecto de producción (ERP, central telefónica, LLM, sesiones de WhatsApp) no se publican. La interfaz del demo está en inglés.",
+  "gallery": [
+   {
+    "img": "projects/crm-demo/dashboard.webp",
+    "cap": "Dashboard del supervisor: estado en vivo de cada línea contra su límite efectivo"
+   },
+   {
+    "img": "projects/crm-demo/broadcasts.webp",
+    "cap": "Difusiones: selector de destinatarios e historial"
+   },
+   {
+    "img": "projects/crm-demo/support.webp",
+    "cap": "Soporte: tablero de tickets por estado"
+   },
+   {
+    "img": "projects/crm-demo/distribute.webp",
+    "cap": "Distribuir: reasignar una conversación a otra línea"
+   },
+   {
+    "img": "projects/crm-demo/metrics.webp",
+    "cap": "Mis métricas: la actividad de cada agente"
+   },
+   {
+    "img": "projects/crm-demo/contact-today.webp",
+    "cap": "Contactar hoy: leads tibios que se enfriaron"
+   },
+   {
+    "img": "projects/crm-demo/admin.webp",
+    "cap": "Administración: líneas, política y rampa de calentamiento"
+   },
+   {
+    "img": "projects/crm-demo/agenda.webp",
+    "cap": "Agenda: recordatorios de seguimiento"
+   }
+  ]
+ },
+ {
   "slug": "agente-ia-ventas",
   "title": "Agente de IA autónomo para ventas y posventa",
   "tags": [
