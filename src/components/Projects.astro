@@ -7,7 +7,7 @@ import T from './T.astro';
 import PipelineMini from './PipelineMini.astro';
 import BrowserScan from './BrowserScan.astro';
 import ObsidianGraph from './ObsidianGraph.astro';
-import PriceWatch from './PriceWatch.astro';
+import PriceDash from './PriceDash.astro';
 import TicketApp from './TicketApp.astro';
 import { url } from '../lib/url';
 import flowData from '../data/agente-flow.json';
@@ -52,8 +52,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
               </>) : (p as any).diagram === 'tickets' ? (<>
                 <TicketApp />
               </>) : (p as any).diagram === 'prices' ? (<>
-                <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
-                <PriceWatch />
+                <PriceDash />
               </>) : (p as any).diagram === 'brain' ? (<>
                 <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
                 <ObsidianGraph />

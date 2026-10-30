@@ -1,0 +1,82 @@
+---
+// Réplica ilustrativa de un monitor de precios: salida del script de Python y tabla comparativa. Productos y precios de ejemplo.
+const rows = [
+  { sku: 'SKU-1001', p: 'Auriculares inalámbricos', me: 38990, c: [41500, 39990, 42900], tr: [9, 8, 8, 7, 7, 6, 6], ch: ['A', -4.1] },
+  { sku: 'SKU-1002', p: 'Teclado mecánico TKL', me: 52900, c: [49900, 54990, 53500], tr: [6, 6, 7, 7, 8, 8, 8], ch: null },
+  { sku: 'SKU-1003', p: 'Mouse gamer 8000 DPI', me: 21490, c: [22990, 21490, 23900], tr: [7, 7, 6, 6, 6, 5, 5], ch: ['C', 2.3] },
+  { sku: 'SKU-1004', p: 'Monitor 24" 144 Hz', me: 189900, c: [199990, 194500, 187900], tr: [8, 8, 8, 7, 6, 6, 5], ch: ['B', -1.8] },
+  { sku: 'SKU-1005', p: 'Webcam Full HD', me: 27800, c: [29990, 28500, 30100], tr: [5, 6, 6, 6, 7, 7, 7], ch: null },
+  { sku: 'SKU-1006', p: 'SSD NVMe 1 TB', me: 74900, c: [72990, 76500, 79900], tr: [9, 9, 8, 8, 7, 7, 6], ch: ['A', 3.6] },
+];
+const fmt = (n: number) => '$' + n.toLocaleString('es-AR');
+const spark = (v: number[]) => v.map((y, i) => `${(i / (v.length - 1)) * 54},${22 - y * 2}`).join(' ');
+const cls = (r: any, i: number) => { const min = Math.min(...r.c); return r.c[i] === min && r.me > min ? 'lo' : ''; };
+const T = 14;
+const cheap = rows.filter((r) => r.me <= Math.min(...r.c)).length, changes = rows.filter((r) => r.ch).length;
+const logs = ['$ python monitor.py --all', '[08:00:01] 148 SKUs cargados', '[08:00:03] competidor_a ... ok 148/148', '[08:00:07] competidor_b ... ok 141/148', '[08:00:11] competidor_c ... ok 146/148', '[08:00:12] comparando precios…', `[08:00:12] ${changes} cambios detectados`, '[08:00:13] historial guardado ✓'];
+---
+<figure class="pd">
+  <div class="fit" role="img" aria-label="Réplica ilustrativa de un monitor de precios: salida del script de Python y tabla comparativa con productos y precios de ejemplo / Illustrative replica of a price monitor: Python script output and comparison table with sample products and prices">
+    <div class="app" style={`--T:${T}s`}>
+      <div class="bar"><b>price-monitor</b><span class="py">Python</span><span class="live"><i></i><span data-l="es">corrida periódica</span><span data-l="en">scheduled run</span></span><span class="when"><span data-l="es">última: 08:00 · datos de ejemplo</span><span data-l="en">last: 08:00 · sample data</span></span></div>
+      <div class="body">
+        <div class="term">
+          {logs.map((l, i) => <div class={'ln' + (i === 0 ? ' cmd' : '') + (l.includes('cambios') ? ' hl' : '')} style={`--d:${(0.4 + i * 0.95).toFixed(2)}s`}>{l}</div>)}
+          <span class="cur">▌</span>
+        </div>
+        <div class="grid">
+          <div class="th"><span>SKU</span><span data-l="es">Producto</span><span data-l="en">Product</span><span data-l="es">Mi precio</span><span data-l="en">My price</span><span>A</span><span>B</span><span>C</span><span data-l="es">Tendencia</span><span data-l="en">Trend</span></div>
+          {rows.map((r, k) => (
+            <div class="tr" style={`--d:${(2.2 + k * 1.35).toFixed(2)}s`}>
+              <span class="sk">{r.sku}</span><span class="pn">{r.p}</span><span class="me">{fmt(r.me)}</span>
+              {r.c.map((c, i) => <span class={'cp ' + cls(r, i) + (r.ch && r.ch[0] === 'ABC'[i] ? ' chg ' + (r.ch[1] as number < 0 ? 'dn' : 'up') : '')}>{fmt(c)}{r.ch && r.ch[0] === 'ABC'[i] ? <em>{(r.ch[1] as number) < 0 ? '▼' : '▲'}{Math.abs(r.ch[1] as number)}%</em> : null}</span>)}
+              <svg class="sp" viewBox="0 0 54 24"><polyline points={spark(r.tr)} /></svg>
+            </div>
+          ))}
+          <div class="sum"><span><b>{cheap}/{rows.length}</b> <span data-l="es">a igual o menor precio que el más bajo</span><span data-l="en">at or below the lowest price</span></span><span><b>{changes}</b> <span data-l="es">cambios hoy</span><span data-l="en">changes today</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption><span data-l="es">Réplica ilustrativa: productos, competidores y precios de ejemplo.</span><span data-l="en">Illustrative replica: sample products, competitors and prices.</span></figcaption>
+</figure>
+<style is:global>
+  .pd{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .pd .fit{position:relative;flex:1;min-height:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#0d1117}
+  .pd .app{position:absolute;left:0;top:0;width:1000px;height:520px;transform-origin:0 0;overflow:hidden;background:#0d1117;color:#c9d1d9;font:12px/1.35 "JetBrains Mono",ui-monospace,monospace;pointer-events:none}
+  .pd .bar{height:40px;display:flex;align-items:center;gap:14px;padding:0 16px;background:#161b22;border-bottom:1px solid #30363d}
+  .pd .bar b{font-size:13px;color:#e6edf3}.pd .py{font-size:10.5px;padding:2px 9px;border-radius:10px;background:#1f6feb33;color:#79c0ff;border:1px solid #1f6feb66}
+  .pd .live{display:flex;align-items:center;gap:6px;font-size:10.5px;color:#3fb950;text-transform:uppercase;letter-spacing:.06em}
+  .pd .live i{width:7px;height:7px;border-radius:50%;background:#3fb950;animation:pdb 1.4s ease-in-out infinite}
+  @keyframes pdb{50%{opacity:.3}}
+  .pd .when{margin-left:auto;font-size:10.5px;color:#8b949e}
+  .pd .body{display:grid;grid-template-columns:310px 1fr;height:calc(100% - 40px)}
+  .pd .term{padding:14px 14px;border-right:1px solid #30363d;background:#0a0e14;font-size:11px;line-height:1.75;overflow:hidden;white-space:nowrap}
+  .pd .ln{opacity:0;color:#8b949e;animation:pdl var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  .pd .ln.cmd{color:#e6edf3}.pd .ln.hl{color:#e3b341}
+  @keyframes pdl{0%{opacity:0}2%,90%{opacity:1}96%,100%{opacity:0}}
+  .pd .cur{color:#3fb950;animation:pdb 1s steps(2) infinite}
+  .pd .grid{padding:12px 14px;display:flex;flex-direction:column;gap:4px;min-width:0}
+  .pd .th,.pd .tr{display:grid;grid-template-columns:70px 1.35fr 82px 78px 78px 78px 58px;gap:10px;align-items:center}
+  .pd .th{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:#8b949e;padding:0 8px 6px;border-bottom:1px solid #30363d}
+  .pd .tr{padding:13px 8px;border-radius:6px;border-bottom:1px solid #21262d;animation:pdr var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  @keyframes pdr{0%{background:transparent}2%{background:#1f6feb26}12%,100%{background:transparent}}
+  .pd .sk{color:#79c0ff}.pd .pn{color:#e6edf3;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pd .me{color:#e6edf3;font-weight:700}
+  .pd .cp{color:#8b949e;position:relative}.pd .cp.lo{color:#3fb950}
+  .pd .cp em{display:block;font-style:normal;font-size:9.5px;font-weight:700;opacity:0;animation:pde var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  .pd .cp.dn em{color:#3fb950}.pd .cp.up em{color:#f0883e}
+  @keyframes pde{0%,2%{opacity:0}6%,92%{opacity:1}100%{opacity:0}}
+  .pd .sp{width:54px;height:24px;fill:none;stroke:#3fb950;stroke-width:1.6;stroke-linejoin:round;stroke-linecap:round}
+  .pd .sum{display:flex;gap:26px;margin-top:8px;padding:8px 10px;border:1px solid #30363d;border-radius:6px;background:#161b22;color:#8b949e;font-size:11px}
+  .pd .sum b{color:#e6edf3;font-size:14px}
+  .pd figcaption{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.03em}
+  @media (prefers-reduced-motion:reduce){.pd .ln,.pd .tr,.pd .cp em,.pd .live i,.pd .cur{animation:none!important}.pd .ln,.pd .cp em{opacity:1}}
+</style>
+<script>
+  document.querySelectorAll<HTMLElement>('.pd .fit').forEach((fit) => {
+    const app = fit.querySelector<HTMLElement>('.app')!;
+    const upd = () => { const s = fit.clientWidth / 1000; app.style.height = fit.clientHeight / s + 'px'; app.style.transform = `scale(${s})`; };
+    new ResizeObserver(upd).observe(fit); upd();
+  });
+</script>
