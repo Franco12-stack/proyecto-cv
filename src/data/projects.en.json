@@ -183,7 +183,8 @@
   "metric": {
    "v": "Scraping",
    "l": "scheduled price monitoring"
-  }
+  },
+  "diagram": "prices"
  },
  {
   "slug": "segundo-cerebro",

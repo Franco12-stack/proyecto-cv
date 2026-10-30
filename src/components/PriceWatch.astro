@@ -1,0 +1,79 @@
+---
+// Ilustración animada: un scraper recorre productos de la competencia y el gráfico de precios se dibuja con cada pasada. Sin datos reales.
+const T = 9, ROWS = 6;
+const rng = (a: number) => () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+const rand = rng(23);
+const W = 300, H = 170, N = 26;
+const series = [0, 1, 2].map((s) => { let y = 60 + s * 30 + rand() * 20; return Array.from({ length: N }, (_, i) => { y += (rand() - 0.5) * 22; y = Math.max(20, Math.min(H - 20, y)); return [(i / (N - 1)) * W, y]; }); });
+const d = (pts: number[][]) => pts.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
+// "mi precio": escalones suaves
+let my = 90; const mine = Array.from({ length: 7 }, (_, i) => { my += (rand() - 0.5) * 30; my = Math.max(35, Math.min(H - 35, my)); return [(i / 6) * W, my]; });
+const stepPath = mine.map((p, i) => (i ? `H${p[0].toFixed(1)} V${p[1].toFixed(1)}` : `M${p[0].toFixed(1)} ${p[1].toFixed(1)}`)).join(' ');
+const rows = Array.from({ length: ROWS }, (_, i) => ({ i, delay: ((i + 0.6) * T) / (ROWS + 0.6), ch: [(i * 2) % 3, (i + 1) % 3 === 0 ? -1 : (i + 2) % 3], up: i % 2 === 0 }));
+---
+<figure class="pw" style={`--T:${T}s`}>
+  <div class="grid">
+    <div class="tb" role="img" aria-label="Ilustración: un scraper recorre una tabla de productos contra tres competidores y marca los cambios de precio / Illustration: a scraper goes through a table of products against three competitors and flags price changes">
+      <div class="hd"><span data-l="es">Producto</span><span data-l="en">Product</span><b>A</b><b>B</b><b>C</b></div>
+      {rows.map((r) => (
+        <div class="rw" style={`--d:${r.delay.toFixed(2)}s`}>
+          <span class="nm"><u></u><u></u></span>
+          {[0, 1, 2].map((c) => (
+            <span class={'cl' + (c === r.ch[0] ? (r.up ? ' up' : ' dn') : '')}><i></i>{c === r.ch[0] ? <em>{r.up ? '▲' : '▼'}</em> : null}</span>
+          ))}
+        </div>
+      ))}
+      <div class="sc" aria-hidden="true"></div>
+    </div>
+    <div class="ch">
+      <svg viewBox={`0 0 ${W} ${H}`} aria-hidden="true">
+        {[0.25, 0.5, 0.75].map((g) => <line class="gl" x1="0" x2={W} y1={H * g} y2={H * g} />)}
+        {series.map((s, i) => <path class={'ln l' + i} pathLength="1" d={d(s)} />)}
+        <path class="ln me" d={stepPath} />
+        <g class="mk"><line x1="0" x2="0" y1="0" y2={H} /></g>
+      </svg>
+      <div class="lg"><span><i class="a"></i>A·B·C</span><span><i class="m"></i><span data-l="es">Mi precio</span><span data-l="en">My price</span></span></div>
+    </div>
+  </div>
+  <div class="bar"><span class="live"><b></b><span data-l="es">scraper periódico</span><span data-l="en">scheduled scraper</span></span><span class="cap"><span data-l="es">Ilustración: cada fila es un producto y cada columna un competidor.</span><span data-l="en">Illustration: each row is a product and each column a competitor.</span></span></div>
+</figure>
+<style>
+  .pw{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .pw .grid{flex:1;min-height:0;display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+  .pw .tb{position:relative;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px 10px;overflow:hidden}
+  .pw .hd,.pw .rw{display:grid;grid-template-columns:1fr 54px 54px 54px;gap:8px;align-items:center}
+  .pw .hd{font:500 10px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--dim)}
+  .pw .hd b{font-weight:500;text-align:center}
+  .pw .rw{padding:3px 4px;border-radius:5px;animation:pwf var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  .pw .nm{display:grid;gap:4px}.pw .nm u{display:block;height:5px;border-radius:3px;background:var(--line)}.pw .nm u:last-child{width:50%;opacity:.6}
+  .pw .cl{position:relative;height:20px;border-radius:5px;background:var(--surface);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;gap:4px}
+  .pw .cl i{display:block;width:22px;height:5px;border-radius:3px;background:var(--dim);opacity:.55}
+  .pw .cl em{font:700 9px var(--f-mono);font-style:normal;opacity:0;animation:pwe var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  .pw .cl.up em{color:#ff8a65}.pw .cl.dn em{color:var(--accent)}
+  .pw .cl.up,.pw .cl.dn{animation:pwc var(--T) linear infinite;animation-delay:var(--d);animation-fill-mode:backwards}
+  @keyframes pwf{0%{background:transparent}2%{background:var(--accent-soft)}14%,100%{background:transparent}}
+  @keyframes pwc{0%,2%{border-color:var(--line)}3%,92%{border-color:var(--accent)}100%{border-color:var(--line)}}
+  @keyframes pwe{0%,2%{opacity:0}5%,92%{opacity:1}100%{opacity:0}}
+  .pw .sc{position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent) 20%,var(--accent) 80%,transparent);box-shadow:0 0 12px 2px var(--accent);animation:pws var(--T) linear infinite;pointer-events:none}
+  @keyframes pws{0%{top:0}100%{top:calc(100% - 2px)}}
+  .pw .ch{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:8px 10px;min-height:0}
+  .pw .ch svg{flex:1;min-height:0;width:100%;overflow:visible}
+  .pw .gl{stroke:var(--line);stroke-width:1;stroke-dasharray:2 4}
+  .pw .ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;animation:pwd var(--T) linear infinite}
+  .pw .l0{stroke:var(--accent)}.pw .l1{stroke:var(--dim)}.pw .l2{stroke:#6fb5a8;opacity:.8}
+  .pw .ln.me{stroke:var(--ink);stroke-width:1.6;stroke-dasharray:5 4;stroke-dashoffset:0;animation:none;opacity:.8}
+  @keyframes pwd{0%{stroke-dashoffset:1}100%{stroke-dashoffset:0}}
+  .pw .mk line{stroke:var(--accent);stroke-width:1.5;opacity:.8}
+  .pw .mk{animation:pwm var(--T) linear infinite}
+  @keyframes pwm{0%{transform:translateX(0)}100%{transform:translateX(300px)}}
+  .pw .lg{display:flex;gap:14px;font:400 10px var(--f-mono);color:var(--dim);margin-top:4px}
+  .pw .lg i{display:inline-block;width:14px;height:2px;margin-right:6px;vertical-align:middle;background:var(--accent)}
+  .pw .lg i.m{background:none;border-top:2px dashed var(--ink)}
+  .pw .bar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .pw .live{display:flex;align-items:center;gap:6px;font:500 10px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);white-space:nowrap}
+  .pw .live b{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pwb 1.2s ease-in-out infinite}
+  @keyframes pwb{50%{opacity:.25}}
+  .pw .cap{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.03em;text-align:right}
+  @media (max-width:640px){.pw .grid{grid-template-columns:1fr}.pw .ch{display:none}.pw .cap{display:none}}
+  @media (prefers-reduced-motion:reduce){.pw .rw,.pw .cl,.pw .cl em,.pw .sc,.pw .mk,.pw .live b{animation:none!important}.pw .ln{animation:none;stroke-dashoffset:0}.pw .cl em{opacity:1}.pw .sc{display:none}.pw .mk{display:none}}
+</style>
