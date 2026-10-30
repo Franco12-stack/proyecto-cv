@@ -1,289 +1,296 @@
 [
- {
-  "slug": "whatsapp-odoo",
-  "tags": [
-   "Python",
-   "JavaScript",
-   "WAHA",
-   "Odoo ERP"
-  ],
-  "image": "projects/crm-demo/inbox.webp",
-  "imageAlt": "Bandeja de chats con panel CRM",
-  "links": {
-   "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
+  {
+    "slug": "whatsapp-odoo",
+    "tags": [
+      "Python",
+      "JavaScript",
+      "WAHA",
+      "Odoo ERP"
+    ],
+    "image": "projects/crm-demo/inbox.webp",
+    "imageAlt": "Bandeja de chats con panel CRM",
+    "links": {
+      "github": "https://github.com/Franco12-stack/whatsapp-crm-demo"
+    },
+    "title": "WhatsApp + Odoo conversational platform",
+    "pill": "public demo",
+    "summary": "Sales reps manage their portfolio, quotes, products with price lists and order history from a single interface, with AI that starts conversations and drafts offers. A controlled-broadcast module eliminated WhatsApp account bans. A public open-source demo with a simulated WhatsApp is available.",
+    "metric": {
+      "v": "30 days",
+      "l": "of ramp for a new line to reach its sending limit"
+    },
+    "context": "Sales reps needed to work with customers on WhatsApp and with Odoo data without jumping between tools, and mass messaging put the WhatsApp account at risk.",
+    "solution": "A custom platform in Python and JavaScript, connected to WhatsApp through WAHA and to Odoo. From one interface reps manage their portfolio, quotes, products with price lists and order history. AI starts conversations and drafts offers. A controlled-broadcast module sends within time ranges and with varied content. To be able to show it in public I built a from-scratch rebuild with generic data and a simulated WhatsApp: the demo below.",
+    "result": [
+      "Full sales management from a single interface.",
+      "WhatsApp account bans were eliminated.",
+      "Public demo: 14 modules and 33 tests, open source (MIT license)."
+    ],
+    "highlightsTitle": "Design decisions (public demo)",
+    "highlights": [
+      "Anti-ban ramp: a new line starts with a low ceiling (20 messages per day) and grows into its real limit over about 30 days. The enforced limit is the lower of the commercial policy and the warm-up tier, and a reconnected line goes back to day zero.",
+      "Going over the limit does not block the send: it lets the message through and alerts a supervisor, because a hard block does not protect against the real risk and costs you the sale.",
+      "Cold/warm broadcasts: by default it skips contacts who never wrote in, lists who was skipped and only includes them with an explicit override, which raises an alert.",
+      "Usage is shown against the effective limit, not the raw policy. Dashboard, report and metrics share one computation.",
+      "Goal progress is computed live, never stored."
+    ],
+    "note": "The public demo is a from-scratch rebuild with generic data, using FastAPI, PostgreSQL, React, TypeScript and Docker Compose. The WhatsApp provider and the AI assistant are simulated on purpose: the suggest-reply button does keyword matching, not a real model. The production project’s integrations (ERP, phone system, LLM, WhatsApp sessions) are not published. The demo’s interface is in English.",
+    "gallery": [
+      {
+        "img": "projects/crm-demo/dashboard.webp",
+        "cap": "Supervisor dashboard: live status of each line against its effective limit"
+      },
+      {
+        "img": "projects/crm-demo/broadcasts.webp",
+        "cap": "Broadcasts: recipient picker and history"
+      },
+      {
+        "img": "projects/crm-demo/support.webp",
+        "cap": "Support: ticket board by status"
+      },
+      {
+        "img": "projects/crm-demo/distribute.webp",
+        "cap": "Distribute: reassign a conversation to another line"
+      },
+      {
+        "img": "projects/crm-demo/metrics.webp",
+        "cap": "My metrics: each agent’s activity"
+      },
+      {
+        "img": "projects/crm-demo/contact-today.webp",
+        "cap": "Contact today: warm leads that went quiet"
+      },
+      {
+        "img": "projects/crm-demo/admin.webp",
+        "cap": "Administration: lines, policy and warm-up ramp"
+      },
+      {
+        "img": "projects/crm-demo/agenda.webp",
+        "cap": "Agenda: follow-up reminders"
+      }
+    ],
+    "role": "I built the platform in Python and JavaScript, integrating WhatsApp (WAHA) with Odoo."
   },
-  "title": "WhatsApp + Odoo conversational platform",
-  "pill": "public demo",
-  "summary": "Sales reps manage their portfolio, quotes, products with price lists and order history from a single interface, with AI that starts conversations and drafts offers. A controlled-broadcast module eliminated WhatsApp account bans. A public open-source demo with a simulated WhatsApp is available.",
-  "metric": {
-   "v": "30 days",
-   "l": "of ramp for a new line to reach its sending limit"
+  {
+    "slug": "agente-ia-ventas",
+    "title": "Autonomous AI agent and automation at scale",
+    "tags": [
+      "n8n",
+      "LLMs",
+      "Tool use",
+      "Power Automate",
+      "REST",
+      "Webhooks"
+    ],
+    "summary": "An agent handles inquiries end to end, from the first question to the closed sale: it cut response time from hours to minutes, increased conversions and has run with no manual intervention since 2024. Behind it are 50+ workflows in n8n and Power Automate, integrated through REST APIs and webhooks, running 24/7.",
+    "context": "Sales and after-sales inquiries took hours to answer and depended on manual handling, and several processes relied on manual tasks.",
+    "solution": "An AI agent built in n8n with an LLM (Claude, OpenAI or DeepSeek depending on the case) and tool use: it interprets the inquiry, decides which tool to use, queries the systems through APIs and replies to the customer. It is backed by 50+ workflows in n8n and Power Automate integrated through REST APIs and webhooks.",
+    "result": [
+      "50+ daily interactions handled end to end.",
+      "Response time cut from hours to minutes.",
+      "Higher conversions.",
+      "Running with no manual intervention since 2024.",
+      "50+ workflows in production, running 24/7."
+    ],
+    "metric": {
+      "v": "50+",
+      "l": "daily interactions handled by one agent and 50+ workflows running 24/7"
+    },
+    "diagram": "n8n",
+    "role": "I implemented the agent with n8n and an LLM, and I design and maintain the 50+ workflows around it."
   },
-  "context": "Sales reps needed to work with customers on WhatsApp and with Odoo data without jumping between tools, and mass messaging put the WhatsApp account at risk.",
-  "solution": "A custom platform in Python and JavaScript, connected to WhatsApp through WAHA and to Odoo. From one interface reps manage their portfolio, quotes, products with price lists and order history. AI starts conversations and drafts offers. A controlled-broadcast module sends within time ranges and with varied content. To be able to show it in public I built a from-scratch rebuild with generic data and a simulated WhatsApp: the demo below.",
-  "result": [
-   "Full sales management from a single interface.",
-   "WhatsApp account bans were eliminated.",
-   "Public demo: 14 modules and 33 tests, open source (MIT license)."
-  ],
-  "highlightsTitle": "Design decisions (public demo)",
-  "highlights": [
-   "Anti-ban ramp: a new line starts with a low ceiling (20 messages per day) and grows into its real limit over about 30 days. The enforced limit is the lower of the commercial policy and the warm-up tier, and a reconnected line goes back to day zero.",
-   "Going over the limit does not block the send: it lets the message through and alerts a supervisor, because a hard block does not protect against the real risk and costs you the sale.",
-   "Cold/warm broadcasts: by default it skips contacts who never wrote in, lists who was skipped and only includes them with an explicit override, which raises an alert.",
-   "Usage is shown against the effective limit, not the raw policy. Dashboard, report and metrics share one computation.",
-   "Goal progress is computed live, never stored."
-  ],
-  "note": "The public demo is a from-scratch rebuild with generic data, using FastAPI, PostgreSQL, React, TypeScript and Docker Compose. The WhatsApp provider and the AI assistant are simulated on purpose: the suggest-reply button does keyword matching, not a real model. The production project’s integrations (ERP, phone system, LLM, WhatsApp sessions) are not published. The demo’s interface is in English.",
-  "gallery": [
-   {
-    "img": "projects/crm-demo/dashboard.webp",
-    "cap": "Supervisor dashboard: live status of each line against its effective limit"
-   },
-   {
-    "img": "projects/crm-demo/broadcasts.webp",
-    "cap": "Broadcasts: recipient picker and history"
-   },
-   {
-    "img": "projects/crm-demo/support.webp",
-    "cap": "Support: ticket board by status"
-   },
-   {
-    "img": "projects/crm-demo/distribute.webp",
-    "cap": "Distribute: reassign a conversation to another line"
-   },
-   {
-    "img": "projects/crm-demo/metrics.webp",
-    "cap": "My metrics: each agent’s activity"
-   },
-   {
-    "img": "projects/crm-demo/contact-today.webp",
-    "cap": "Contact today: warm leads that went quiet"
-   },
-   {
-    "img": "projects/crm-demo/admin.webp",
-    "cap": "Administration: lines, policy and warm-up ramp"
-   },
-   {
-    "img": "projects/crm-demo/agenda.webp",
-    "cap": "Agenda: follow-up reminders"
-   }
-  ]
- },
- {
-  "slug": "agente-ia-ventas",
-  "title": "Autonomous AI agent and automation at scale",
-  "tags": [
-   "n8n",
-   "Claude API",
-   "Tool use",
-   "Power Automate",
-   "REST",
-   "Webhooks"
-  ],
-  "summary": "An agent handles inquiries end to end, from the first question to the closed sale: it cut response time from hours to minutes, increased conversions and has run with no manual intervention since 2024. Behind it are 50+ workflows in n8n and Power Automate, integrated through REST APIs and webhooks, running 24/7.",
-  "context": "Sales and after-sales inquiries took hours to answer and depended on manual handling, and several processes relied on manual tasks.",
-  "solution": "An AI agent built in n8n with Claude (API and tool use): it interprets the inquiry, decides which tool to use, queries the systems through APIs and replies to the customer. It is backed by 50+ workflows in n8n and Power Automate integrated through REST APIs and webhooks.",
-  "result": [
-   "50+ daily interactions handled end to end.",
-   "Response time cut from hours to minutes.",
-   "Higher conversions.",
-   "Running with no manual intervention since 2024.",
-   "50+ workflows in production, running 24/7."
-  ],
-  "metric": {
-   "v": "50+",
-   "l": "daily interactions handled by one agent and 50+ workflows running 24/7"
+  {
+    "slug": "gestion-de-tickets",
+    "tags": [
+      "Power Apps",
+      "SharePoint",
+      "ServiceNow",
+      "Jira"
+    ],
+    "diagram": "tickets",
+    "title": "ITSM ticket management tool",
+    "pill": "internal tool",
+    "summary": "Internal tool to manage ITSM tickets for two clients: it connects to ServiceNow and Jira, automates data loading and extraction, and lets the team plan tasks per ticket, assign them and track commitments and delays.",
+    "metric": {
+      "v": "ITSM",
+      "l": "ServiceNow and Jira in a single place to manage"
+    },
+    "context": "Requests from two clients arrive from ITSM systems (ServiceNow and Jira) and a single place was needed to plan the work, assign owners and control commitments to the client.",
+    "solution": "A Power Apps application with data in SharePoint lists and sign-in with the Microsoft 365 account. It connects to ServiceNow and Jira and automates data loading and extraction: an imports screen keeps the history and result of each one. Each ticket has its task plan with owner, dates, estimated hours, dependencies and internal comments, and internal requests that do not come from ServiceNow are entered as new requirements.",
+    "result": [
+      "Home with open tickets, tickets at risk and overdue tasks.",
+      "Follow-up grouped by reason (overdue, due this week, no owner), with assignment and reassignment.",
+      "Each person sees their tasks by due date and starts or finishes them from My tasks.",
+      "Task upload from Excel: each row goes to the ticket named in its column.",
+      "People and roles managed by an administrator, with per-screen access restrictions.",
+      "Movement history for each ticket and built-in help on every screen."
+    ],
+    "extra": [
+      {
+        "title": "Modules",
+        "items": [
+          "Home: a panel with what needs attention.",
+          "Tickets: list with search and filters by client, at risk and unassigned.",
+          "Ticket: details, owner, client commitment, task plan, comments, attachments and history.",
+          "My tasks: each person’s open and finished tasks.",
+          "Follow-up: overdue, due soon and unassigned.",
+          "Imports: loads from ServiceNow with history.",
+          "People and roles: team administration."
+        ]
+      }
+    ],
+    "note": "Internal tool: no screenshots, client names or real data are published. The diagram is an illustration.",
+    "role": "I built the tool in Power Apps and connected it to ServiceNow and Jira."
   },
-  "diagram": "n8n"
- },
- {
-  "slug": "gestion-de-tickets",
-  "tags": [
-   "Power Apps",
-   "SharePoint",
-   "ServiceNow",
-   "Jira"
-  ],
-  "diagram": "tickets",
-  "title": "ITSM ticket management tool",
-  "pill": "internal tool",
-  "summary": "Internal tool to manage ITSM tickets for two clients: it connects to ServiceNow and Jira, automates data loading and extraction, and lets the team plan tasks per ticket, assign them and track commitments and delays.",
-  "metric": {
-   "v": "ITSM",
-   "l": "ServiceNow and Jira in a single place to manage"
+  {
+    "slug": "pcforge",
+    "tags": [
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "Tests"
+    ],
+    "image": "projects/pcforge/builder.webp",
+    "links": {
+      "github": "https://github.com/Franco12-stack/pcforge"
+    },
+    "title": "PCForge: PC configurator with wholesale pricing",
+    "pill": "open source",
+    "imageAlt": "12-step PC configurator with compatibility and live prices",
+    "summary": "A PC configurator that sells from a wholesale price list (from an ERP) on top of an e-commerce platform that does not support per-line prices. It has a compatibility engine, power estimate and a draft-order checkout. It is a rebuild with fictional data of the configurator I built for an e-commerce business.",
+    "metric": {
+      "v": "500 carts",
+      "l": "checked with a property test"
+    },
+    "context": "The catalog lives on a hosted e-commerce platform and the special prices live in the ERP. The platform’s draft-order API only accepts product and quantity per line and a single order-level discount, and it also applies its own bank-transfer discount at checkout.",
+    "solution": "A pricing engine that sizes the coupon so the platform’s own discount lands the total exactly on the wholesale price (coupon = list − wholesale price / (1 − rate)). A compatibility engine (CPU/motherboard socket, DDR4 vs DDR5, LGA1700 special case) with layered detection, where missing data never blocks a product. A power estimate with PSU recommendation. And a checkout where the server sets the prices.",
+    "result": [
+      "With the formula, transfer and card both land exactly on the displayed prices. A naive coupon undercharged: in the README example, $525 instead of $700.",
+      "A property test over 500 random carts, plus unit, regression and HTTP tests.",
+      "12-step builder, printable quote view and a static mode that runs with no backend.",
+      "Open source, MIT licensed."
+    ],
+    "highlightsTitle": "Design decisions",
+    "highlights": [
+      "The undercharging bug happened in production in the original project, which is why there is a regression test.",
+      "Shared pure core: business rules live in one place, with no dependencies and no I/O, and run the same on the server and in the browser.",
+      "The server never trusts client prices: the client sends IDs and quantities, and if prices changed it answers 409 PRICE_CHANGED.",
+      "Displayed prices round up, so the card price is never below what is charged.",
+      "Vanilla JavaScript and a single dependency (Express): the focus is the domain logic."
+    ],
+    "note": "All data is fictional, and the demo is not production-ready on purpose: in-memory orders, no auth, no real payments.",
+    "gallery": [
+      {
+        "img": "projects/pcforge/builder.webp",
+        "cap": "12-step builder with compatibility and live prices"
+      },
+      {
+        "img": "projects/pcforge/checkout.webp",
+        "cap": "Checkout: simulates the platform and shows what a naive coupon would have charged"
+      }
+    ],
+    "role": "I rebuilt the configurator from scratch, with fictional data, from the one I built for an e-commerce business."
   },
-  "context": "Requests from two clients arrive from ITSM systems (ServiceNow and Jira) and a single place was needed to plan the work, assign owners and control commitments to the client.",
-  "solution": "A Power Apps application with data in SharePoint lists and sign-in with the Microsoft 365 account. It connects to ServiceNow and Jira and automates data loading and extraction: an imports screen keeps the history and result of each one. Each ticket has its task plan with owner, dates, estimated hours, dependencies and internal comments, and internal requests that do not come from ServiceNow are entered as new requirements.",
-  "result": [
-   "Home with open tickets, tickets at risk and overdue tasks.",
-   "Follow-up grouped by reason (overdue, due this week, no owner), with assignment and reassignment.",
-   "Each person sees their tasks by due date and starts or finishes them from My tasks.",
-   "Task upload from Excel: each row goes to the ticket named in its column.",
-   "People and roles managed by an administrator, with per-screen access restrictions.",
-   "Movement history for each ticket and built-in help on every screen."
-  ],
-  "extra": [
-   {
-    "title": "Modules",
-    "items": [
-     "Home: a panel with what needs attention.",
-     "Tickets: list with search and filters by client, at risk and unassigned.",
-     "Ticket: details, owner, client commitment, task plan, comments, attachments and history.",
-     "My tasks: each person’s open and finished tasks.",
-     "Follow-up: overdue, due soon and unassigned.",
-     "Imports: loads from ServiceNow with history.",
-     "People and roles: team administration."
-    ]
-   }
-  ],
-  "note": "Internal tool: no screenshots, client names or real data are published. The diagram is an illustration."
- },
- {
-  "slug": "pcforge",
-  "tags": [
-   "JavaScript",
-   "Node.js",
-   "Express",
-   "Tests"
-  ],
-  "image": "projects/pcforge/builder.webp",
-  "links": {
-   "github": "https://github.com/Franco12-stack/pcforge"
+  {
+    "slug": "promociones-mercado-libre",
+    "title": "Mercado Libre promotions automation",
+    "tags": [
+      "Browser automation",
+      "Claude",
+      "Mercado Libre"
+    ],
+    "summary": "A browser workflow deactivates and reactivates 300 to 500 promotions in bulk on its own, replacing hours of daily manual work.",
+    "context": "Managing promotions on Mercado Libre meant activating and deactivating hundreds of listings.",
+    "solution": "Browser automation driven by Claude that goes through the promotions and activates or deactivates them.",
+    "result": [
+      "300 to 500 promotions activated or deactivated autonomously.",
+      "Replaced hours of daily manual work."
+    ],
+    "metric": {
+      "v": "300–500",
+      "l": "promotions activated or deactivated autonomously"
+    },
+    "diagram": "promos",
+    "role": "I built the AI browser-automation workflow."
   },
-  "title": "PCForge: PC configurator with wholesale pricing",
-  "pill": "open source",
-  "imageAlt": "12-step PC configurator with compatibility and live prices",
-  "summary": "A PC configurator that sells from a wholesale price list (from an ERP) on top of an e-commerce platform that does not support per-line prices. It has a compatibility engine, power estimate and a draft-order checkout. It is a rebuild with fictional data of the configurator I built for an e-commerce business.",
-  "metric": {
-   "v": "500 carts",
-   "l": "checked with a property test"
+  {
+    "slug": "inteligencia-de-precios",
+    "title": "Competitor price intelligence",
+    "tags": [
+      "Python",
+      "Scraping"
+    ],
+    "summary": "Scheduled monitoring of competitor prices through scraping, which removed hours of manual research and sped up pricing decisions.",
+    "context": "There was a need to know competitor prices on a regular basis.",
+    "solution": "Custom scraping in Python that checks prices on a schedule.",
+    "result": [
+      "Periodic monitoring of competitor prices.",
+      "Removed hours of manual research and sped up pricing decisions."
+    ],
+    "metric": {
+      "v": "Scraping",
+      "l": "scheduled price monitoring"
+    },
+    "diagram": "prices",
+    "role": "I automated the monitoring with custom Python scraping."
   },
-  "context": "The catalog lives on a hosted e-commerce platform and the special prices live in the ERP. The platform’s draft-order API only accepts product and quantity per line and a single order-level discount, and it also applies its own bank-transfer discount at checkout.",
-  "solution": "A pricing engine that sizes the coupon so the platform’s own discount lands the total exactly on the wholesale price (coupon = list − wholesale price / (1 − rate)). A compatibility engine (CPU/motherboard socket, DDR4 vs DDR5, LGA1700 special case) with layered detection, where missing data never blocks a product. A power estimate with PSU recommendation. And a checkout where the server sets the prices.",
-  "result": [
-   "With the formula, transfer and card both land exactly on the displayed prices. A naive coupon undercharged: in the README example, $525 instead of $700.",
-   "A property test over 500 random carts, plus unit, regression and HTTP tests.",
-   "12-step builder, printable quote view and a static mode that runs with no backend.",
-   "Open source, MIT licensed."
-  ],
-  "highlightsTitle": "Design decisions",
-  "highlights": [
-   "The undercharging bug happened in production in the original project, which is why there is a regression test.",
-   "Shared pure core: business rules live in one place, with no dependencies and no I/O, and run the same on the server and in the browser.",
-   "The server never trusts client prices: the client sends IDs and quantities, and if prices changed it answers 409 PRICE_CHANGED.",
-   "Displayed prices round up, so the card price is never below what is charged.",
-   "Vanilla JavaScript and a single dependency (Express): the focus is the domain logic."
-  ],
-  "note": "All data is fictional, and the demo is not production-ready on purpose: in-memory orders, no auth, no real payments.",
-  "gallery": [
-   {
-    "img": "projects/pcforge/builder.webp",
-    "cap": "12-step builder with compatibility and live prices"
-   },
-   {
-    "img": "projects/pcforge/checkout.webp",
-    "cap": "Checkout: simulates the platform and shows what a naive coupon would have charged"
-   }
-  ]
- },
- {
-  "slug": "promociones-mercado-libre",
-  "title": "Mercado Libre promotions automation",
-  "tags": [
-   "Browser automation",
-   "Claude",
-   "Mercado Libre"
-  ],
-  "summary": "A browser workflow deactivates and reactivates 300 to 500 promotions in bulk on its own, replacing hours of daily manual work.",
-  "context": "Managing promotions on Mercado Libre meant activating and deactivating hundreds of listings.",
-  "solution": "Browser automation driven by Claude that goes through the promotions and activates or deactivates them.",
-  "result": [
-   "300 to 500 promotions activated or deactivated autonomously.",
-   "Replaced hours of daily manual work."
-  ],
-  "metric": {
-   "v": "300–500",
-   "l": "promotions activated or deactivated autonomously"
-  },
-  "diagram": "promos"
- },
- {
-  "slug": "inteligencia-de-precios",
-  "title": "Competitor price intelligence",
-  "tags": [
-   "Python",
-   "Scraping"
-  ],
-  "summary": "Scheduled monitoring of competitor prices through scraping, which removed hours of manual research and sped up pricing decisions.",
-  "context": "There was a need to know competitor prices on a regular basis.",
-  "solution": "Custom scraping in Python that checks prices on a schedule.",
-  "result": [
-   "Periodic monitoring of competitor prices.",
-   "Removed hours of manual research and sped up pricing decisions."
-  ],
-  "metric": {
-   "v": "Scraping",
-   "l": "scheduled price monitoring"
-  },
-  "diagram": "prices"
- },
- {
-  "slug": "segundo-cerebro",
-  "title": "Second brain",
-  "pill": "personal project",
-  "tags": [
-   "Obsidian",
-   "MCP",
-   "Claude"
-  ],
-  "summary": "My second brain: a personal knowledge system built with Obsidian, MCP and Claude. I capture what I study and build, connect it with links between notes and query it in natural language.",
-  "context": "Personal project: keep my notes accessible without searching through them by hand.",
-  "solution": "An Obsidian vault connected to Claude through MCP.",
-  "result": [
-   "Querying my notes in natural language."
-  ],
-  "metric": {
-   "v": "Obsidian + MCP",
-   "l": "natural-language queries"
-  },
-  "diagram": "brain",
-  "extra": [
-   {
-    "title": "What it aims at",
-    "items": [
-     "Having my technical knowledge in one place, connected and queryable.",
-     "Stop searching by hand: ask in natural language and let Claude walk through the related notes.",
-     "Turn what I study and what I build into a base that grows with every project."
-    ]
-   },
-   {
-    "title": "What it holds",
-    "items": [
-     "Project notes and technical decisions.",
-     "Course notes and exercises.",
-     "Documentation of workflows and automation tools.",
-     "Notes on agents: prompts, tools and test cases."
-    ]
-   },
-   {
-    "title": "How it works",
-    "items": [
-     "Notes live in an Obsidian vault, as Markdown files linked to each other.",
-     "Claude connects to the vault through MCP.",
-     "I ask a question in natural language and Claude searches and combines the related notes to answer, in a RAG-style setup."
-    ]
-   },
-   {
-    "title": "Advantages",
-    "items": [
-     "Answers based on my own notes, not on memory or generic searches.",
-     "Connected knowledge: links between notes give context to every answer.",
-     "Notes I own, in readable and portable Markdown files.",
-     "It grows with use: every new note is available for the next query.",
-     "A way to practice MCP and agents on a real case."
-    ]
-   }
-  ]
- }
+  {
+    "slug": "segundo-cerebro",
+    "title": "Second brain",
+    "pill": "personal project",
+    "tags": [
+      "Obsidian",
+      "MCP",
+      "Claude"
+    ],
+    "summary": "My second brain: a personal knowledge system built with Obsidian, MCP and Claude. I capture what I study and build, connect it with links between notes and query it in natural language.",
+    "context": "Personal project: keep my notes accessible without searching through them by hand.",
+    "solution": "An Obsidian vault connected to Claude through MCP.",
+    "result": [
+      "Querying my notes in natural language."
+    ],
+    "metric": {
+      "v": "Obsidian + MCP",
+      "l": "natural-language queries"
+    },
+    "diagram": "brain",
+    "extra": [
+      {
+        "title": "What it aims at",
+        "items": [
+          "Having my technical knowledge in one place, connected and queryable.",
+          "Stop searching by hand: ask in natural language and let Claude walk through the related notes.",
+          "Turn what I study and what I build into a base that grows with every project."
+        ]
+      },
+      {
+        "title": "What it holds",
+        "items": [
+          "Project notes and technical decisions.",
+          "Course notes and exercises.",
+          "Documentation of workflows and automation tools.",
+          "Notes on agents: prompts, tools and test cases."
+        ]
+      },
+      {
+        "title": "How it works",
+        "items": [
+          "Notes live in an Obsidian vault, as Markdown files linked to each other.",
+          "Claude connects to the vault through MCP.",
+          "I ask a question in natural language and Claude searches and combines the related notes to answer, in a RAG-style setup."
+        ]
+      },
+      {
+        "title": "Advantages",
+        "items": [
+          "Answers based on my own notes, not on memory or generic searches.",
+          "Connected knowledge: links between notes give context to every answer.",
+          "Notes I own, in readable and portable Markdown files.",
+          "It grows with use: every new note is available for the next query.",
+          "A way to practice MCP and agents on a real case."
+        ]
+      }
+    ],
+    "role": "A personal project I built with Obsidian, MCP and Claude."
+  }
 ]

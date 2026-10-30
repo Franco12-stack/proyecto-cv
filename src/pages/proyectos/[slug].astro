@@ -35,6 +35,7 @@ const sec = ['context', 'solution'] as const;
     {(a.diagram === 'promos' || a.diagram === 'brain' || a.diagram === 'prices' || a.diagram === 'tickets') && <div style="height:360px;display:flex;flex-direction:column;border:1px solid var(--line);background:var(--surface);padding:14px;margin:0 0 20px">{a.diagram === 'promos' ? <PromoPanel /> : a.diagram === 'prices' ? <PriceDash /> : a.diagram === 'tickets' ? <TicketApp /> : <ObsidianGraph />}</div>}
     {a.image && <img src={url('/' + a.image)} alt={a.imageAlt} width="1280" height="800" style="width:100%;height:auto;border:1px solid var(--line);margin:0 0 20px" />}
     {a.links?.github && <p class="btns"><a class="btn" href={a.links.github} target="_blank" rel="noopener"><T es="Ver código en GitHub ↗" en="View code on GitHub ↗" /></a></p>}
+    {a.role && <section><h2><T es={es.ui.myRole} en={en.ui.myRole} /></h2><p><T es={a.role} en={b.role} /></p></section>}
     {sec.map((k) => (
       <section>
         <h2><T es={es.ui.caseSections[k]} en={en.ui.caseSections[k]} /></h2>

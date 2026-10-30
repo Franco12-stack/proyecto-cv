@@ -17,7 +17,7 @@ export function initProjects() {
     cur.textContent = String(i + 1).padStart(2, '0');
   };
   const update = () => {
-    if (!mq.matches) { cards.forEach((c) => { c.removeAttribute('inert'); c.classList.add('on'); }); return; }
+    if (!mq.matches || sec.classList.contains('list')) { cards.forEach((c) => { c.removeAttribute('inert'); c.classList.add('on'); }); return; }
     const h = hh();
     const top = sec.getBoundingClientRect().top - h;
     const span = sec.offsetHeight - (innerHeight - h);
@@ -25,6 +25,14 @@ export function initProjects() {
     const i = Math.min(cards.length - 1, Math.floor(p * cards.length * 0.999));
     if (i !== idx || !cards[i].classList.contains('on') || cards.filter((c) => c.classList.contains('on')).length !== 1) apply(i);
   };
+  const btn = document.getElementById('pview');
+  const setList = (on, save = true) => {
+    sec.classList.toggle('list', on); btn?.setAttribute('aria-pressed', String(on));
+    if (save) { try { localStorage.setItem('ff-plist', on ? '1' : '0'); } catch (e) {} }
+    update();
+  };
+  btn?.addEventListener('click', () => setList(!sec.classList.contains('list')));
+  try { if (localStorage.getItem('ff-plist') === '1') sec.classList.add('list'); } catch (e) {}
   bars.forEach((b) => b.addEventListener('click', () => {
     const i = +b.dataset.i, h = hh();
     const span = sec.offsetHeight - (innerHeight - h);
@@ -34,5 +42,6 @@ export function initProjects() {
   addEventListener('scroll', update, { passive: true });
   addEventListener('resize', update);
   mq.addEventListener('change', update);
+  btn?.setAttribute('aria-pressed', String(sec.classList.contains('list')));
   hh(); update();
 }

@@ -12,7 +12,7 @@ import T from './T.astro';
       <div class="job">
         <h3><T es={x.role} en={xen[i].role} /></h3>
         <span class={'when' + (x.current ? ' on' : '')}><T es={x.when} en={xen[i].when} /></span>
-        <p><T es={x.text} en={xen[i].text} /></p>
+        <ul class="jb">{(x as any).items.map((t: string, j: number) => <li><T es={t} en={(xen[i] as any).items[j]} /></li>)}</ul>
       </div>
     ))}
   </div>

@@ -1,28 +1,52 @@
 [
- {
-  "role": "Softtek · Automation + AI Developer",
-  "when": "sep 2026 – now",
-  "current": true,
-  "text": "Automations and integrations with REST APIs, Python and Power Automate, and embedding LLMs and agents into business processes."
- },
- {
-  "role": "Integrados Argentinos · IT Automation & AI Specialist",
-  "when": "2024 – 2026",
-  "text": "AI agents, WhatsApp + Odoo platform and 50+ automated workflows, plus administration of the servers, VPNs, firewalls and DNS where the solutions run."
- },
- {
-  "role": "Integrados Argentinos · Operations Coordinator & Audit Lead",
-  "when": "2020 – 2024",
-  "text": "Led 18 operators, implemented 5S, designed procedures and coordinated inventory control."
- },
- {
-  "role": "Independent · IT & infrastructure freelance",
-  "when": "2020 – now",
-  "text": "Linux and Windows servers, VPNs, firewalls, DNS, Tienda Nube custom apps and API integrations."
- },
- {
-  "role": "Importodoeste SRL · Sales Executive",
-  "when": "2018 – 2020",
-  "text": "Sales on Mercado Libre, Tienda Nube, Instagram and Facebook. In-person service and closing sales in store."
- }
+  {
+    "role": "Softtek · Automation + AI Developer",
+    "when": "sep 2026 – now",
+    "current": true,
+    "text": "Automations and integrations with REST APIs, Python and Power Automate, and embedding LLMs and agents into business processes.",
+    "items": [
+      "Automations and integrations with REST APIs, Python and Power Automate.",
+      "Embedding LLMs and AI agents into business processes, with prompt engineering and AI-assisted development."
+    ]
+  },
+  {
+    "role": "Integrados Argentinos · IT Automation & AI Specialist",
+    "when": "2024 – 2026",
+    "text": "AI agents, WhatsApp + Odoo platform and 50+ automated workflows, plus administration of the servers, VPNs, firewalls and DNS where the solutions run.",
+    "items": [
+      "WhatsApp + Odoo conversational platform in Python and JavaScript (WAHA and Odoo ERP); controlled broadcasts eliminated account bans.",
+      "Autonomous AI agent (LLM + tool use) in n8n: 50+ daily interactions end to end, with response time cut from hours to minutes.",
+      "50+ production workflows with n8n and Power Automate, via REST APIs and webhooks, 24/7.",
+      "Scheduled monitoring of competitor prices through scraping.",
+      "AI browser automation: 300–500 promotions on Mercado Libre.",
+      "Administration of Linux and Windows servers, VPNs, firewalls and DNS where the solutions run."
+    ]
+  },
+  {
+    "role": "Integrados Argentinos · Operations Coordinator & Audit Lead",
+    "when": "2020 – 2024",
+    "text": "Led 18 operators, implemented 5S, designed procedures and coordinated inventory control.",
+    "items": [
+      "Led 18 operators ensuring efficiency and meeting operational goals.",
+      "Implemented 5S, designed procedures and coordinated inventory control."
+    ]
+  },
+  {
+    "role": "Independent · IT & infrastructure freelance",
+    "when": "2020 – now",
+    "text": "Linux and Windows servers, VPNs, firewalls, DNS, Tienda Nube custom apps and API integrations.",
+    "items": [
+      "Linux and Windows servers, VPNs, firewalls and DNS; custom Tienda Nube apps and REST API integrations for multiple clients.",
+      "Personal project “Second brain”: Obsidian, MCP and Claude to query my notes in natural language."
+    ]
+  },
+  {
+    "role": "Importodoeste SRL · Sales Executive",
+    "when": "2018 – 2020",
+    "text": "Sales on Mercado Libre, Tienda Nube, Instagram and Facebook. In-person service and closing sales in store.",
+    "items": [
+      "Sales on Mercado Libre, Tienda Nube, Instagram and Facebook.",
+      "In-person service and closing sales in store."
+    ]
+  }
 ]

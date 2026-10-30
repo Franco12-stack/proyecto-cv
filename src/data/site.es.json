@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · AI Engineer y desarrollo de software",
-  "description": "Franco Fernandez, Buenos Aires. AI Engineer y desarrollador de software: agentes de IA, bots, automatizaciones y plataformas a medida con Python, JavaScript, n8n y LLMs que funcionan en producción.",
+  "title": "Franco Fernandez · Automation & AI Engineer",
+  "description": "Franco Fernandez, Buenos Aires. Automation & AI Engineer: agentes de IA, automatizaciones y software a medida con Python, JavaScript, n8n y LLMs que funcionan en producción.",
   "nav": {
     "about": "Sobre_mí",
     "projects": "Proyectos",
@@ -27,16 +27,19 @@
     "projectsSub": "Soluciones reales",
     "scrollHint": "Scroll para recorrer",
     "projectN": "Proyecto",
-    "viewProjects": "Ver proyectos"
+    "viewProjects": "Ver proyectos",
+    "viewList": "Ver como lista",
+    "otherProjects": "otros proyectos",
+    "myRole": "Mi rol"
   },
   "hero": {
-    "tag": "// ai engineer + software · buenos aires",
-    "h1": "Construyo agentes de IA, bots y automatizaciones con LLMs <em>que funcionan en producción.</em>",
-    "lead": "AI Engineer con más de 5 años en operaciones y transformación digital. Además de automatizar, desarrollo software a medida (plataformas, APIs e integraciones) y parto siempre del problema de negocio antes de definir la solución.",
+    "tag": "// automation & ai engineer · buenos aires",
+    "h1": "Agentes de IA y automatizaciones <em>que funcionan en producción.</em>",
+    "lead": "Un agente atiende más de 50 consultas por día de punta a punta y más de 50 flujos corren 24/7. Además desarrollo software a medida: plataformas, APIs e integraciones.",
     "meta": [
       {
         "k": "Rol",
-        "v": "AI Engineer + Software"
+        "v": "Automation & AI Engineer"
       },
       {
         "k": "Ubicación",

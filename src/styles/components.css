@@ -268,3 +268,33 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .pframe.bare .ptag{left:0;top:-4px}
 .pframe.bare .pre{left:0;bottom:8px}
 .hero-grid .pframe.bare{box-shadow:none}
+
+/* portada: enlaces */
+.hero-links{display:flex;flex-wrap:wrap;gap:6px 22px;margin:18px 0 0;font:400 12.5px var(--f-mono)}
+.hero-links a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
+.hero-links a:hover{color:var(--accent);border-color:var(--accent)}
+/* experiencia con logros */
+.job ul.jb{grid-column:1/-1;margin:6px 0 0;padding:0;list-style:none;color:var(--dim);font-size:15px;max-width:44em}
+.job ul.jb li{padding:3px 0 3px 20px;position:relative}
+.job ul.jb li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+/* botón ver como lista (solo escritorio) */
+.pview{display:none;margin-top:14px;font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;background:transparent;color:var(--dim);border:1px solid var(--line);padding:7px 10px;cursor:pointer;border-radius:3px}
+.pview:hover,.pview[aria-pressed="true"]{color:var(--accent);border-color:var(--accent)}
+@media (min-width:860px){
+  .pview{display:inline-block}
+  .pshow.list{height:auto;padding:48px 0}
+  .pshow.list .pstick{position:static;height:auto;display:block;overflow:visible}
+  .pshow.list .pside{width:auto;border:0;padding:0 0 22px}
+  .pshow.list .pnav{display:none}
+  .pshow.list .pcards{display:flex;flex-direction:column;gap:56px;padding:0}
+  .pshow.list .pcard{position:relative;inset:auto;opacity:1;visibility:visible;transform:none}
+  .pshow.list .pvis{flex:none;height:380px}
+}
+/* otros proyectos */
+.others-grid{list-style:none;margin:0;padding:0;display:grid;gap:16px;grid-template-columns:repeat(3,minmax(0,1fr))}
+.others-grid a{display:flex;flex-direction:column;gap:10px;height:100%;padding:18px;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;transition:border-color .2s,transform .2s}
+.others-grid a:hover{border-color:var(--accent);transform:translateY(-2px)}
+.others-grid h3{margin:0;font:700 18px/1.2 var(--f-display);letter-spacing:-.01em}
+.others-grid p{margin:0;color:var(--dim);font-size:14px;flex:1}
+.others-grid .more{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+@media (max-width:860px){.others-grid{grid-template-columns:1fr}}

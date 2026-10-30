@@ -1,28 +1,52 @@
 [
- {
-  "role": "Softtek · Desarrollador/a de Automatización + AI",
-  "when": "sep 2026 – hoy",
-  "current": true,
-  "text": "Automatizaciones e integraciones con APIs REST, Python y Power Automate, e incorporación de LLMs y agentes en procesos de negocio."
- },
- {
-  "role": "Integrados Argentinos · Especialista en IT Automation e IA",
-  "when": "2024 – 2026",
-  "text": "Agentes de IA, plataforma WhatsApp + Odoo y más de 50 flujos automatizados, más la administración de los servidores, VPNs, firewalls y DNS donde corren las soluciones."
- },
- {
-  "role": "Integrados Argentinos · Coordinador de Operaciones y Referente de Auditoría",
-  "when": "2020 – 2024",
-  "text": "Lideré 18 operarios, implementé 5S, diseñé procedimientos y coordiné el control de inventario."
- },
- {
-  "role": "Independiente · Freelance IT e infraestructura",
-  "when": "2020 – hoy",
-  "text": "Servidores Linux y Windows, VPNs, firewalls, DNS, apps a medida para Tienda Nube e integraciones por API."
- },
- {
-  "role": "Importodoeste SRL · Ejecutivo de Ventas",
-  "when": "2018 – 2020",
-  "text": "Ventas en Mercado Libre, Tienda Nube, Instagram y Facebook. Atención presencial y cierre de ventas en salón."
- }
+  {
+    "role": "Softtek · Desarrollador/a de Automatización + AI",
+    "when": "sep 2026 – hoy",
+    "current": true,
+    "text": "Automatizaciones e integraciones con APIs REST, Python y Power Automate, e incorporación de LLMs y agentes en procesos de negocio.",
+    "items": [
+      "Automatizaciones e integraciones con APIs REST, Python y Power Automate.",
+      "Incorporación de LLMs y agentes de IA en procesos de negocio, con prompt engineering y desarrollo asistido por IA."
+    ]
+  },
+  {
+    "role": "Integrados Argentinos · Especialista en IT Automation e IA",
+    "when": "2024 – 2026",
+    "text": "Agentes de IA, plataforma WhatsApp + Odoo y más de 50 flujos automatizados, más la administración de los servidores, VPNs, firewalls y DNS donde corren las soluciones.",
+    "items": [
+      "Plataforma conversacional WhatsApp + Odoo en Python y JavaScript (WAHA y Odoo ERP); las difusiones controladas eliminaron los bloqueos de cuenta.",
+      "Agente de IA autónomo (LLM + tool use) en n8n: 50+ interacciones diarias de punta a punta, con respuesta de horas a minutos.",
+      "Más de 50 flujos en producción con n8n y Power Automate, por APIs REST y webhooks, 24/7.",
+      "Monitoreo periódico de precios de la competencia con scraping.",
+      "Automatización de browser con IA: 300–500 promociones en Mercado Libre.",
+      "Administración de servidores Linux y Windows, VPNs, firewalls y DNS donde corren las soluciones."
+    ]
+  },
+  {
+    "role": "Integrados Argentinos · Coordinador de Operaciones y Referente de Auditoría",
+    "when": "2020 – 2024",
+    "text": "Lideré 18 operarios, implementé 5S, diseñé procedimientos y coordiné el control de inventario.",
+    "items": [
+      "Lideré 18 operarios asegurando eficiencia y cumplimiento de objetivos operativos.",
+      "Implementé 5S, diseñé procedimientos y coordiné el control de inventario."
+    ]
+  },
+  {
+    "role": "Independiente · Freelance IT e infraestructura",
+    "when": "2020 – hoy",
+    "text": "Servidores Linux y Windows, VPNs, firewalls, DNS, apps a medida para Tienda Nube e integraciones por API.",
+    "items": [
+      "Servidores Linux y Windows, VPNs, firewalls y DNS; apps a medida para Tienda Nube e integraciones por API REST para múltiples clientes.",
+      "Proyecto personal «Segundo cerebro»: Obsidian, MCP y Claude para consultar mis notas en lenguaje natural."
+    ]
+  },
+  {
+    "role": "Importodoeste SRL · Ejecutivo de Ventas",
+    "when": "2018 – 2020",
+    "text": "Ventas en Mercado Libre, Tienda Nube, Instagram y Facebook. Atención presencial y cierre de ventas en salón.",
+    "items": [
+      "Ventas en Mercado Libre, Tienda Nube, Instagram y Facebook.",
+      "Atención presencial y cierre de ventas en salón."
+    ]
+  }
 ]

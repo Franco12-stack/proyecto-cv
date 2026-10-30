@@ -12,7 +12,8 @@ import TicketApp from './TicketApp.astro';
 import { url } from '../lib/url';
 import flowData from '../data/agente-flow.json';
 const flowStats = { nodes: flowData.nodes.length };
-const n = pes.length;
+const FEATURED = 4;
+const n = FEATURED;
 const pad = (i: number) => String(i).padStart(2, '0');
 ---
 <section class="pshow" id="proyectos" style={`--n:${n}`} aria-label="Proyectos / Projects">
@@ -21,6 +22,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
       <div>
         <h2><T es={es.sections.projects} en={en.sections.projects} /></h2>
         <p class="psub"><T es={es.ui.projectsSub} en={en.ui.projectsSub} /></p>
+        <button type="button" class="pview" id="pview" aria-pressed="false"><T es={es.ui.viewList} en={en.ui.viewList} /></button>
       </div>
       <div class="pnav">
         <p class="pcount" aria-hidden="true"><b id="pcur">01</b><span> / {pad(n)}</span></p>
@@ -33,7 +35,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
       </div>
     </div>
     <ul class="pcards" aria-label="Lista de proyectos / Project list">
-      {pes.map((p, i) => (
+      {pes.slice(0, FEATURED).map((p, i) => (
         <li class={'pcard' + (i === 0 ? ' on' : '')} data-i={i}>
           <div class={'pvis' + ((p as any).image ? ' has-img' : '') + ((p as any).diagram ? ' has-flow' : '')}>
             {(p as any).image ? (
@@ -75,6 +77,22 @@ const pad = (i: number) => String(i).padStart(2, '0');
           <a class="pcover" href={url(`/proyectos/${p.slug}/`)}><span class="sr"><T es={`${es.ui.viewCase} ${p.title}`} en={`${en.ui.viewCase} ${pen[i].title}`} /></span></a>
         </li>
       ))}
+    </ul>
+  </div>
+</section>
+<section class="sec others-sec" id="otros">
+  <h2><T es={es.ui.otherProjects} en={en.ui.otherProjects} /></h2>
+  <div class="body">
+    <ul class="others-grid">
+      {pes.slice(FEATURED).map((p, k) => { const i = FEATURED + k; return (
+        <li>
+          <a href={url(`/proyectos/${p.slug}/`)}>
+            <h3><T es={p.title} en={pen[i].title} />{p.pill && <span class="pill"><T es={p.pill} en={(pen[i] as any).pill} /></span>}</h3>
+            <p><T es={p.summary} en={pen[i].summary} /></p>
+            <ul class="tags">{p.tags.map((t: string, j: number) => <li><T es={t} en={pen[i].tags[j]} /></li>)}</ul>
+            <span class="more"><T es={es.ui.viewCase} en={en.ui.viewCase} /></span>
+          </a>
+        </li>); })}
     </ul>
   </div>
 </section>

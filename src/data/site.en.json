@@ -1,6 +1,6 @@
 {
-  "title": "Franco Fernandez · AI Engineer and software development",
-  "description": "Franco Fernandez, Buenos Aires. AI Engineer and software developer: AI agents, bots, automations and custom platforms with Python, JavaScript, n8n and LLMs that work in production.",
+  "title": "Franco Fernandez · Automation & AI Engineer",
+  "description": "Franco Fernandez, Buenos Aires. Automation & AI Engineer: AI agents, automations and custom software with Python, JavaScript, n8n and LLMs that work in production.",
   "nav": {
     "about": "About",
     "projects": "Projects",
@@ -27,16 +27,19 @@
     "projectsSub": "Real solutions",
     "scrollHint": "Scroll to browse",
     "projectN": "Project",
-    "viewProjects": "View projects"
+    "viewProjects": "View projects",
+    "viewList": "View as list",
+    "otherProjects": "other projects",
+    "myRole": "My role"
   },
   "hero": {
-    "tag": "// ai engineer + software · buenos aires",
-    "h1": "I build AI agents, bots and automations with LLMs <em>that work in production.</em>",
-    "lead": "AI Engineer with 5+ years in operations and digital transformation. Besides automating, I develop custom software (platforms, APIs and integrations) and always start from the business problem before defining the solution.",
+    "tag": "// automation & ai engineer · buenos aires",
+    "h1": "AI agents and automations <em>that work in production.</em>",
+    "lead": "One agent handles 50+ inquiries a day end to end and 50+ workflows run 24/7. I also build custom software: platforms, APIs and integrations.",
     "meta": [
       {
         "k": "Role",
-        "v": "AI Engineer + Software"
+        "v": "Automation & AI Engineer"
       },
       {
         "k": "Location",
