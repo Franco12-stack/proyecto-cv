@@ -27,7 +27,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
       <div class="pnav">
         <p class="pcount" aria-hidden="true"><b id="pcur">01</b><span> / {pad(n)}</span></p>
         <div class="pbars">
-          {pes.map((p, i) => (
+          {pes.slice(0, FEATURED).map((p, i) => (
             <button type="button" class={'pbar' + (i === 0 ? ' on' : '')} data-i={i} aria-label={`${es.ui.projectN} ${i + 1} / ${n}: ${p.title}`}></button>
           ))}
         </div>
