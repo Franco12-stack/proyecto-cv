@@ -55,6 +55,20 @@
       "en": "Coding alongside an AI assistant"
     },
     {
+      "c": "ia",
+      "name": "IA local",
+      "nameEn": "Local AI",
+      "es": "Modelos de IA que corren en local",
+      "en": "AI models that run locally"
+    },
+    {
+      "c": "ia",
+      "name": "Creación de agentes",
+      "nameEn": "Agent building",
+      "es": "Diseño y construcción de agentes de IA",
+      "en": "Designing and building AI agents"
+    },
+    {
       "c": "auto",
       "name": "n8n",
       "es": "Flujos y agentes",
@@ -77,6 +91,12 @@
       "name": "Blue Prism",
       "es": "RPA, nivel Foundation",
       "en": "RPA, Foundation level"
+    },
+    {
+      "c": "auto",
+      "name": "UiPath",
+      "es": "RPA y automatización de procesos",
+      "en": "RPA and process automation"
     },
     {
       "c": "auto",
@@ -143,6 +163,24 @@
       "name": "Azure DevOps",
       "es": "Gestión de proyectos",
       "en": "Project management"
+    },
+    {
+      "c": "plat",
+      "name": "Azure",
+      "es": "Servicios cloud de Microsoft",
+      "en": "Microsoft cloud services"
+    },
+    {
+      "c": "plat",
+      "name": "ServiceNow",
+      "es": "ITSM: tickets y requerimientos",
+      "en": "ITSM: tickets and requests"
+    },
+    {
+      "c": "plat",
+      "name": "Jira",
+      "es": "Gestión de incidencias y proyectos",
+      "en": "Issue and project management"
     },
     {
       "c": "infra",
