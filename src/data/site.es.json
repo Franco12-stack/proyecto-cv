@@ -35,7 +35,7 @@
   "hero": {
     "tag": "// automation & ai engineer · buenos aires",
     "h1": "Automatizo procesos y construyo software con IA <em>que funciona en producción.</em>",
-    "lead": "Vengo de operaciones y transformación digital (5+ años), así que parto siempre del problema del negocio. Hoy construyo agentes de IA, automatizaciones y software a medida: más de 50 flujos corren 24/7 y un agente atiende más de 50 consultas por día.",
+    "lead": "Vengo de operaciones y transformación digital. Hoy construyo agentes de IA, automatizaciones y software a medida.",
     "meta": [
       {
         "k": "Rol",
@@ -75,9 +75,8 @@
     "photo": "Foto",
     "signal": "ASCII",
     "p": [
-      "Vengo de operaciones: coordiné equipos, auditorías y procesos antes de pasar a automatizarlos. Esa mirada me sirve para entender el problema del negocio antes de elegir la herramienta.",
-      "Hoy trabajo con las APIs de Claude, OpenAI y DeepSeek, con n8n y Power Automate, y con desarrollo asistido por IA en Python y JavaScript. Estudio Ingeniería Industrial en UADE. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta.",
-      "También desarrollo software: la plataforma conversacional WhatsApp + Odoo, apps a medida para Tienda Nube, integraciones por API y un CRM de demostración (FastAPI, React y PostgreSQL) con 33 tests y código abierto."
+      "Coordiné equipos, auditorías y procesos antes de pasar a automatizarlos. Esa mirada me sirve para entender el problema del negocio antes de elegir la herramienta.",
+      "Trabajo con LLMs, n8n y Power Automate, y con desarrollo asistido por IA en Python y JavaScript. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
     ],
     "nowTitle": "// ahora mismo",
     "now": [
