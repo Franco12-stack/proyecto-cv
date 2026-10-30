@@ -1,0 +1,76 @@
+---
+// CV imprimible para reclutadores y filtros ATS: una columna, texto real, encabezados estándar. `npm run assets` lo convierte a PDF en /public.
+import es from '../../data/cv.es.json';
+import en from '../../data/cv.en.json';
+import stack from '../../data/stack.json';
+export function getStaticPaths() { return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }]; }
+const { lang } = Astro.params as { lang: 'es' | 'en' };
+const c = lang === 'es' ? es : en;
+const L = c.labels;
+const li = decodeURIComponent(stack.contact.linkedin.replace('https://www.', ''));
+const gh = stack.contact.github.replace('https://', '');
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8"><meta name="robots" content="noindex">
+  <title>Franco Fernandez · CV · {c.title}</title>
+  <style>
+    @page{size:A4;margin:13mm 14mm}
+    *{box-sizing:border-box}
+    body{font:9.6pt/1.38 Carlito,Calibri,"Helvetica Neue",Arial,sans-serif;color:#111;margin:0}
+    a{color:inherit;text-decoration:none}
+    header{margin:0 0 7pt}
+    h1{font:700 23pt/1.05 Carlito,Calibri,Arial,sans-serif;margin:0;letter-spacing:-.2pt}
+    .role{font-size:12pt;font-weight:700;color:#0B5F54;margin:2pt 0 3pt}
+    .contact{font-size:9.2pt;color:#333}
+    .contact span+span::before{content:" · ";color:#999}
+    h2{font:700 9.8pt Carlito,Calibri,Arial,sans-serif;text-transform:uppercase;letter-spacing:.7pt;color:#0B5F54;border-bottom:1pt solid #0B5F54;padding-bottom:1.5pt;margin:9pt 0 4pt}
+    p{margin:0}
+    .sum{font-size:9.8pt}
+    .sk{display:grid;grid-template-columns:105pt 1fr;gap:1.5pt 8pt}
+    .sk b{font-weight:700}
+    .job{margin:0 0 5.5pt;break-inside:avoid}
+    .jh{display:flex;justify-content:space-between;gap:10pt;align-items:baseline}
+    .jh b{font-weight:700;font-size:10.2pt}.jh i{font-style:normal;color:#444;white-space:nowrap;font-size:9.2pt}
+    .org{color:#0B5F54;font-weight:700}
+    ul{margin:1.5pt 0 0;padding-left:11pt}li{margin:0 0 1.2pt}
+    .pj{margin:0 0 3pt}.pj b{font-weight:700}.pj .u{color:#0B5F54;font-size:9pt}
+    .ed{display:flex;justify-content:space-between}.ed span{color:#444}
+    .ce li{font-size:9.2pt;margin:0 0 .6pt}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Franco Fernandez</h1>
+    <div class="role">{c.title}</div>
+    <div class="contact"><span>Buenos Aires, Argentina</span><span>{stack.contact.email}</span><span>{li}</span><span>{gh}</span></div>
+  </header>
+
+  <h2>{L.summary}</h2>
+  <p class="sum">{c.summary}</p>
+
+  <h2>{L.skills}</h2>
+  <div class="sk">{c.skills.map((s) => <><b>{s.h}</b><span>{s.v}</span></>)}</div>
+
+  <h2>{L.exp}</h2>
+  {c.experience.map((x) => (
+    <div class="job">
+      <div class="jh"><span><b>{x.role}</b> · <span class="org">{x.org}</span></span><i>{x.when}</i></div>
+      <ul>{x.bullets.map((b) => <li>{b}</li>)}</ul>
+    </div>
+  ))}
+
+  <h2>{L.projects}</h2>
+  {c.projects.map((p) => <div class="pj"><b>{p.n}</b>. {p.d} <span class="u">{p.u}</span></div>)}
+
+  <h2>{L.edu}</h2>
+  {c.education.map((e) => <div class="ed"><b>{e.t}</b><span>{e.s}</span></div>)}
+
+  <h2>{L.certs}</h2>
+  <ul class="ce">{c.certs.map((x) => <li>{x}</li>)}</ul>
+
+  <h2>{L.langs}</h2>
+  <p>{c.langs}</p>
+</body>
+</html>

@@ -261,9 +261,7 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 
 /* retrato sin marco: solo la silueta */
 .pframe.bare{border:0;background:none;box-shadow:none!important;aspect-ratio:880/816;overflow:visible}
-.pframe.bare canvas{filter:drop-shadow(0 0 28px rgba(67,217,190,.28)) drop-shadow(0 0 2px rgba(67,217,190,.5));-webkit-mask-image:linear-gradient(#000 84%,transparent 100%);mask-image:linear-gradient(#000 84%,transparent 100%)}
-:root[data-theme="light"] .pframe.bare canvas{filter:drop-shadow(0 12px 24px rgba(11,117,102,.25))}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .pframe.bare canvas{filter:drop-shadow(0 12px 24px rgba(11,117,102,.25))}}
+.pframe.bare canvas{-webkit-mask-image:linear-gradient(#000 84%,transparent 100%);mask-image:linear-gradient(#000 84%,transparent 100%)}
 .pframe.bare::before,.pframe.bare::after{display:none}
 .pframe.bare .ptag{left:0;top:-4px}
 .pframe.bare .pre{left:0;bottom:8px}

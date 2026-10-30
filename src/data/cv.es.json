@@ -1,0 +1,126 @@
+{
+  "lang": "es",
+  "title": "Automation & AI Engineer",
+  "labels": {
+    "summary": "Perfil",
+    "skills": "Competencias técnicas",
+    "exp": "Experiencia profesional",
+    "projects": "Proyectos destacados",
+    "edu": "Educación",
+    "certs": "Certificaciones y cursos",
+    "langs": "Idiomas",
+    "present": "Actualidad"
+  },
+  "summary": "Automation & AI Engineer con más de 5 años en operaciones y transformación digital: parto del problema del negocio y lo resuelvo con automatización, IA y software a medida. Más de 50 flujos activos 24/7 (n8n y Power Automate), un agente de IA que atiende más de 50 consultas diarias de punta a punta, una plataforma conversacional WhatsApp + Odoo y herramientas internas conectadas a ServiceNow y Jira. Python y JavaScript (nivel intermedio), APIs REST, LLMs (Claude, OpenAI, DeepSeek) y RPA (UiPath, Blue Prism).",
+  "skills": [
+    {
+      "h": "IA y LLMs",
+      "v": "Claude, OpenAI y DeepSeek (APIs) · agentes y tool use · MCP · RAG · prompt engineering · desarrollo asistido por IA · IA local"
+    },
+    {
+      "h": "Automatización y RPA",
+      "v": "n8n · Power Automate · UiPath · Blue Prism (Foundation) · Make · WAHA (WhatsApp) · automatización de browser y scraping"
+    },
+    {
+      "h": "Desarrollo",
+      "v": "Python y JavaScript (intermedio) · APIs REST y webhooks · FastAPI · React · SQL Server · Excel/VBA · Git"
+    },
+    {
+      "h": "Plataformas e ITSM",
+      "v": "ServiceNow · Jira · Odoo ERP · Power Apps y Copilot Studio · SharePoint · Azure y Azure DevOps · Tienda Nube · API de Mercado Libre"
+    },
+    {
+      "h": "Infraestructura",
+      "v": "Linux y Windows Server · VPN · firewalls · DNS · Docker"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Desarrollador/a de Automatización + AI",
+      "org": "Softtek",
+      "when": "sep 2026 – Actualidad",
+      "bullets": [
+        "Diseño automatizaciones e integraciones con APIs REST, Python y Power Automate.",
+        "Incorporo LLMs y agentes de IA en procesos de negocio (prompt engineering y desarrollo asistido por IA).",
+        "Trabajo con las herramientas de automatización e IA del equipo: UiPath, Blue Prism, Azure y Microsoft, IA local y creación de agentes.",
+        "Creé una herramienta interna de gestión de tickets ITSM (Power Apps y SharePoint) conectada a ServiceNow y Jira, con carga y extracción de datos automatizadas."
+      ]
+    },
+    {
+      "role": "Especialista en IT Automation e IA",
+      "org": "Integrados Argentinos",
+      "when": "2024 – 2026",
+      "bullets": [
+        "Desarrollé en Python y JavaScript una plataforma conversacional WhatsApp + Odoo (WAHA): los vendedores gestionan cartera, presupuestos y pedidos desde una sola interfaz, con IA que inicia conversaciones y genera ofertas. Un módulo de difusiones controladas eliminó los bloqueos de cuenta.",
+        "Implementé con n8n y un LLM un agente autónomo que gestiona más de 50 interacciones diarias de punta a punta: redujo el tiempo de respuesta de horas a minutos y opera sin intervención manual desde 2024.",
+        "Diseño y mantengo más de 50 flujos en producción (n8n y Power Automate) con APIs REST y webhooks, 24/7.",
+        "Automaticé el monitoreo periódico de precios de la competencia (scraping) y la activación y desactivación de 300–500 promociones en Mercado Libre con automatización de browser e IA.",
+        "Administré servidores Linux y Windows, VPNs, firewalls y DNS donde corren las soluciones."
+      ]
+    },
+    {
+      "role": "Coordinador de Operaciones y Referente de Auditoría",
+      "org": "Integrados Argentinos",
+      "when": "2020 – 2024",
+      "bullets": [
+        "Lideré 18 operarios asegurando eficiencia y cumplimiento de objetivos operativos.",
+        "Implementé 5S, diseñé procedimientos operativos y coordiné el control de inventario."
+      ]
+    },
+    {
+      "role": "Freelance IT e infraestructura",
+      "org": "Independiente",
+      "when": "2020 – Actualidad",
+      "bullets": [
+        "Servidores Linux y Windows, VPNs, firewalls y DNS; apps a medida para Tienda Nube e integraciones por API REST para múltiples clientes.",
+        "Segundo cerebro (proyecto personal): Obsidian, MCP y Claude para consultar mis notas en lenguaje natural."
+      ]
+    },
+    {
+      "role": "Ejecutivo de Ventas",
+      "org": "Importodoeste SRL",
+      "when": "2018 – 2020",
+      "bullets": [
+        "Ventas en Mercado Libre, Tienda Nube, Instagram y Facebook; atención presencial y cierre de ventas."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "n": "WhatsApp CRM (demo público)",
+      "d": "Plataforma de ventas por WhatsApp con limitador anti-bloqueo y rampa de calentamiento. FastAPI, PostgreSQL, React, Docker; 14 módulos y 33 tests.",
+      "u": "github.com/Franco12-stack/whatsapp-crm-demo"
+    },
+    {
+      "n": "PCForge",
+      "d": "Configurador de PCs con precios mayoristas sobre una plataforma sin precios por línea. Node.js; test de propiedades sobre 500 carritos.",
+      "u": "github.com/Franco12-stack/pcforge"
+    },
+    {
+      "n": "Portfolio con casos de estudio",
+      "d": "Agente de IA con flujo real de n8n, herramienta ITSM, automatización de promociones y más.",
+      "u": "franco12-stack.github.io/proyecto-cv"
+    }
+  ],
+  "education": [
+    {
+      "t": "Ingeniería Industrial",
+      "s": "UADE · en curso desde 2022"
+    },
+    {
+      "t": "Diplomatura en Sistemas SAP",
+      "s": "UADE · en curso desde 2025"
+    }
+  ],
+  "certs": [
+    "Google AI Professional Certificate (Google / Coursera, 2026) · ID KECYUUIUMTHC",
+    "Build Intelligent Agents Using DeepSeek & N8N (Board Infinity / Coursera, 2026) · ID 0BI6OMEV2BZI",
+    "Power Automate: Building and Managing Automated Workflows (Whizlabs / Coursera, 2026) · ID 56U4PNYL8YQA",
+    "Blue Prism Foundation Training (Blue Prism / Coursera, 2026)",
+    "IBM AI Engineering Professional Certificate (IBM / Coursera, 2026)",
+    "CS50P, Introducción a la programación con Python (Harvard / Coursera, 2026)",
+    "The Missing Semester of CS (MIT / Coursera, 2026)",
+    "SQL for Data Science (Coursera, 2026)"
+  ],
+  "langs": "Español (nativo) · Inglés (técnico, B2) · Portugués (básico)"
+}

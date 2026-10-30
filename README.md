@@ -9,7 +9,7 @@ npm run build      # genera dist/
 npm run assets     # regenera og-image.png (requiere Playwright + Chromium)
 ```
 
-- **Contenido**: `src/data/*.es.json` / `*.en.json` (y `stack.json`). El CV descargable es el PDF propio `public/cv-franco-fernandez.pdf` (sin teléfono ni referencias; solo en español por ahora).
+- **Contenido**: `src/data/*.es.json` / `*.en.json` (y `stack.json`). El CV descargable es el PDF propio `public/cv-franco-fernandez.pdf (CV propio; hay versiones alternativas en ES y EN en docs/cv-alternativos, generadas con `npm run assets` desde src/data/cv.*.json)` (sin teléfono ni referencias; solo en español por ahora).
 - **Despliegue**: GitHub Pages con `.github/workflows/deploy.yml` (rama `main`; activar Pages → Source: GitHub Actions). Por defecto `site=https://franco12-stack.github.io`, `base=/proyecto-cv`. Para Vercel o dominio propio: `SITE=https://tudominio.com BASE=/ npm run build` (y actualizar `public/robots.txt`).
 
 ## Pendientes (los aporta Franco)

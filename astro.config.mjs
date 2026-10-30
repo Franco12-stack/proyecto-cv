@@ -9,5 +9,5 @@ export default defineConfig({
   site,
   base,
   trailingSlash: 'always',
-  integrations: [sitemap({ filter: (p) => !/\/og\//.test(p) })],
+  integrations: [sitemap({ filter: (p) => !/\/(cv|og)\//.test(p) })],
 });
