@@ -8,12 +8,18 @@ import T from './T.astro';
   <div class="body about-grid">
     <div class="about-text">
       {es.about.p.map((p, i) => <p><T es={p} en={en.about.p[i]} /></p>)}
-    </div>
-    <div class="about-now">
       <p class="now-h"><T es={es.about.nowTitle} en={en.about.nowTitle} /></p>
       <ul class="now">
         {es.about.now.map((p, i) => <li><T es={p} en={en.about.now[i]} /></li>)}
       </ul>
+    </div>
+    <div class="about-now">
+      <p class="now-h"><T es={es.about.timelineTitle} en={en.about.timelineTitle} /></p>
+      <ol class="tline">
+        {es.about.timeline.map((t, i) => (
+          <li><small>{t.y}</small><b><T es={t.t} en={en.about.timeline[i].t} /></b><span><T es={t.d} en={en.about.timeline[i].d} /></span></li>
+        ))}
+      </ol>
     </div>
   </div>
 </section>

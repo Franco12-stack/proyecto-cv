@@ -75,14 +75,38 @@
     "photo": "Photo",
     "signal": "ASCII",
     "p": [
-      "I coordinated teams, audits and processes before moving on to automate them. That background helps me understand the business problem before choosing the tool.",
-      "I work with LLMs, n8n and Power Automate, and with AI-assisted development in Python and JavaScript. I like to launch fast with what already exists and build custom only what is needed."
+      "I started selling on marketplaces and social media, moved on to coordinating 18 people and auditing processes, and from there to automating them. That path left me with an edge: I know how work really gets done before writing a line of code.",
+      "Since 2020 I have worked in parallel as an IT freelancer: servers, VPNs, firewalls and custom Tienda Nube apps. That technical base let me move from running processes to building them: AI agents, workflows in n8n and Power Automate, and software in Python and JavaScript.",
+      "First I understand the process end to end; then I choose the tool (n8n, Power Automate, UiPath or custom code) and take it to production. I like to launch fast with what already exists and build custom only what is needed."
     ],
     "nowTitle": "// right now",
     "now": [
       "Developing automations and AI solutions at <b>Softtek</b>",
       "Building my <b>second brain</b> with Obsidian, MCP and Claude",
       "Studying <b>Industrial Engineering</b> and a <b>SAP</b> diploma at UADE"
+    ],
+    "timelineTitle": "// career",
+    "timeline": [
+      {
+        "y": "2018 – 2020",
+        "t": "Sales",
+        "d": "Mercado Libre, Tienda Nube, Instagram and Facebook."
+      },
+      {
+        "y": "2020 – 2024",
+        "t": "Operations",
+        "d": "Led 18 operators; 5S, procedures and audits."
+      },
+      {
+        "y": "2024 – 2026",
+        "t": "IT Automation & AI",
+        "d": "Agents, workflows and custom software."
+      },
+      {
+        "y": "2026 – now",
+        "t": "Softtek",
+        "d": "Automation and AI in business processes."
+      }
     ]
   },
   "sections": {

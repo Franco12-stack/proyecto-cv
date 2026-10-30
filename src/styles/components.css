@@ -296,3 +296,14 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .others-grid p{margin:0;color:var(--dim);font-size:14px;flex:1}
 .others-grid .more{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
 @media (max-width:860px){.others-grid{grid-template-columns:1fr}}
+
+/* trayectoria */
+.tline{list-style:none;margin:12px 0 0;padding:0 0 0 20px;position:relative}
+.tline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line)}
+.tline li{position:relative;padding:0 0 18px;display:grid;gap:1px}
+.tline li::before{content:"";position:absolute;left:-20px;top:6px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tline li:last-child::before{background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.tline small{font:400 11px var(--f-mono);letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.tline b{font:600 16px var(--f-body);color:var(--ink)}
+.tline span{font-size:14px;color:var(--dim)}
+.tnote{margin:2px 0 0 20px;font:400 12px var(--f-mono);color:var(--dim)}
