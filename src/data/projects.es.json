@@ -98,6 +98,48 @@
   "diagram": "n8n"
  },
  {
+  "slug": "gestion-de-tickets",
+  "tags": [
+   "Power Apps",
+   "SharePoint",
+   "ServiceNow",
+   "Jira"
+  ],
+  "diagram": "tickets",
+  "title": "Herramienta ITSM de gestión de tickets",
+  "pill": "herramienta interna",
+  "summary": "Herramienta interna para gestionar tickets de ITSM de dos clientes: se conecta con ServiceNow y Jira, automatiza la carga y la extracción de datos, y permite planificar tareas por ticket, asignarlas al equipo y seguir compromisos y atrasos.",
+  "metric": {
+   "v": "ITSM",
+   "l": "ServiceNow y Jira en un solo lugar de gestión"
+  },
+  "context": "Los requerimientos de dos clientes llegan desde sistemas ITSM (ServiceNow y Jira) y hacía falta un solo lugar para planificar el trabajo, asignar responsables y controlar los compromisos con el cliente.",
+  "solution": "Una aplicación en Power Apps con los datos en listas de SharePoint y acceso con la cuenta de Microsoft 365. Se conecta con ServiceNow y Jira y automatiza la carga y la extracción de datos: una pantalla de cargas guarda el historial y el resultado de cada una. Cada ticket tiene su plan de tareas con responsable, fechas, horas estimadas, dependencias y comentarios internos, y los pedidos internos que no vienen de ServiceNow se cargan como nuevos requerimientos.",
+  "result": [
+   "Inicio con los tickets abiertos, los tickets en riesgo y las tareas atrasadas.",
+   "Seguimiento agrupado por motivo (vencidos, vencen esta semana, sin responsable), con asignación y reasignación.",
+   "Cada persona ve sus tareas por fecha de entrega y las inicia o termina desde Mis tareas.",
+   "Carga de tareas desde Excel: cada fila va al ticket que indica su columna.",
+   "Personas y roles gestionados por un administrador, con acceso restringido por pantalla.",
+   "Historial de movimientos de cada ticket y ayuda integrada en cada pantalla."
+  ],
+  "extra": [
+   {
+    "title": "Módulos",
+    "items": [
+     "Inicio: panel con lo que requiere atención.",
+     "Tickets: lista con búsqueda y filtros por cliente, en riesgo y sin responsable.",
+     "Ticket: datos, responsable, compromiso con el cliente, plan de tareas, comentarios, adjuntos e historial.",
+     "Mis tareas: las tareas abiertas y terminadas de cada persona.",
+     "Seguimiento: vencidos, próximos a vencer y sin responsable.",
+     "Cargas: importaciones desde ServiceNow con historial.",
+     "Personas y roles: administración del equipo."
+    ]
+   }
+  ],
+  "note": "Herramienta interna: no se publican capturas, nombres de clientes ni datos reales. El diagrama es una ilustración."
+ },
+ {
   "slug": "pcforge",
   "tags": [
    "JavaScript",

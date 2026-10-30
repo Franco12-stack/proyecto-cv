@@ -98,6 +98,48 @@
   "diagram": "n8n"
  },
  {
+  "slug": "gestion-de-tickets",
+  "tags": [
+   "Power Apps",
+   "SharePoint",
+   "ServiceNow",
+   "Jira"
+  ],
+  "diagram": "tickets",
+  "title": "ITSM ticket management tool",
+  "pill": "internal tool",
+  "summary": "Internal tool to manage ITSM tickets for two clients: it connects to ServiceNow and Jira, automates data loading and extraction, and lets the team plan tasks per ticket, assign them and track commitments and delays.",
+  "metric": {
+   "v": "ITSM",
+   "l": "ServiceNow and Jira in a single place to manage"
+  },
+  "context": "Requests from two clients arrive from ITSM systems (ServiceNow and Jira) and a single place was needed to plan the work, assign owners and control commitments to the client.",
+  "solution": "A Power Apps application with data in SharePoint lists and sign-in with the Microsoft 365 account. It connects to ServiceNow and Jira and automates data loading and extraction: an imports screen keeps the history and result of each one. Each ticket has its task plan with owner, dates, estimated hours, dependencies and internal comments, and internal requests that do not come from ServiceNow are entered as new requirements.",
+  "result": [
+   "Home with open tickets, tickets at risk and overdue tasks.",
+   "Follow-up grouped by reason (overdue, due this week, no owner), with assignment and reassignment.",
+   "Each person sees their tasks by due date and starts or finishes them from My tasks.",
+   "Task upload from Excel: each row goes to the ticket named in its column.",
+   "People and roles managed by an administrator, with per-screen access restrictions.",
+   "Movement history for each ticket and built-in help on every screen."
+  ],
+  "extra": [
+   {
+    "title": "Modules",
+    "items": [
+     "Home: a panel with what needs attention.",
+     "Tickets: list with search and filters by client, at risk and unassigned.",
+     "Ticket: details, owner, client commitment, task plan, comments, attachments and history.",
+     "My tasks: each person’s open and finished tasks.",
+     "Follow-up: overdue, due soon and unassigned.",
+     "Imports: loads from ServiceNow with history.",
+     "People and roles: team administration."
+    ]
+   }
+  ],
+  "note": "Internal tool: no screenshots, client names or real data are published. The diagram is an illustration."
+ },
+ {
   "slug": "pcforge",
   "tags": [
    "JavaScript",

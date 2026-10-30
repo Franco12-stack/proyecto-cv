@@ -8,6 +8,7 @@ import PipelineMini from './PipelineMini.astro';
 import BrowserScan from './BrowserScan.astro';
 import ObsidianGraph from './ObsidianGraph.astro';
 import PriceWatch from './PriceWatch.astro';
+import TicketBoard from './TicketBoard.astro';
 import { url } from '../lib/url';
 import flowData from '../data/agente-flow.json';
 const flowStats = { nodes: flowData.nodes.length };
@@ -48,6 +49,9 @@ const pad = (i: number) => String(i).padStart(2, '0');
               </>) : (p as any).diagram === 'promos' ? (<>
                 <ul class="pstats"><li><b>{p.metric.v}</b><span><T es="promociones activadas o desactivadas de forma autónoma" en="promotions activated or deactivated autonomously" /></span></li></ul>
                 <BrowserScan />
+              </>) : (p as any).diagram === 'tickets' ? (<>
+                <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
+                <TicketBoard />
               </>) : (p as any).diagram === 'prices' ? (<>
                 <ul class="pstats"><li><b>{p.metric.v}</b><span><T es={p.metric.l} en={pen[i].metric.l} /></span></li></ul>
                 <PriceWatch />
