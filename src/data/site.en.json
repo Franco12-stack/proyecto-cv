@@ -75,9 +75,8 @@
     "photo": "Photo",
     "signal": "ASCII",
     "p": [
-      "I started selling on marketplaces and social media, moved on to coordinating 18 people and auditing processes, and from there to automating them. That path left me with an edge: I know how work really gets done before writing a line of code.",
-      "Since 2020 I have worked in parallel as an IT freelancer: servers, VPNs, firewalls and custom Tienda Nube apps. That technical base let me move from running processes to building them: AI agents, workflows in n8n and Power Automate, and software in Python and JavaScript.",
-      "First I understand the process end to end; then I choose the tool (n8n, Power Automate, UiPath or custom code) and take it to production. I like to launch fast with what already exists and build custom only what is needed."
+      "I make a company’s processes run on their own: automations, AI agents and custom software, end to end, from understanding the process to running it in production.",
+      "I work with LLMs, n8n, Power Automate, UiPath, Python and JavaScript, and I choose the tool based on the problem."
     ],
     "nowTitle": "// right now",
     "now": [
@@ -85,27 +84,22 @@
       "Building my <b>second brain</b> with Obsidian, MCP and Claude",
       "Studying <b>Industrial Engineering</b> and a <b>SAP</b> diploma at UADE"
     ],
-    "timelineTitle": "// career",
+    "timelineTitle": "// how I work",
     "timeline": [
       {
-        "y": "2018 – 2020",
-        "t": "Sales",
-        "d": "Mercado Libre, Tienda Nube, Instagram and Facebook."
+        "y": "01",
+        "t": "The problem first",
+        "d": "I understand the process and the business goal before choosing technology."
       },
       {
-        "y": "2020 – 2024",
-        "t": "Operations",
-        "d": "Led 18 operators; 5S, procedures and audits."
+        "y": "02",
+        "t": "Launch fast",
+        "d": "I start from what already exists and take the solution to production as soon as possible."
       },
       {
-        "y": "2024 – 2026",
-        "t": "IT Automation & AI",
-        "d": "Agents, workflows and custom software."
-      },
-      {
-        "y": "2026 – now",
-        "t": "Softtek",
-        "d": "Automation and AI in business processes."
+        "y": "03",
+        "t": "Custom, only what is needed",
+        "d": "I build in-house only where an existing tool falls short."
       }
     ]
   },

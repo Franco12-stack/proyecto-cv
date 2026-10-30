@@ -15,7 +15,7 @@ import T from './T.astro';
     </div>
     <div class="about-now">
       <p class="now-h"><T es={es.about.timelineTitle} en={en.about.timelineTitle} /></p>
-      <ol class="tline">
+      <ol class="how">
         {es.about.timeline.map((t, i) => (
           <li><small>{t.y}</small><b><T es={t.t} en={en.about.timeline[i].t} /></b><span><T es={t.d} en={en.about.timeline[i].d} /></span></li>
         ))}

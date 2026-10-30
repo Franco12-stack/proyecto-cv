@@ -75,9 +75,8 @@
     "photo": "Foto",
     "signal": "ASCII",
     "p": [
-      "Empecé vendiendo en marketplaces y redes, pasé a coordinar a 18 personas y a auditar procesos, y de ahí a automatizarlos. Esa secuencia me dejó una ventaja: sé cómo se trabaja de verdad antes de escribir una línea de código.",
-      "Desde 2020 trabajo en paralelo como freelance de IT: servidores, VPNs, firewalls y apps a medida para Tienda Nube. Esa base técnica me permitió pasar de operar procesos a construirlos: agentes de IA, flujos en n8n y Power Automate, y software en Python y JavaScript.",
-      "Primero entiendo el proceso de punta a punta; después elijo la herramienta (n8n, Power Automate, UiPath o código propio) y la llevo a producción. Me gusta lanzar rápido con lo que ya existe y desarrollar a medida solo lo que hace falta."
+      "Me dedico a que los procesos de una empresa funcionen solos: automatizaciones, agentes de IA y software a medida, de punta a punta, desde entender el proceso hasta dejarlo corriendo en producción.",
+      "Trabajo con LLMs, n8n, Power Automate, UiPath, Python y JavaScript, y elijo la herramienta según el problema."
     ],
     "nowTitle": "// ahora mismo",
     "now": [
@@ -85,27 +84,22 @@
       "Armando mi <b>segundo cerebro</b> con Obsidian, MCP y Claude",
       "Estudiando <b>Ingeniería Industrial</b> y una Diplomatura en <b>SAP</b> en UADE"
     ],
-    "timelineTitle": "// trayectoria",
+    "timelineTitle": "// cómo trabajo",
     "timeline": [
       {
-        "y": "2018 – 2020",
-        "t": "Ventas",
-        "d": "Mercado Libre, Tienda Nube, Instagram y Facebook."
+        "y": "01",
+        "t": "Primero el problema",
+        "d": "Entiendo el proceso y el objetivo del negocio antes de elegir tecnología."
       },
       {
-        "y": "2020 – 2024",
-        "t": "Operaciones",
-        "d": "Lideré 18 operarios; 5S, procedimientos y auditoría."
+        "y": "02",
+        "t": "Lanzar rápido",
+        "d": "Parto de lo que ya existe y llevo la solución a producción cuanto antes."
       },
       {
-        "y": "2024 – 2026",
-        "t": "IT Automation e IA",
-        "d": "Agentes, flujos y software a medida."
-      },
-      {
-        "y": "2026 – hoy",
-        "t": "Softtek",
-        "d": "Automatización e IA en procesos de negocio."
+        "y": "03",
+        "t": "A medida, solo lo necesario",
+        "d": "Desarrollo propio únicamente donde una herramienta existente no alcanza."
       }
     ]
   },
