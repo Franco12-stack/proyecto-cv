@@ -1,0 +1,129 @@
+---
+// Réplica de la interfaz de la app de tickets (Power Apps): mismos colores, estructura y pantallas. Datos de ejemplo; clientes anónimos.
+const nav = [['Inicio', 'Home', ''], ['Tickets', 'Tickets', '24'], ['Mis tareas', 'My tasks', '7'], ['Seguimiento', 'Follow-up', '5'], ['Cargas', 'Imports', '']];
+const tk = [
+  { n: 'TKT-0412', c: 'Cliente A', t: 'Actualizar reporte mensual de ventas', e: 'Abierto', ek: 'b', p: 'Alta', r: 'Ana Pérez', f: '03/11', rel: 'en 5 días', a: '12 d' },
+  { n: 'TKT-0409', c: 'Cliente B', t: 'Alta de usuarios para nueva sucursal', e: 'En desarrollo', ek: 'b', p: 'Moderada', r: 'Luis Gómez', f: '31/10', rel: 'en 2 días', a: '9 d' },
+  { n: 'TKT-0398', c: 'Cliente A', t: 'Error en la carga de comprobantes', e: 'Pendiente', ek: 'o', p: 'Crítica', r: 'Sin responsable', f: '27/10', rel: 'vencido hace 2 días', a: '21 d', bad: true },
+  { n: 'TKT-0391', c: 'Cliente B', t: 'Ajuste de permisos en módulo de compras', e: 'En revisión', ek: 'b', p: 'Moderada', r: 'Ana Pérez', f: '05/11', rel: 'en 7 días', a: '15 d' },
+  { n: 'TKT-0387', c: 'Cliente A', t: 'Integración con sistema de pagos', e: 'Nuevo', ek: 'b', p: 'Baja', r: 'Luis Gómez', f: '12/11', rel: 'en 14 días', a: '3 d' },
+  { n: 'TKT-0380', c: 'Cliente B', t: 'Revisión del tablero de indicadores', e: 'Entregado', ek: 'g', p: 'Baja', r: 'Ana Pérez', f: '28/10', rel: '', a: '30 d' },
+];
+const tasks = [
+  { n: 'TKT-0412', t: 'Actualizar reporte mensual de ventas', ks: [['Relevar datos', 'Análisis', 'Ana Pérez', 'Hecha', 'g', '29/10'], ['Armar reporte', 'Desarrollo', 'Ana Pérez', 'En curso', 'b', '03/11']] },
+  { n: 'TKT-0398', t: 'Error en la carga de comprobantes', ks: [['Reproducir el error', 'Análisis', 'Sin responsable', 'Atrasada', 'r', '27/10'], ['Corregir validación', 'Desarrollo', 'Sin responsable', 'Pendiente', 'o', '30/10'], ['Probar y entregar', 'Prueba', 'Luis Gómez', 'Pendiente', 'o', '31/10']] },
+  { n: 'TKT-0391', t: 'Ajuste de permisos en módulo de compras', ks: [['Definir roles', 'Análisis', 'Ana Pérez', 'En curso', 'b', '01/11']] },
+];
+---
+<figure class="ta">
+  <div class="fit" role="img" aria-label="Réplica de la interfaz de la herramienta de tickets con datos de ejemplo: panel de inicio, lista de tickets y plan de tareas / Replica of the ticket tool interface with sample data: home panel, ticket list and task plan">
+    <div class="app">
+      <div class="hd"><b data-l="es">Gestión de tickets</b><b data-l="en">Ticket management</b><span class="srcd"><span data-l="es">Datos de ServiceNow al 28/10 08:00</span><span data-l="en">ServiceNow data as of 10/28 08:00</span></span><i class="sep"></i><i class="av">AP</i><span class="us"><span data-l="es">Usuario de ejemplo · Consultor</span><span data-l="en">Sample user · Consultant</span></span></div>
+      <div class="bd">
+        <div class="sb">
+          {nav.map((n, i) => <div class={'ni n' + i}><span><span data-l="es">{n[0]}</span><span data-l="en">{n[1]}</span></span>{n[2] && <em class={i === 3 ? 'red' : ''}>{n[2]}</em>}</div>)}
+          <hr /><div class="ni"><span><span data-l="es">Personas y roles</span><span data-l="en">People & roles</span></span></div>
+        </div>
+        <div class="ct">
+          <section class="v v0">
+            <h4><span data-l="es">Inicio</span><span data-l="en">Home</span></h4>
+            <div class="kp">
+              <div><u data-l="es">Tickets abiertos</u><u data-l="en">Open tickets</u><b>24</b><a data-l="es">Ver todos →</a><a data-l="en">See all →</a></div>
+              <div class="rd"><u data-l="es">Tickets en riesgo</u><u data-l="en">Tickets at risk</u><b>5</b><a data-l="es">Ver en Seguimiento →</a><a data-l="en">See in Follow-up →</a></div>
+              <div class="rd"><u data-l="es">Tareas atrasadas</u><u data-l="en">Overdue tasks</u><b>3</b><a data-l="es">Ver en Seguimiento →</a><a data-l="en">See in Follow-up →</a></div>
+              <div><u data-l="es">Mis tareas abiertas</u><u data-l="en">My open tasks</u><b>7</b><a data-l="es">2 vencen esta semana</a><a data-l="en">2 due this week</a></div>
+            </div>
+            <div class="two">
+              <div class="cd"><div class="ch"><strong data-l="es">Requiere atención</strong><strong data-l="en">Needs attention</strong><em class="pl r">5</em></div>
+                {tk.filter((x) => x.bad || x.r === 'Sin responsable' || x.p === 'Alta').slice(0, 3).map((x) => <div class="li"><div><small>{x.n} · {x.c}</small><b>{x.t}</b><span>{x.r}</span></div><span class={'pl ' + (x.bad ? 'r' : 'o')}><span data-l="es">{x.bad ? 'Vencido' : 'Vence esta semana'}</span><span data-l="en">{x.bad ? 'Overdue' : 'Due this week'}</span></span></div>)}
+                <p class="ft" data-l="es">Se muestran los 5 más urgentes, el compromiso más cercano primero.</p><p class="ft" data-l="en">The 5 most urgent are shown, nearest commitment first.</p></div>
+              <div class="cd"><div class="ch"><strong data-l="es">Mis próximas entregas</strong><strong data-l="en">My upcoming deliveries</strong></div>
+                {tasks.flatMap((x) => x.ks.filter((k) => k[3] !== 'Hecha').map((k) => ({ x, k }))).slice(0, 3).map(({ x, k }) => <div class="li"><div><b>{k[0]}</b><span>{x.n}</span></div><span class="dt">{k[5]}</span></div>)}
+              </div>
+            </div>
+          </section>
+          <section class="v v1">
+            <h4><span data-l="es">Tickets</span><span data-l="en">Tickets</span><small data-l="es">24 abiertos</small><small data-l="en">24 open</small><span class="bt">+ <span data-l="es">Nuevo requerimiento</span><span data-l="en">New request</span></span></h4>
+            <div class="fl"><i class="on">Todos</i><i>Cliente A</i><i>Cliente B</i><i class="g"><span data-l="es">En riesgo</span><span data-l="en">At risk</span></i><i class="g"><span data-l="es">Sin responsable</span><span data-l="en">Unassigned</span></i><i class="g"><span data-l="es">Incluir cerrados</span><span data-l="en">Include closed</span></i><i class="g"><span data-l="es">Ver tareas</span><span data-l="en">See tasks</span></i></div>
+            <div class="tb">
+              <div class="th"><span data-l="es">Número</span><span data-l="en">Number</span><span data-l="es">Resumen</span><span data-l="en">Summary</span><span data-l="es">Estado</span><span data-l="en">Status</span><span data-l="es">Prioridad</span><span data-l="en">Priority</span><span data-l="es">Responsable</span><span data-l="en">Owner</span><span data-l="es">Compromiso</span><span data-l="en">Commitment</span><span data-l="es">Antigüedad</span><span data-l="en">Age</span></div>
+              {tk.map((x) => <div class={'tr' + (x.bad ? ' bad' : '')}><span class="nu">{x.n}</span><span class="rs"><b>{x.t}</b><small>{x.c}</small></span><span><em class={'pl ' + x.ek}>{x.e}</em></span><span class={'pr ' + x.p}>{x.p}</span><span class={x.r === 'Sin responsable' ? 'sr' : ''}>{x.r}</span><span><b>{x.f}</b>{x.rel && <small class={x.bad ? 'rr' : ''}>{x.rel}</small>}</span><span>{x.a}</span></div>)}
+            </div>
+          </section>
+          <section class="v v2">
+            <h4><span data-l="es">Tickets</span><span data-l="en">Tickets</span><small data-l="es">Plan de tareas por ticket</small><small data-l="en">Task plan per ticket</small></h4>
+            <div class="fl"><i class="g">Todos</i><i class="g">Cliente A</i><i class="g">Cliente B</i><i class="g"><span data-l="es">En riesgo</span><span data-l="en">At risk</span></i><i class="on"><span data-l="es">Ver tareas</span><span data-l="en">See tasks</span></i></div>
+            <div class="tb t2">
+              <div class="th"><span>Ticket</span><span data-l="es">Tarea</span><span data-l="en">Task</span><span data-l="es">Responsable</span><span data-l="en">Owner</span><span data-l="es">Estado</span><span data-l="en">Status</span><span data-l="es">Entrega</span><span data-l="en">Due</span></div>
+              {tasks.flatMap((x) => x.ks.map((k, j) => ({ x, k, j }))).map(({ x, k, j }) => <div class={'tr' + (j === 0 ? ' first' : '')}><span class="rs">{j === 0 ? <><b>{x.n}</b><small>{x.t}</small></> : null}</span><span class="rs"><b>└ {k[0]}</b><small>{k[1]}</small></span><span class={k[2] === 'Sin responsable' ? 'sr' : ''}>{k[2]}</span><span><em class={'pl ' + k[4]}>{k[3]}</em></span><span>{k[5]}</span></div>)}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figcaption><span data-l="es">Réplica de la interfaz de la app, con datos de ejemplo y clientes anónimos.</span><span data-l="en">Replica of the app’s interface, with sample data and anonymous clients.</span></figcaption>
+</figure>
+<style is:global>
+  .ta{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .ta .fit{position:relative;flex:1;min-height:0;overflow:hidden;border:1px solid var(--line);border-radius:8px;background:#F4F6F9}
+  .ta .app{--bl:#0F6CBD;--bl2:#0F5BA8;--sf:#E6F0FB;--bd:#E1E5EB;--tx:#1F2328;--mu:#5B6573;position:absolute;left:0;top:0;width:1000px;height:520px;transform-origin:0 0;overflow:hidden;background:#F4F6F9;color:var(--tx);font:13px/1.3 "Segoe UI",system-ui,sans-serif;text-align:left;pointer-events:none}
+  .ta .hd{height:52px;background:var(--bl);color:#fff;display:flex;align-items:center;gap:14px;padding:0 20px}
+  .ta .hd>b{font-size:15px;font-weight:600;flex:1}
+  .ta .srcd{font-size:10.5px;opacity:.9}.ta .sep{width:1px;height:20px;background:rgba(255,255,255,.5)}
+  .ta .av{width:30px;height:30px;border-radius:50%;background:#fff;color:var(--bl);font:700 10px/30px "Segoe UI",system-ui,sans-serif;text-align:center;font-style:normal}
+  .ta .us{font-size:11.5px}
+  .ta .bd{display:flex;height:calc(100% - 52px)}
+  .ta .sb{width:190px;background:#fff;border-right:1px solid var(--bd);padding:10px 7px}
+  .ta .ni{display:flex;justify-content:space-between;align-items:center;height:38px;padding:0 12px;border-radius:4px;font-size:12.5px;color:var(--tx);margin-bottom:3px}
+  .ta .ni em{font-style:normal;font-size:11px;color:var(--mu)}.ta .ni em.red{background:#B42318;color:#fff;border-radius:9px;padding:1px 7px;font-weight:600}
+  .ta .sb hr{border:0;border-top:1px solid var(--bd);margin:8px 6px}
+  .ta .ni.n0{animation:tan0 var(--TA,18s) infinite}.ta .ni.n1{animation:tan1 var(--TA,18s) infinite}
+  @keyframes tan0{0%,31%{background:var(--sf);color:var(--bl2);font-weight:600}34%,100%{background:transparent;color:var(--tx);font-weight:400}}
+  @keyframes tan1{0%,31%{background:transparent;color:var(--tx);font-weight:400}34%,97%{background:var(--sf);color:var(--bl2);font-weight:600}98%,100%{background:transparent;color:var(--tx);font-weight:400}}
+  .ta .ct{position:relative;flex:1;min-width:0}
+  .ta .v{position:absolute;inset:0;padding:14px 20px;opacity:0;animation:tav var(--TA,18s) infinite}
+  .ta .v0{animation-name:tav0}.ta .v1{animation-name:tav1}.ta .v2{animation-name:tav2}
+  @keyframes tav0{0%,29%{opacity:1}33%,100%{opacity:0}}
+  @keyframes tav1{0%,31%{opacity:0}35%,62%{opacity:1}66%,100%{opacity:0}}
+  @keyframes tav2{0%,64%{opacity:0}68%,96%{opacity:1}100%{opacity:0}}
+  .ta h4{margin:0 0 10px;font-size:19px;font-weight:600;display:flex;align-items:baseline;gap:10px}
+  .ta h4 small{font-size:12px;font-weight:400;color:var(--mu);flex:1}
+  .ta .bt{margin-left:auto;background:#0078D4;color:#fff;font-size:11.5px;font-weight:600;padding:6px 12px;border-radius:4px}
+  .ta .kp{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:12px}
+  .ta .kp>div{background:#fff;border:1px solid var(--bd);border-radius:6px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+  .ta .kp u{text-decoration:none;font-size:11.5px;color:var(--mu)}.ta .kp b{font-size:30px;font-weight:600;line-height:1.1}.ta .kp a{font-size:11px;color:var(--bl2)}
+  .ta .kp .rd b{color:#B42318}
+  .ta .two{display:grid;grid-template-columns:1.25fr 1fr;gap:12px}
+  .ta .cd{background:#fff;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+  .ta .ch{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--bd);font-size:13.5px}
+  .ta .li{display:flex;justify-content:space-between;gap:10px;padding:8px 14px;border-bottom:1px solid var(--bd)}
+  .ta .li div{display:flex;flex-direction:column;min-width:0}.ta .li small{font-size:10.5px;color:var(--mu)}.ta .li b{font-weight:600;font-size:12.5px}.ta .li span{font-size:11px;color:var(--mu)}
+  .ta .li>.pl{align-self:center;white-space:nowrap}.ta .li .dt{align-self:center;font-weight:600;color:var(--tx)}
+  .ta .ft{margin:0;padding:6px 14px;font-size:10.5px;color:var(--mu)}
+  .ta .pl{font-style:normal;font-size:10.5px;font-weight:600;padding:2px 9px;border-radius:11px;background:var(--sf);color:var(--bl2);white-space:nowrap}
+  .ta .pl.r{background:#FDECEA;color:#B42318}.ta .pl.o{background:#FFF1E0;color:#9A4A00}.ta .pl.g{background:#E7F5EC;color:#146C2E}
+  .ta .fl{display:flex;gap:6px;margin-bottom:10px}
+  .ta .fl i{font-style:normal;font-size:11.5px;padding:5px 12px;border:1px solid var(--bd);border-radius:4px;background:#fff;color:var(--tx)}
+  .ta .fl i.on{background:var(--bl2);border-color:var(--bl2);color:#fff;font-weight:600}
+  .ta .tb{background:#fff;border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+  .ta .th,.ta .tr{display:grid;grid-template-columns:78px 1fr 94px 74px 104px 104px 62px;gap:8px;align-items:center;padding:0 12px}
+  .ta .th{height:30px;background:#F7F9FB;font-size:10.5px;font-weight:600;color:var(--mu);border-bottom:1px solid var(--bd)}
+  .ta .tr{min-height:44px;border-bottom:1px solid var(--bd);font-size:11.5px}
+  .ta .tr.bad{background:#FFF8F7}
+  .ta .tr .nu{font-weight:600;color:var(--bl2)}.ta .tr .rs{display:flex;flex-direction:column;min-width:0}.ta .tr .rs b{font-weight:600;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ta .tr small{font-size:10.5px;color:var(--mu)}.ta .tr small.rr{color:#B42318;font-weight:600}
+  .ta .tr .sr{color:#B42318;font-weight:600}.ta .tr .pr.Crítica{color:#B42318;font-weight:600}.ta .tr .pr.Alta{color:#9A4A00;font-weight:600}
+  .ta .t2 .th,.ta .t2 .tr{grid-template-columns:1.3fr 1.1fr 112px 92px 74px}
+  .ta .t2 .tr{min-height:36px}.ta .t2 .tr.first{border-top:2px solid var(--bd)}
+  .ta figcaption{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.03em}
+  @media (prefers-reduced-motion:reduce){.ta .v,.ta .ni{animation:none!important}.ta .v0{opacity:1}.ta .ni.n0{background:var(--sf);color:var(--bl2);font-weight:600}}
+</style>
+<script>
+  // Escala la interfaz (1000 px de ancho) al ancho de su contenedor y ajusta el alto para llenarlo.
+  document.querySelectorAll<HTMLElement>('.ta .fit').forEach((fit) => {
+    const app = fit.querySelector<HTMLElement>('.app')!;
+    const upd = () => { const s = fit.clientWidth / 1000; app.style.height = fit.clientHeight / s + 'px'; app.style.transform = `scale(${s})`; };
+    new ResizeObserver(upd).observe(fit); upd();
+  });
+</script>

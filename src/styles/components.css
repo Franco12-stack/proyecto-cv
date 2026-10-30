@@ -237,3 +237,5 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .pframe.sig .ptag{opacity:1}
 .pframe.sig .pre{opacity:1;pointer-events:auto}
 .pre:hover{filter:brightness(1.1)}
+.pvis.has-flow:has(.ta){padding:12px 14px}
+.pvis.has-flow:has(.ta) .pidx{display:none}
