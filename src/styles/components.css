@@ -242,3 +242,6 @@ footer{border-top:1px solid var(--line);padding-top:20px;font:400 12px var(--f-m
 .pvis.has-flow:has(.pd){padding:12px 14px}
 .pvis.has-flow:has(.pd) .pidx{display:none}
 .pvis.has-flow:has(.ne) .pstats{padding-right:44px}
+.pvis.has-flow:has(.mlp){padding:12px 14px}
+.pvis.has-flow:has(.mlp) .pidx{display:none}
+.pvis.has-flow:has(.mlp) .pstats{padding-right:6px}
