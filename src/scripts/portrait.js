@@ -12,6 +12,7 @@ export function initPortrait() {
   const isDark = () => { const m = getComputedStyle(document.body).backgroundColor.match(/\d+/g); return !m || (.299 * m[0] + .587 * m[1] + .114 * m[2]) < 128; };
 
   function photo(px) {
+    ctx.clearRect(0, 0, W, H);
     ctx.imageSmoothingEnabled = px <= 1;
     if (px <= 1) { ctx.drawImage(img, 0, 0, W, H); return; }
     tiny.width = Math.ceil(W / px); tiny.height = Math.ceil(H / px);
@@ -20,25 +21,26 @@ export function initPortrait() {
     ctx.drawImage(tiny, 0, 0, tiny.width * px, tiny.height * px);
   }
   // ASCII: el retrato como caracteres; lo oscuro de la foto (pelo, rasgos, ropa) se dibuja más denso y el fondo claro queda vacío.
-  const RAMP = ' .:-=+*#%@', CW = 6.6, CH = 10, FS = 11.5;
+  const SC = W / 440, RAMP = ' .:-=+*#%@', CW = 6.6 * SC, CH = 10 * SC, FS = 11.5 * SC;
   let lum = null, cols = 0, rows = 0;
   function sample() {
     cols = Math.floor(W / CW); rows = Math.floor(H / CH);
     tiny.width = cols; tiny.height = rows; tctx.drawImage(img, 0, 0, cols, rows);
-    const d = tctx.getImageData(0, 0, cols, rows).data, raw = [];
-    for (let i = 0; i < cols * rows; i++) raw.push((.299 * d[i * 4] + .587 * d[i * 4 + 1] + .114 * d[i * 4 + 2]) / 255);
-    const sorted = [...raw].sort((a, b) => a - b), lo = sorted[Math.floor(raw.length * .04)], hi = sorted[Math.floor(raw.length * .9)];
-    lum = raw.map((l) => Math.min(1, Math.max(0, 1 - (l - lo) / (hi - lo || 1))));
+    const d = tctx.getImageData(0, 0, cols, rows).data, raw = [], solid = [];
+    for (let i = 0; i < cols * rows; i++) { raw.push((.299 * d[i * 4] + .587 * d[i * 4 + 1] + .114 * d[i * 4 + 2]) / 255); solid.push(d[i * 4 + 3] > 120); }
+    const sorted = raw.filter((_, i) => solid[i]).sort((a, b) => a - b), lo = sorted[Math.floor(sorted.length * .04)] ?? 0, hi = sorted[Math.floor(sorted.length * .92)] ?? 1;
+    lum = raw.map((l, i) => (solid[i] ? Math.min(1, Math.max(.18, 1 - (l - lo) / (hi - lo || 1))) : -1));
   }
   function ascii(progress = 1) {
     if (!lum) sample();
-    ctx.fillStyle = css('--surface') || '#132026'; ctx.fillRect(0, 0, W, H);
+    ctx.clearRect(0, 0, W, H);
     ctx.font = `700 ${FS}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = 'top';
     ctx.fillStyle = css('--accent') || '#43D9BE';
     const ox = (W - cols * CW) / 2, limit = Math.floor(rows * progress);
     for (let y = 0; y < rows; y++) {
       if (y > limit) break;
       for (let x = 0; x < cols; x++) {
+        if (lum[y * cols + x] < 0) continue;
         const v = Math.pow(lum[y * cols + x], 1.1), ch = RAMP[Math.min(RAMP.length - 1, Math.floor(v * RAMP.length))];
         if (ch === ' ') continue;
         ctx.globalAlpha = (y > limit - 3 ? .4 : 1) * (.62 + .38 * v);
