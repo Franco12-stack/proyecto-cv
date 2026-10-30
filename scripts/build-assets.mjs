@@ -25,6 +25,6 @@ try {
   }
   await page.setViewportSize({ width: 1200, height: 630 });
   await page.goto(`${origin}/og/`, { waitUntil: 'networkidle' });
-  await page.screenshot({ path: 'public/og-image.png' });
+  await page.screenshot({ path: 'public/og-image-v2.png' });
   await browser.close();
 } finally { server.kill(); }

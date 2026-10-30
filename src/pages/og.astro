@@ -1,20 +1,28 @@
 ---
-// Plantilla de la imagen para compartir (1200x630). `npm run assets` la convierte a /public/og-image.png.
+// Plantilla de la imagen para compartir (1200x630), igual que la portada. `npm run assets` la convierte a /public/og-image-v2.png.
+import { url } from '../lib/url';
 ---
 <!doctype html>
 <html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex"><title>og</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 *{box-sizing:border-box}
-body{margin:0;width:1200px;height:630px;background:#0C1519;color:#E9F0F2;font-family:'IBM Plex Sans',Arial,sans-serif;display:flex;flex-direction:column;justify-content:center;padding:0 80px;position:relative;overflow:hidden}
-.tag{font:500 24px 'JetBrains Mono',monospace;color:#43D9BE;margin:0 0 24px}
-h1{font:700 62px/1.07 'Bricolage Grotesque',Arial,sans-serif;margin:0 0 28px;letter-spacing:-.02em;max-width:900px}
-h1 em{font-style:normal;color:#7C909A}
-p{font:500 26px 'JetBrains Mono',monospace;color:#7C909A;margin:0}
-p b{color:#E9F0F2;font-weight:500}
+body{margin:0;width:1200px;height:630px;background:#0C1519;color:#E9F0F2;font-family:'IBM Plex Sans',Arial,sans-serif;position:relative;overflow:hidden}
 .bar{position:absolute;left:0;top:0;width:100%;height:8px;background:#43D9BE}
+.copy{position:absolute;left:72px;top:0;bottom:0;width:590px;display:flex;flex-direction:column;justify-content:center}
+.brand{font:500 24px 'JetBrains Mono',monospace;color:#43D9BE;margin:0 0 26px}
+h1{font:700 60px/1.06 'Bricolage Grotesque',Arial,sans-serif;margin:0 0 30px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:#7C909A}
+.role{font:500 26px 'JetBrains Mono',monospace;color:#E9F0F2;margin:0 0 8px}
+.sub{font:400 22px 'JetBrains Mono',monospace;color:#7C909A;margin:0}
+.photo{position:absolute;right:30px;bottom:0;height:590px;width:auto}
 </style></head>
 <body><div class="bar"></div>
-<div class="tag">// ai engineer · buenos aires</div>
-<h1>Construyo agentes de IA, bots y automatizaciones con LLMs <em>que funcionan en producción.</em></h1>
-<p><b>franco.fernandez</b> · n8n · Python · LLMs</p>
+<div class="copy">
+  <div class="brand">franco.fernandez</div>
+  <h1>Automatizo procesos y construyo software con IA <em>que funciona en producción.</em></h1>
+  <p class="role">Automation &amp; AI Engineer</p>
+  <p class="sub">n8n · Python · LLMs · Buenos Aires</p>
+</div>
+<img class="photo" src={url('/foto-cutout.webp')} alt="">
 </body></html>
