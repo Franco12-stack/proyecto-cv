@@ -2,12 +2,24 @@
 import es from '../data/site.es.json';
 import en from '../data/site.en.json';
 import T from './T.astro';
+import Portrait from './Portrait.astro';
+import { url } from '../lib/url';
 const ticker = es.ticker.map((w) => `${w}<i>✱</i>`).join('');
 ---
 <div class="hero">
-  <p class="tag"><T es={es.hero.tag} en={en.hero.tag} /></p>
-  <h1><T es={es.hero.h1} en={en.hero.h1} /></h1>
-  <p class="lead"><T es={es.hero.lead} en={en.hero.lead} /></p>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <p class="tag"><T es={es.hero.tag} en={en.hero.tag} /></p>
+      <h1><T es={es.hero.h1} en={en.hero.h1} /></h1>
+      <p class="lead"><T es={es.hero.lead} en={en.hero.lead} /></p>
+      <div class="cta-row">
+        <a class="btn primary" href="#proyectos"><T es={es.ui.viewProjects} en={en.ui.viewProjects} /></a>
+        <a class="btn" href={url('/cv-franco-fernandez.pdf')} download><T es={es.ui.cv} en={en.ui.cv} /> ↓</a>
+        <a class="btn" href="#contacto"><T es={es.ui.cta} en={en.ui.cta} /></a>
+      </div>
+    </div>
+    <Portrait />
+  </div>
   <div class="meta">
     {es.hero.meta.map((m, i) => (
       <div><small><T es={m.k} en={en.hero.meta[i].k} /></small>

@@ -26,7 +26,8 @@
     "langLabel": "Language",
     "projectsSub": "Real solutions",
     "scrollHint": "Scroll to browse",
-    "projectN": "Project"
+    "projectN": "Project",
+    "viewProjects": "View projects"
   },
   "hero": {
     "tag": "// ai engineer + software · buenos aires",
