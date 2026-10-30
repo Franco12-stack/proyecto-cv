@@ -1,0 +1,85 @@
+---
+// Editor de n8n con el flujo real del agente (solo estructura: nombres, tipos y conexiones). Una cámara recorre el flujo mientras "se ejecuta".
+import flow from '../data/agente-flow.json';
+const S = 64;
+const byName = Object.fromEntries(flow.nodes.map((n) => [n.name, n]));
+const pad = 220;
+const minX = Math.min(...flow.nodes.map((n) => n.x)) - pad, maxX = Math.max(...flow.nodes.map((n) => n.x)) + S + pad;
+const minY = Math.min(...flow.nodes.map((n) => n.y)) - 120, maxY = Math.max(...flow.nodes.map((n) => n.y)) + S + 160;
+const col: Record<string, string> = { trigger: '#ff6d5a', agent: '#9d7bff', model: '#9d7bff', memory: '#9d7bff', tool: '#9d7bff', http: '#7aa2ff', code: '#ff9a5a', logic: '#3ed598', redis: '#e5483f', wait: '#f0c75e', other: '#9aa0ad' };
+const gl: Record<string, string> = { agent: 'AI', model: 'LLM', memory: 'MEM', tool: 'fn', http: 'HTTP', code: '</>', logic: 'IF', redis: 'R' };
+const wrap = (s: string, max = 15) => { const out: string[] = []; let cur = ''; for (const w of s.split(' ')) { if ((cur + ' ' + w).trim().length > max && cur) { out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } out.push(cur); if (out.length > 2) { out.length = 2; out[1] = out[1].slice(0, max - 1) + '…'; } return out; };
+const path = (e: { from: string; to: string; ai: boolean }) => {
+  const a = byName[e.from], b = byName[e.to];
+  if (e.ai) { const x1 = a.x + S / 2, y1 = a.y, x2 = b.x + S / 2, y2 = b.y + S; const dy = Math.max(40, Math.abs(y1 - y2) / 2); return `M${x1} ${y1} C${x1} ${y1 - dy} ${x2} ${y2 + dy} ${x2} ${y2}`; }
+  const x1 = a.x + S, y1 = a.y + S / 2, x2 = b.x - 4, y2 = b.y + S / 2; const dx = Math.max(50, Math.abs(x2 - x1) / 2);
+  return `M${x1} ${y1} C${x1 + dx} ${y1} ${x2 - dx} ${y2} ${x2} ${y2}`;
+};
+// Cámara: encuadres por etapa
+const VW = 1100, VH = 490;
+const wps = [[500, 230], [420, 800], [1000, 760], [2050, 700], [3350, 900], [4500, 700], [5450, 640]];
+const dwell = 5.5, move = 2.6, dur = wps.length * (dwell + move) + move + dwell;
+const vbs: string[] = [], kt: number[] = [], sp: string[] = [];
+let t = 0;
+const push = (c: number[], at: number) => { vbs.push(`${c[0] - VW / 2} ${c[1] - VH / 2} ${VW} ${VH}`); kt.push(at / dur); };
+wps.forEach((c, i) => { push(c, t); t += dwell; push(c, t); sp.push('0 0 1 1'); t += move; if (i < wps.length - 1) sp.push('0.45 0 0.55 1'); });
+// vuelve al inicio
+kt[kt.length - 1] = 1; vbs[vbs.length - 1] = vbs[0];
+const keyTimes = kt.map((x) => x.toFixed(4)).join(';');
+const splines = vbs.slice(1).map((_, i) => (i % 2 === 0 ? '0 0 1 1' : '0.45 0 0.55 1')).join(';');
+const pulses = flow.edges.filter((e) => !e.ai);
+---
+<figure class="ne">
+  <div class="cv" role="img" aria-label="Editor de n8n con el flujo real de un agente conversacional: 50 nodos y 55 conexiones / n8n editor with the real workflow of a conversational agent: 50 nodes and 55 connections">
+    <svg viewBox={`${vbs[0]}`} xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <animate attributeName="viewBox" values={vbs.join(';')} keyTimes={keyTimes} calcMode="spline" keySplines={splines} dur={`${dur}s`} repeatCount="indefinite" class="cam" />
+      <defs>
+        <pattern id="nedots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#3a3c44" /></pattern>
+        <marker id="nearr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="16" markerHeight="16" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 1 10 5 0 9z" fill="#8a8d99" /></marker>
+      </defs>
+      <rect x={minX - 2000} y={minY - 2000} width={maxX - minX + 4000} height={maxY - minY + 4000} fill="#1c1d21" />
+      <rect x={minX - 2000} y={minY - 2000} width={maxX - minX + 4000} height={maxY - minY + 4000} fill="url(#nedots)" />
+      {flow.groups.map((g) => <text class="gt" x={g.x + 20} y={g.y + 36}>{g.n}. {g.name}</text>)}
+      <g class="eg">{flow.edges.map((e) => <path class={e.ai ? 'ai' : ''} d={path(e)} marker-end={e.ai ? undefined : 'url(#nearr)'} />)}</g>
+      <g>{pulses.map((e, i) => <circle class="pu" r="6" style={`offset-path:path('${path(e)}');animation-delay:${((i * 0.83) % 7).toFixed(2)}s`} />)}</g>
+      <g>{flow.nodes.map((n) => {
+        const lab = wrap(n.name, n.kind === 'model' || n.kind === 'memory' ? 11 : 15);
+        const side = n.kind === 'model' ? 'end' : n.kind === 'memory' ? 'start' : 'middle';
+        const lx = n.kind === 'model' ? n.x + S : n.kind === 'memory' ? n.x : n.x + S / 2;
+        return (
+          <g class="nd" transform={`translate(${n.x} ${n.y})`}>
+            <title>{n.name}</title>
+            <rect class={'bx' + (n.kind === 'agent' ? ' ag' : '')} width={S} height={S} rx={n.kind === 'trigger' ? 28 : 12} style={n.kind === 'trigger' ? 'rx:32px 12px 12px 32px' : ''} />
+            {n.kind === 'trigger' ? <path d="M36 14 22 36h10l-4 14 16-24H33z" fill={col.trigger} /> : n.kind === 'wait' ? <g stroke={col.wait} stroke-width="3" fill="none" stroke-linecap="round"><circle cx="32" cy="32" r="14" /><path d="M32 24v9l6 4" /></g> : <text class="ic" x={S / 2} y={S / 2 + 6} text-anchor="middle" fill={col[n.kind] ?? col.other}>{gl[n.kind] ?? '•'}</text>}
+            {lab.map((l, i) => <text class="lb" x={lx - n.x} y={S + 22 + i * 21} text-anchor={side}>{l}</text>)}
+          </g>
+        );
+      })}</g>
+    </svg>
+    <span class="chip"><i></i><span data-l="es">Ejecutando · agente de ventas y posventa</span><span data-l="en">Running · sales and after-sales agent</span></span>
+  </div>
+  <figcaption><span data-l="es">Flujo real exportado de n8n (50 nodos): solo estructura, sin parámetros ni credenciales.</span><span data-l="en">Real workflow exported from n8n (50 nodes): structure only, no parameters or credentials.</span></figcaption>
+</figure>
+<style is:global>
+  .ne{margin:0;width:100%;flex:1;min-height:0;display:flex;flex-direction:column;gap:6px}
+  .ne .cv{position:relative;flex:1;min-height:0;overflow:hidden;border:1px solid #383a42;border-radius:8px;background:#1c1d21}
+  .ne svg{position:absolute;inset:0;width:100%;height:100%}
+  .ne .eg path{fill:none;stroke:#8a8d99;stroke-width:2px;vector-effect:non-scaling-stroke}
+  .ne .eg path.ai{stroke:#6b6f7c;stroke-dasharray:6 5}
+  .ne .bx{fill:#2b2c33;stroke:#4b4d58;stroke-width:2px;vector-effect:non-scaling-stroke}
+  .ne .bx.ag{stroke:#9d7bff;fill:#2e2a40}
+  .ne .ic{font:700 15px "JetBrains Mono",ui-monospace,monospace}
+  .ne .lb{font:500 20px "IBM Plex Sans",system-ui,sans-serif;fill:#c7cad3}
+  .ne .gt{font:500 34px "JetBrains Mono",ui-monospace,monospace;fill:#6f7480;letter-spacing:.02em}
+  .ne .pu{fill:#7ee787;opacity:0;offset-rotate:0deg;animation:nep 7s linear infinite;filter:drop-shadow(0 0 6px #7ee787)}
+  @keyframes nep{0%{offset-distance:0%;opacity:0}6%{opacity:1}22%{offset-distance:100%;opacity:1}28%,100%{offset-distance:100%;opacity:0}}
+  .ne .chip{position:absolute;left:12px;top:10px;display:flex;align-items:center;gap:8px;padding:4px 11px;border-radius:12px;background:#262730e6;border:1px solid #45474f;color:#e1e3ea;font:500 11px var(--f-mono);letter-spacing:.03em}
+  .ne .chip i{width:8px;height:8px;border-radius:50%;background:#7ee787;box-shadow:0 0 8px #7ee787;animation:nec 1.4s ease-in-out infinite}
+  @keyframes nec{50%{opacity:.3}}
+  .ne figcaption{font:400 11px var(--f-mono);color:var(--dim);letter-spacing:.03em}
+  @media (prefers-reduced-motion:reduce){.ne .pu,.ne .chip i{animation:none}.ne .pu{display:none}}
+</style>
+<script>
+  // Con movimiento reducido, la cámara queda fija en el primer encuadre.
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) document.querySelectorAll('.ne .cam').forEach((a) => a.remove());
+</script>

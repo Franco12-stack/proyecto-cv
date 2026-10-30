@@ -4,7 +4,7 @@ import en from '../data/site.en.json';
 import pes from '../data/projects.es.json';
 import pen from '../data/projects.en.json';
 import T from './T.astro';
-import PipelineMini from './PipelineMini.astro';
+import N8nEditor from './N8nEditor.astro';
 import BrowserScan from './BrowserScan.astro';
 import ObsidianGraph from './ObsidianGraph.astro';
 import PriceDash from './PriceDash.astro';
@@ -45,7 +45,7 @@ const pad = (i: number) => String(i).padStart(2, '0');
                   <li><b>50+</b><span><T es="flujos 24/7" en="workflows 24/7" /></span></li>
                   <li><b>{flowStats.nodes}</b><span><T es="nodos en el flujo del agente" en="nodes in the agent workflow" /></span></li>
                 </ul>
-                <PipelineMini />
+                <N8nEditor />
               </>) : (p as any).diagram === 'promos' ? (<>
                 <ul class="pstats"><li><b>{p.metric.v}</b><span><T es="promociones activadas o desactivadas de forma autónoma" en="promotions activated or deactivated autonomously" /></span></li></ul>
                 <BrowserScan />
